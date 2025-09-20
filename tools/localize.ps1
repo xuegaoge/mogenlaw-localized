@@ -50,114 +50,130 @@ function Resolve-LocalPaths([string]$url) {
     return @{ abs = $abs; rel = $rel }
 }
 
-function Invoke-PoliteDownload([string]$url, [string]$dst) {
-    if (Test-Path $dst) { return $true }
-    $ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36'
-    for ($i=1; $i -le $MaxRetries; $i++) {
+function Download-File([string]$url, [string]$path) {
+    $retries = 0
+    while ($retries -lt $MaxRetries) {
         try {
-            $resp = Invoke-WebRequest -Uri $url -Headers @{ 'User-Agent'=$ua } -UseBasicParsing -TimeoutSec 30 -ErrorAction Stop
-            [System.IO.File]::WriteAllBytes($dst, $resp.Content)
+            Write-Host "Downloading $url -> $path"
+            $delay = Get-Random -Minimum $DelayMinMs -Maximum $DelayMaxMs
+            Start-Sleep -Milliseconds $delay
+            
+            $webClient = New-Object System.Net.WebClient
+            $webClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+            $webClient.DownloadFile($url, $path)
+            $webClient.Dispose()
             return $true
-        } catch {
-            if ($i -eq $MaxRetries) { Write-Warning "Download failed ($i/$MaxRetries): $url -> $dst ; $_"; return $false }
-            Start-Sleep -Milliseconds (Get-Random -Minimum $DelayMinMs -Maximum $DelayMaxMs)
+        }
+        catch {
+            $retries++
+            Write-Warning "Download failed (attempt $retries/$MaxRetries): $($_.Exception.Message)"
+            if ($retries -lt $MaxRetries) {
+                Start-Sleep -Seconds ($retries * 2)
+            }
         }
     }
-}
-
-function Extract-Matches([string]$html, [string]$pattern, [string]$groupName) {
-    $matches = [System.Text.RegularExpressions.Regex]::Matches($html, $pattern, 'IgnoreCase')
-    $out = @()
-    foreach ($m in $matches) {
-        $url = $m.Groups[$groupName].Value
-        if ($url -and $url -match '^https?://') { $out += @{ url = $url; full = $m.Value } }
-    }
-    return $out
+    return $false
 }
 
 function Process-CssFile([string]$cssPath) {
     if (-not (Test-Path $cssPath)) { return }
-    $css = Get-Content -Raw -LiteralPath $cssPath
-    $regex = 'url\((?<q>[\"\'']?)(?<u>[^\)\"\'']+)\k<q>\)'
-    $changed = $false
-    $css = [System.Text.RegularExpressions.Regex]::Replace($css, $regex, {
-        param($m)
-        $u = $m.Groups['u'].Value
-        if ($u -notmatch '^https?://') { return $m.Value }
-        try {
-            $uri = [Uri]$u
-            if ($uri.Host -ne $HostFilter) { return $m.Value }
-            $paths = Resolve-LocalPaths $u
-            if (Invoke-PoliteDownload $u $paths.abs) {
-                $GLOBALS:__downloads += $paths.rel
-                $changed = $true
-                return 'url(' + $paths.rel + ')'
-            } else {
-                return $m.Value
-            }
-        } catch { return $m.Value }
-    }, 'IgnoreCase')
-    if ($changed) { Set-Content -LiteralPath $cssPath -Value $css -Encoding UTF8 }
-}
-
-# Main
-$indexPath = Join-Path $Root 'index.html'
-if (-not (Test-Path $indexPath)) { throw "index.html not found at $indexPath" }
-$html = Get-Content -Raw -LiteralPath $indexPath
-$downloads = @()
-$GLOBAL:__downloads = @()
-
-# Patterns scoped to aekhw.com absolute urls only
-$pat_link_css = '<link[^>]+?(?:rel\s*=\s*[\"''](?:stylesheet|preload|icon|shortcut icon|apple-touch-icon)[\"''][^>]*?)href\s*=\s*[\"''](?<u>https?://'+[regex]::Escape($HostFilter)+'[^\"'']+)[\"'']'
-$pat_script = '<script[^>]+?src\s*=\s*[\"''](?<u>https?://'+[regex]::Escape($HostFilter)+'[^\"'']+)[\"'']'
-$pat_img = '<img[^>]+?src\s*=\s*[\"''](?<u>https?://'+[regex]::Escape($HostFilter)+'[^\"'']+)[\"'']'
-$pat_source = '<source[^>]+?src\s*=\s*[\"''](?<u>https?://'+[regex]::Escape($HostFilter)+'[^\"'']+)[\"'']'
-$pat_video = '<video[^>]+?src\s*=\s*[\"''](?<u>https?://'+[regex]::Escape($HostFilter)+'[^\"'']+)[\"'']'
-
-$found = @()
-$found += Extract-Matches $html $pat_link_css 'u'
-$found += Extract-Matches $html $pat_script 'u'
-$found += Extract-Matches $html $pat_img 'u'
-$found += Extract-Matches $html $pat_source 'u'
-$found += Extract-Matches $html $pat_video 'u'
-
-# Unique by URL
-$seen = @{}
-$queue = @()
-foreach ($item in $found) {
-    $u = $item.url
-    if (-not $seen.ContainsKey($u)) { $seen[$u] = $true; $queue += $u }
-}
-
-# Download politely, sequential with small jitter
-foreach ($u in $queue) {
-    try {
-        $uri = [Uri]$u
-        if ($uri.Host -ne $HostFilter) { continue }
-        $paths = Resolve-LocalPaths $u
-        $ok = Invoke-PoliteDownload $u $paths.abs
-        if ($ok) {
-            $downloads += @{ url=$u; rel=$paths.rel; abs=$paths.abs }
-            # If CSS, also process its nested urls
-            if ($paths.abs.ToLower().EndsWith('.css')) { Process-CssFile $paths.abs }
+    
+    $content = Get-Content $cssPath -Raw -Encoding UTF8
+    $urlPattern = 'url\s*\(\s*[''"]?([^''")]+)[''"]?\s*\)'
+    
+    $matches = [regex]::Matches($content, $urlPattern)
+    foreach ($match in $matches) {
+        $originalUrl = $match.Groups[1].Value
+        
+        # Skip data URLs and already relative URLs
+        if ($originalUrl.StartsWith('data:') -or $originalUrl.StartsWith('./') -or $originalUrl.StartsWith('../')) {
+            continue
         }
-        Start-Sleep -Milliseconds (Get-Random -Minimum $DelayMinMs -Maximum $DelayMaxMs)
-    } catch { Write-Warning $_ }
+        
+        # Convert relative URLs to absolute
+        if (-not $originalUrl.StartsWith('http')) {
+            $baseUri = [Uri]"https://$HostFilter/"
+            $absoluteUrl = [Uri]::new($baseUri, $originalUrl).ToString()
+        } else {
+            $absoluteUrl = $originalUrl
+        }
+        
+        # Only process URLs from our target host
+        if (-not $absoluteUrl.Contains($HostFilter)) { continue }
+        
+        $paths = Resolve-LocalPaths $absoluteUrl
+        
+        if (-not (Test-Path $paths.abs)) {
+            $success = Download-File $absoluteUrl $paths.abs
+            if (-not $success) {
+                Write-Warning "Failed to download: $absoluteUrl"
+                continue
+            }
+        }
+        
+        # Calculate relative path from CSS file to asset
+        $cssDir = Split-Path $cssPath -Parent
+        $relativePath = [System.IO.Path]::GetRelativePath($cssDir, $paths.abs).Replace('\', '/')
+        
+        # Replace in content
+        $content = $content.Replace($originalUrl, $relativePath)
+    }
+    
+    Set-Content $cssPath -Value $content -Encoding UTF8
 }
 
-# Rewrite index.html
-foreach ($d in $downloads) {
-    $urlEsc = [Regex]::Escape($d.url)
-    $html = [Regex]::Replace($html, '([\"\''])'+$urlEsc+'\1', '"'+$d.rel+'"', 'IgnoreCase')
+# Main processing
+$indexPath = Join-Path $Root 'index.html'
+if (-not (Test-Path $indexPath)) {
+    Write-Error "index.html not found at $indexPath"
+    exit 1
 }
-Set-Content -LiteralPath $indexPath -Value $html -Encoding UTF8
 
-# Report summary
-$cssCount = ($downloads | Where-Object { $_.rel -like 'assets/css/*' }).Count
-$jsCount = ($downloads | Where-Object { $_.rel -like 'assets/js/*' }).Count
-$imgCount = ($downloads | Where-Object { $_.rel -like 'assets/images/*' }).Count
-$fontCount = ($downloads | Where-Object { $_.rel -like 'assets/fonts/*' }).Count
-$mediaCount = ($downloads | Where-Object { $_.rel -like 'assets/media/*' }).Count
+Write-Host "Processing $indexPath"
+$html = Get-Content $indexPath -Raw -Encoding UTF8
 
-Write-Output "Localized resources: CSS=$cssCount, JS=$jsCount, IMG=$imgCount, FONT=$fontCount, MEDIA=$mediaCount"
-if ($GLOBAL:__downloads.Count -gt 0) { Write-Output "Nested CSS url() localized: $($GLOBAL:__downloads.Count)" }
+# Find all URLs in HTML
+$urlPatterns = @(
+    'href\s*=\s*[''"]([^''"]+)[''"]',
+    'src\s*=\s*[''"]([^''"]+)[''"]',
+    'url\s*\(\s*[''"]?([^''")]+)[''"]?\s*\)'
+)
+
+$allUrls = @()
+foreach ($pattern in $urlPatterns) {
+    $matches = [regex]::Matches($html, $pattern)
+    foreach ($match in $matches) {
+        $url = $match.Groups[1].Value
+        if ($url.Contains($HostFilter)) {
+            $allUrls += $url
+        }
+    }
+}
+
+$allUrls = $allUrls | Sort-Object -Unique
+
+Write-Host "Found $($allUrls.Count) URLs to process"
+
+foreach ($url in $allUrls) {
+    $paths = Resolve-LocalPaths $url
+    
+    if (-not (Test-Path $paths.abs)) {
+        $success = Download-File $url $paths.abs
+        if (-not $success) {
+            Write-Warning "Failed to download: $url"
+            continue
+        }
+    }
+    
+    # Process CSS files for nested URLs
+    if ($paths.abs.EndsWith('.css')) {
+        Process-CssFile $paths.abs
+    }
+    
+    # Replace in HTML
+    $html = $html.Replace($url, $paths.rel)
+}
+
+# Save updated HTML
+Set-Content $indexPath -Value $html -Encoding UTF8
+Write-Host "Localization complete. Updated $indexPath"
