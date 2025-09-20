@@ -101,312 +101,262 @@ async function politeDownload(urlStr, outFile){
           text = `/* @source: ${urlStr} */\n` + text;
         }
         await fs.writeFile(outFile, text, 'utf8');
-      }else{
+      } else {
         await fs.writeFile(outFile, buf);
       }
-      return true;
-    }catch(e){
+      return;
+    } catch(e){
       lastErr = e;
-      if (a===RETRIES){
-        console.error(`[download-fail] ${urlStr} -> ${outFile}: ${e?.message||e}`);
-        return false;
-      }
-      await sleep(500 + a*700);
+      if(a<RETRIES) console.log(`  Retry ${a+1}/${RETRIES} for ${urlStr}: ${e.message}`);
     }
   }
-  return false;
+  throw lastErr;
 }
 
 function sanitizeName(name){
-  return name.replace(/[\\:*?"<>|]/g,'_');
+  return name.replace(/[<>:"/\\|?*]/g, '_').replace(/^\.+|\.+$/g, '');
 }
 
 function targetPathFor(urlStr){
   const u = new URL(urlStr);
   let base = path.basename(u.pathname) || 'index';
+  if (u.search) base += '-' + sha8(u.search);
+  base = sanitizeName(base);
   const ext = path.extname(base).toLowerCase();
-  // keep query as hash suffix to avoid collisions
-  const q = u.search ? '-'+sha8(u.search) : '';
-  if (!ext) base += q; else base = base.replace(ext, q+ext);
   const sub = pickSubdir(ext || '.misc');
-  return path.join(ASSETS_DIR, sub, sanitizeName(base));
+  return path.join(ASSETS_DIR, sub, base);
 }
 
-// 修复：清理误注入的 diff 标记并统一为允许主机替换
+// 在 HTML 中替换 URL
 async function rewriteInHtml(html, mapping){
-  // Replace all absolute links (in allowed hosts) with mapped relative asset path
-  return html.replace(ABS_URL, (m)=>{
-    try { const h = new URL(m).hostname; if (!ALLOWED_HOSTS.has(h)) return m; } catch { return m; }
-    const local = mapping.get(m);
-    if (!local) return m;
-    return path.posix.join('assets', path.posix.relative(ASSETS_DIR.replaceAll('\\','/'), local.replaceAll('\\','/')));
-  });
+  let result = html;
+  for(const [orig, local] of mapping){
+    const rel = path.posix.relative('.', local.replace(/\\/g, '/'));
+    result = result.replaceAll(orig, rel);
+  }
+  return result;
 }
 
 async function localizeCssNested(filePath, baseUrl){
-  try{
-    let css = await fs.readFile(filePath, 'utf8');
-    if (!baseUrl){
-      const m = css.match(/^\/\*\s*@source:\s*(.*?)\s*\*\//m);
-      if (m) baseUrl = m[1].trim();
+  let content = await fs.readFile(filePath, 'utf8');
+  const urls = [];
+  const urlPattern = /url\(['"]?([^'"()]+)['"]?\)/gi;
+  let match;
+  while((match = urlPattern.exec(content)) !== null){
+    const u = match[1];
+    if(u.startsWith('http://') || u.startsWith('https://')){
+      urls.push(u);
+    } else if(u.startsWith('//')){
+      urls.push('https:' + u);
+    } else if(u.startsWith('/')){
+      const base = new URL(baseUrl);
+      urls.push(`${base.protocol}//${base.host}${u}`);
+    } else {
+      const resolved = new URL(u, baseUrl).toString();
+      urls.push(resolved);
     }
-    const urlPat = /url\(\s*([^\)\s]+)\s*\)/gi; // capture inside url(...)
-    const foundSet = new Set();
-    let mm;
-    while ((mm = urlPat.exec(css)) !== null) {
-      let raw = mm[1];
-      if (!raw) continue;
-      // strip quotes
-      if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith('\'') && raw.endsWith('\''))) {
-        raw = raw.slice(1, -1);
-      }
-      if (raw.startsWith('data:') || raw.startsWith('about:') || raw.startsWith('#')) continue;
+  }
+  
+  const mapping = new Map();
+  const semaphore = [];
+  
+  for(const url of urls){
+    if(semaphore.length >= CONCURRENCY){
+      await semaphore.shift();
+    }
+    
+    const promise = (async () => {
       try{
-        let abs;
-        if (/^https?:\/\//i.test(raw)) {
-          abs = new URL(raw);
-        } else if (baseUrl) {
-          abs = new URL(raw, baseUrl);
-        } else {
-          continue;
+        const u = new URL(url);
+        if(!ALLOWED_HOSTS.has(u.hostname)){
+          console.log(`  Skipping ${url} (host not in whitelist)`);
+          return;
         }
-        if (abs.hostname && ALLOWED_HOSTS.has(abs.hostname)) {
-          foundSet.add(abs.toString());
+        
+        const localPath = targetPathFor(url);
+        const exists = await fs.access(localPath).then(()=>true).catch(()=>false);
+        if(!exists){
+          console.log(`  Downloading nested: ${url}`);
+          await politeDownload(url, localPath);
         }
-      }catch{ /* ignore bad url */ }
-    }
-    const found = Array.from(foundSet);
-    if (found.length===0) return { downloaded:0, rewritten:false };
-
-    const mapCss = new Map();
-    let ok=0;
-    for (const u of found){
-      const out = targetPathFor(u);
-      const done = await politeDownload(u, out);
-      if (done){ ok++; mapCss.set(u,out); }
-    }
-
-    if (ok>0){
-      const rewritten = css.replace(urlPat, (match, p1)=>{
-        let raw = p1;
-        let quote = '';
-        if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith('\'') && raw.endsWith('\''))){
-          quote = raw[0];
-          raw = raw.slice(1,-1);
-        }
-        if (raw.startsWith('data:') || raw.startsWith('about:') || raw.startsWith('#')) return match;
-        let absStr;
-        try{
-          if (/^https?:\/\//i.test(raw)) absStr = raw;
-          else if (baseUrl) absStr = new URL(raw, baseUrl).toString();
-          else return match;
-        }catch{ return match; }
-        const local = mapCss.get(absStr);
-        if (!local) return match;
-        const rel = path.posix.relative(path.dirname(filePath).replaceAll('\\','/'), local.replaceAll('\\','/'));
-        return `url(${quote}${rel}${quote})`;
-      });
-      await fs.writeFile(filePath, rewritten, 'utf8');
-      return { downloaded: ok, rewritten: true };
-    }
-    return { downloaded:0, rewritten:false };
-  }catch(e){ return { downloaded:0, rewritten:false }; }
+        
+        const relPath = path.posix.relative(path.dirname(filePath), localPath).replace(/\\/g, '/');
+        mapping.set(url, relPath);
+      } catch(e){
+        console.log(`  Failed to download nested ${url}: ${e.message}`);
+      }
+    })();
+    
+    semaphore.push(promise);
+  }
+  
+  await Promise.all(semaphore);
+  
+  // 替换 CSS 中的 URL
+  for(const [orig, local] of mapping){
+    const pattern = new RegExp(`url\\(['"]?${orig.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"]?\\)`, 'gi');
+    content = content.replace(pattern, `url('${local}')`);
+  }
+  
+  await fs.writeFile(filePath, content, 'utf8');
+  console.log(`  Updated ${urls.length} nested URLs in ${path.basename(filePath)}`);
 }
 
 async function walk(dir){
-  const out = [];
-  const ents = await fs.readdir(dir, {withFileTypes:true});
-  for (const it of ents){
-    const p = path.join(dir, it.name);
-    if (it.isDirectory()) out.push(...await walk(p));
-    else out.push(p);
+  const files = [];
+  const entries = await fs.readdir(dir, {withFileTypes: true});
+  for(const entry of entries){
+    const fullPath = path.join(dir, entry.name);
+    if(entry.isDirectory()) files.push(...await walk(fullPath));
+    else files.push(fullPath);
   }
-  return out;
+  return files;
 }
 
 async function fixLocalFontPathPluralization(filePath){
-  try{
-    let css = await fs.readFile(filePath, 'utf8');
-    let changed = false;
-    const re2 = /url\(\s*(["']?)\.\.\/font\/([^\)"'\s]+\.woff2)\1\s*\)/gi;
-    let out = '';
-    let lastIndex = 0;
-    let m;
-    while((m = re2.exec(css))!==null){
-      const q = m[1];
-      const name = m[2];
-      const candidate = path.join(ASSETS_DIR, 'fonts', name);
-      if (await exists(candidate)){
-        changed = true;
-        out += css.slice(lastIndex, m.index) + `url(${q}../fonts/${name}${q})`;
-        lastIndex = re2.lastIndex;
-      }
-    }
-    if (changed){
-      out += css.slice(lastIndex);
-      await fs.writeFile(filePath, out, 'utf8');
-    }
-    return {rewritten: changed};
-  }catch{ return {rewritten:false}; }
+  let content = await fs.readFile(filePath, 'utf8');
+  const changed = content.replace(
+    /url\(['"]?assets\/font\//gi,
+    "url('assets/fonts/"
+  );
+  if(changed !== content){
+    await fs.writeFile(filePath, changed, 'utf8');
+    console.log(`  Fixed font path pluralization in ${path.basename(filePath)}`);
+  }
 }
 
 async function exists(p){
-  try{ await fs.stat(p); return true; } catch{ return false; }
+  return fs.access(p).then(()=>true).catch(()=>false);
 }
 
 function sanitizeAbsUrl(u){
-  if (!u) return u;
-  // 去掉结尾的引号/括号/分号等无效字符
-  return u.replace(/[)"'""']+$/g, '');
+  return u.replace(/[<>"'\s]/g, '');
 }
 
 function isLikelyAssetUrl(u){
   try{
     const url = new URL(u);
-    const host = url.hostname;
-    const p = url.pathname || '/';
-    // 跳过裸主机或仅根路径（多为 dns-prefetch/preconnect）
-    if (p === '/' || p === '') return false;
-    // 允许 Google Fonts CSS（/css2）
-    if (host.includes('fonts.googleapis.com')) return true;
-    const ext = (p.split('/').pop()||'').toLowerCase();
-    const i = ext.lastIndexOf('.');
-    const dotExt = i>=0 ? ext.slice(i) : '';
-    const allowed = new Set(['.css','.js','.mjs','.png','.jpg','.jpeg','.gif','.svg','.webp','.ico','.bmp','.avif','.mp4','.webm','.ogg','.mp3','.wav','.woff','.woff2','.ttf','.otf','.eot']);
-    if (allowed.has(dotExt)) return true;
+    const ext = path.extname(url.pathname).toLowerCase();
+    return ['.css','.js','.png','.jpg','.jpeg','.gif','.svg','.webp','.ico','.woff','.woff2','.ttf','.otf','.eot','.mp4','.webm','.ogg','.mp3','.wav'].includes(ext) ||
+           url.hostname.includes('fonts.googleapis.com') ||
+           url.hostname.includes('fonts.gstatic.com') ||
+           url.pathname.includes('/wp-content/') ||
+           url.pathname.includes('/assets/') ||
+           url.pathname.includes('/static/');
+  } catch {
     return false;
-  }catch{ return false; }
+  }
 }
 
 function buildGoogleCssUrlFromLocalFile(base){
-  // 将文件名编码为 css2 API：family=<Fam>:ital,wght@0,<r1>;1,<r2>&display=swap
-  if (!base.startsWith('css2-') || !base.endsWith('_swap.css')) return null;
-  const body = base.slice('css2-'.length, -('_swap.css'.length));
-  const m = body.match(/^(.*)italwght0([0-9.]+)1([0-9.]+)$/);
-  if (!m) return null;
-  const famRaw = m[1];
-  const r1 = m[2];
-  const r2 = m[3];
-  // CamelCase -> 拆分空格，再用 + 连接；不要对 + 做 URL 编码
-  const famSpaced = famRaw.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g,' ').trim();
-  const famParam = famSpaced.split(/\s+/).join('+');
-  const q = `family=${famParam}:ital,wght@0,${r1};1,${r2}&display=swap`;
-  return `https://fonts.googleapis.com/css2?${q}`;
+  const match = base.match(/css2\?family=([^&]+)/);
+  if(!match) return null;
+  
+  const family = decodeURIComponent(match[1]);
+  const encoded = encodeURIComponent(family);
+  return `https://fonts.googleapis.com/css2?family=${encoded}&display=swap`;
 }
 
 async function hydrateAndReplaceLocalCssFromGoogle(filePath){
+  const base = path.basename(filePath);
+  const googleUrl = buildGoogleCssUrlFromLocalFile(base);
+  if(!googleUrl) return;
+  
   try{
-    const base = path.basename(filePath);
-    const apiUrl = buildGoogleCssUrlFromLocalFile(base);
-    if (!apiUrl) return { downloaded:0, rewritten:false };
-
-    // 拉取 Google Fonts CSS
-    let css;
-    try { css = (await fetchBuffer(apiUrl)).toString('utf8'); }
-    catch { return { downloaded:0, rewritten:false } }
-
-    // 提取 gstatic 字体 URL 并下载到本地
-    const urls = (css.match(ABS_URL) || []).filter(u=>{
-      try{ const x=new URL(u); return x.hostname.includes('fonts.gstatic.com') && /\.woff2(?:$|\?)/i.test(x.pathname);}catch{return false}
-    });
-    if (urls.length===0) return { downloaded:0, rewritten:false };
-
-    const map = new Map();
-    let ok=0;
-    for (const u of urls){
-      const out = targetPathFor(u);
-      const done = await politeDownload(u, out);
-      if (done){
-        ok++;
-        map.set(u, out);
-      }
+    console.log(`  Hydrating Google Fonts CSS: ${base}`);
+    const buf = await fetchBuffer(googleUrl);
+    let content = buf.toString('utf8');
+    
+    // 添加源注释
+    if(!/^\/\*\s*@source:/m.test(content)){
+      content = `/* @source: ${googleUrl} */\n` + content;
     }
-
-    // 重写 CSS 内的 url(...) 为相对路径
-    const urlPat = /url\(\s*(["']?)([^)'"\s]+)\1\s*\)/gi;
-    const rewritten = css.replace(urlPat, (m,q,raw)=>{
-      try{
-        const abs = new URL(raw);
-        if (!abs.hostname.includes('fonts.gstatic.com')) return m;
-        const local = map.get(abs.toString());
-        if (!local) return m;
-        const rel = path.posix.relative(path.dirname(filePath).replaceAll('\\','/'), local.replaceAll('\\','/'));
-        return `url(${q}${rel}${q})`;
-      }catch{ return m; }
-    });
-
-    // 加上 @source 便于后续二次处理
-    const finalCss = (/^\/\*\s*@source:/m.test(rewritten) ? rewritten : `/* @source: ${apiUrl} */\n` + rewritten);
-    await fs.writeFile(filePath, finalCss, 'utf8');
-    return { downloaded: ok, rewritten: true };
-  }catch{ return { downloaded:0, rewritten:false } }
+    
+    await fs.writeFile(filePath, content, 'utf8');
+    
+    // 处理嵌套的字体文件
+    await localizeCssNested(filePath, googleUrl);
+    
+    console.log(`  ✓ Hydrated and localized: ${base}`);
+  } catch(e){
+    console.log(`  ✗ Failed to hydrate ${base}: ${e.message}`);
+  }
 }
 
 async function processAllLocalCss(){
   const cssDir = path.join(ASSETS_DIR, 'css');
-  try{
-    const files = (await walk(cssDir)).filter(f=>f.toLowerCase().endsWith('.css'));
-    let total=0, rew=0, gdl=0, grew=0, fixr=0;
-    for (const f of files){
-      // 1) 优先用 Google 回源覆盖本地 css2-*.css
-      const g2 = await hydrateAndReplaceLocalCssFromGoogle(f);
-      gdl += g2.downloaded||0; if (g2.rewritten) grew++;
-      // 2) 处理 CSS 内部嵌套的绝对/相对 url()
-      const r = await localizeCssNested(f, null);
-      total += r.downloaded||0; if (r.rewritten) rew++;
-      // 3) 兼容处理 ../font -> ../fonts 的路径复数化
-      const fx = await fixLocalFontPathPluralization(f);
-      if (fx.rewritten) fixr++;
+  if(!(await exists(cssDir))) return;
+  
+  const files = await walk(cssDir);
+  const cssFiles = files.filter(f => path.extname(f).toLowerCase() === '.css');
+  
+  for(const cssFile of cssFiles){
+    const base = path.basename(cssFile);
+    if(base.includes('css2?family=')){
+      await hydrateAndReplaceLocalCssFromGoogle(cssFile);
+    } else {
+      await fixLocalFontPathPluralization(cssFile);
     }
-    console.log(JSON.stringify({css_scanned: files.length, css_downloaded: total, css_rewritten: rew, gfonts_downloaded: gdl, gfonts_rewritten: grew, local_fix_rewritten: fixr}));
-  }catch{ /* ignore if no dir */ }
+  }
 }
 
 async function main(){
-  const html = await fs.readFile(INDEX_FILE, 'utf8');
-  const raw = html.match(ABS_URL) || [];
-  const cleaned = Array.from(new Set(raw.map(sanitizeAbsUrl)));
-  const urls = cleaned.filter(u => {
-    try {
-      const x = new URL(u);
-      if (!ALLOWED_HOSTS.has(x.hostname)) return false;
-      return isLikelyAssetUrl(u);
-    } catch { return false; }
-  });
-  if (urls.length===0){
-    // 即使没有远程 URL，也执行本地 CSS 的二次处理（如 ../font -> ../fonts 修复与嵌套 url() 本地化）
-    await processAllLocalCss();
-    console.log('No remote URLs found. Processed local CSS only.');
-    return;
+  console.log('🚀 Starting localization process...');
+  
+  if(!(await exists(INDEX_FILE))){
+    console.error(`❌ ${INDEX_FILE} not found`);
+    process.exit(1);
   }
-  await ensureDir(ASSETS_DIR);
-  const queue = urls.slice();
+  
+  let html = await fs.readFile(INDEX_FILE, 'utf8');
+  const urls = [...html.matchAll(ABS_URL)].map(m => sanitizeAbsUrl(m[0])).filter(isLikelyAssetUrl);
+  const uniqueUrls = [...new Set(urls)];
+  
+  console.log(`📋 Found ${uniqueUrls.length} unique asset URLs`);
+  
   const mapping = new Map();
-  let active = 0, done = 0, fail = 0;
-
-  await new Promise((resolve)=>{
-    const next = ()=>{
-      if (queue.length===0 && active===0) return resolve();
-      while(active<CONCURRENCY && queue.length){
-        const u = queue.shift();
-        active++;
-        const out = targetPathFor(u);
-        politeDownload(u,out).then(ok=>{
-          if (ok){ mapping.set(u, out); done++; if (out.endsWith('.css')) localizeCssNested(out, u); }
-          else { fail++; }
-        }).finally(()=>{ active--; next(); });
+  const semaphore = [];
+  
+  for(const url of uniqueUrls){
+    if(semaphore.length >= CONCURRENCY){
+      await semaphore.shift();
+    }
+    
+    const promise = (async () => {
+      try{
+        const u = new URL(url);
+        if(!ALLOWED_HOSTS.has(u.hostname)){
+          console.log(`⏭️  Skipping ${url} (host not in whitelist)`);
+          return;
+        }
+        
+        const localPath = targetPathFor(url);
+        const alreadyExists = await exists(localPath);
+        if(!alreadyExists){
+          console.log(`⬇️  Downloading: ${url}`);
+          await politeDownload(url, localPath);
+        } else {
+          console.log(`✅ Already exists: ${path.basename(localPath)}`);
+        }
+        mapping.set(url, localPath);
+      } catch(e){
+        console.log(`❌ Failed: ${url} - ${e.message}`);
       }
-    };
-    next();
-  });
-
-  const newHtml = await rewriteInHtml(html, mapping);
-  await fs.writeFile(INDEX_FILE, newHtml, 'utf8');
-
-  // 二次遍历本地 CSS，处理未覆盖的相对 url()
+    })();
+    
+    semaphore.push(promise);
+  }
+  
+  await Promise.all(semaphore);
+  
+  console.log('🔄 Processing CSS files for nested resources...');
   await processAllLocalCss();
-
-  console.log(JSON.stringify({total: urls.length, success: done, failed: fail, mapped: mapping.size}, null, 2));
+  
+  console.log('📝 Rewriting HTML with local paths...');
+  html = await rewriteInHtml(html, mapping);
+  await fs.writeFile(INDEX_FILE, html, 'utf8');
+  
+  console.log(`✅ Localization complete! Downloaded ${mapping.size} assets.`);
 }
 
 main().catch(e=>{ console.error(e); process.exit(1); });
