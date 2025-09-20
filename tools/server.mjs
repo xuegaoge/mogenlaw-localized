@@ -48,27 +48,32 @@ const server = http.createServer(async (req,res)=>{
     const mime = MIME[ext] || 'application/octet-stream';
 
     const range = req.headers['range'];
-    const total = stat.size;
-    if (range){
-      const m = /bytes=(\d*)-(\d*)/.exec(range);
-      let start = m && m[1] ? parseInt(m[1]) : 0;
-      let end = m && m[2] ? parseInt(m[2]) : total-1;
-      if (isNaN(start) || isNaN(end) || start> end || end>= total){ start=0; end= total-1; }
+    if (range && range.startsWith('bytes=')){
+      const [start, end] = range.slice(6).split('-').map(x => x ? parseInt(x, 10) : undefined);
+      const fileSize = stat.size;
+      const actualStart = start || 0;
+      const actualEnd = end !== undefined ? end : fileSize - 1;
+      if (actualStart >= fileSize || actualEnd >= fileSize || actualStart > actualEnd){
+        res.writeHead(416); res.end(); return;
+      }
       res.writeHead(206, {
-        'Content-Range': `bytes ${start}-${end}/${total}`,
+        'Content-Range': `bytes ${actualStart}-${actualEnd}/${fileSize}`,
         'Accept-Ranges': 'bytes',
-        'Content-Length': (end-start+1),
+        'Content-Length': actualEnd - actualStart + 1,
         'Content-Type': mime
       });
-      fs.createReadStream(filePath, {start, end}).pipe(res);
-      return;
+      const stream = fs.createReadStream(filePath, {start: actualStart, end: actualEnd});
+      stream.pipe(res);
+    } else {
+      res.writeHead(200, {'Content-Type': mime, 'Content-Length': stat.size});
+      fs.createReadStream(filePath).pipe(res);
     }
-
-    res.writeHead(200, {'Content-Type': mime, 'Content-Length': total});
-    fs.createReadStream(filePath).pipe(res);
-  }catch(e){ res.writeHead(500); res.end('Server Error'); }
+  }catch(e){
+    console.error(e);
+    res.writeHead(500); res.end('Internal Server Error');
+  }
 });
 
 server.listen(PORT, ()=>{
-  console.log(`Static server running at http://localhost:${PORT}/`);
+  console.log(`🚀 Server running at http://localhost:${PORT}/`);
 });
