@@ -53,6 +53,7 @@ const missingResources = [
     url: 'https://fonts.gstatic.com/s/raleway/v28/1Ptug8zYS_SKggPNyC0ITw.woff2',
     localPath: 'assets/fonts/1Ptug8zYS_SKggPNyC0ITw.woff2'
   },
+<<<<<<< HEAD
   // Roboto字体
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2',
@@ -66,30 +67,43 @@ const missingResources = [
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2'
   },
+=======
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2'
   },
   {
+<<<<<<< HEAD
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2'
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2'
+=======
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2'
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2'
   },
   {
+<<<<<<< HEAD
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2'
+=======
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2'
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2'
   },
+<<<<<<< HEAD
   // Roboto Bold字体
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2',
@@ -98,12 +112,30 @@ const missingResources = [
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2'
+=======
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2',
+    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2'
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2'
   },
   {
+<<<<<<< HEAD
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2'
   },
@@ -112,18 +144,30 @@ const missingResources = [
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2'
   },
   {
+=======
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2'
   },
   {
+<<<<<<< HEAD
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2'
+=======
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2'
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2'
   },
   {
+<<<<<<< HEAD
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2'
   }
@@ -160,10 +204,99 @@ function downloadFile(url, localPath) {
         reject(err);
       });
     }).catch(reject);
+=======
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2'
+  },
+  {
+    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
+    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2'
+  },
+  // 图片资源
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/bg_direction_nav.png',
+    localPath: 'assets/images/bg_direction_nav.png'
+  },
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/left.svg',
+    localPath: 'assets/images/left.svg'
+  },
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/right.svg',
+    localPath: 'assets/images/right.svg'
+  },
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/flexslider-icon.svg',
+    localPath: 'assets/images/flexslider-icon.svg'
+  },
+  // 其他缺失的资源
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/practices-side-image-1-932x1995.jpg',
+    localPath: 'assets/images/practices-side-image-1-932x1995.jpg'
+  },
+  {
+    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/home-video-background-850x476-100q.jpg',
+    localPath: 'assets/images/home-video-background-850x476-100q.jpg'
+  }
+];
+
+// 确保目录存在
+async function ensureDir(dirPath) {
+  try {
+    await fs.access(dirPath);
+  } catch {
+    await fs.mkdir(dirPath, { recursive: true });
+  }
+}
+
+// 下载文件
+function downloadFile(url, localPath) {
+  return new Promise((resolve, reject) => {
+    const filePath = path.join(PROJECT_ROOT, localPath);
+    
+    const protocol = url.startsWith('https') ? https : http;
+    
+    const request = protocol.get(url, (response) => {
+      if (response.statusCode === 200) {
+        // 收集数据
+        const chunks = [];
+        response.on('data', (chunk) => {
+          chunks.push(chunk);
+        });
+        
+        response.on('end', async () => {
+          try {
+            // 合并数据并写入文件
+            const buffer = Buffer.concat(chunks);
+            await fs.writeFile(filePath, buffer);
+            console.log(`下载完成: ${localPath}`);
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
+      } else {
+        reject(new Error(`HTTP ${response.statusCode} for ${url}`));
+      }
+    });
+    
+    request.on('error', (err) => {
+      reject(err);
+    });
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   });
 }
 
 // 主函数
+<<<<<<< HEAD
 async function downloadMissingResources() {
   console.log('开始下载缺失的资源...');
   
@@ -200,3 +333,33 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export { downloadMissingResources };
+=======
+async function main() {
+  console.log('开始下载缺失的资源...');
+  
+  let successCount = 0;
+  let failCount = 0;
+  
+  for (const resource of missingResources) {
+    try {
+      // 确保目标目录存在
+      const dirPath = path.dirname(path.join(PROJECT_ROOT, resource.localPath));
+      await ensureDir(dirPath);
+      
+      // 下载文件
+      await downloadFile(resource.url, resource.localPath);
+      successCount++;
+    } catch (error) {
+      console.error(`下载失败: ${resource.localPath} - ${error.message}`);
+      failCount++;
+    }
+  }
+  
+  console.log(`资源下载完成: 成功 ${successCount}, 失败 ${failCount}`);
+}
+
+main().catch(e => {
+  console.error(e);
+  process.exit(1);
+});
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)

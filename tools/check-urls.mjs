@@ -53,15 +53,33 @@ async function checkUrls() {
       return navLinks;
     });
     
+<<<<<<< HEAD
     console.log('找到的页面链接:');
+=======
+    console.log('找到以下链接:');
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
     links.forEach((link, index) => {
       console.log(`${index + 1}. ${link.text} -> ${link.href}`);
     });
     
+<<<<<<< HEAD
     // 保存链接到文件
     const outputPath = path.join(__dirname, '..', 'page-links.json');
     await fs.writeFile(outputPath, JSON.stringify(links, null, 2), 'utf8');
     console.log(`\n链接已保存到: ${outputPath}`);
+=======
+    // 特别检查 about 相关链接
+    console.log('\n检查 about 相关链接:');
+    const aboutLinks = links.filter(link => 
+      link.href.includes('about') || 
+      link.text.toLowerCase().includes('about') ||
+      link.href.includes('关于我们')
+    );
+    
+    aboutLinks.forEach((link, index) => {
+      console.log(`${index + 1}. ${link.text} -> ${link.href}`);
+    });
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
     
   } catch (error) {
     console.error('检查URL时出错:', error);
@@ -70,9 +88,23 @@ async function checkUrls() {
   }
 }
 
+<<<<<<< HEAD
 // 如果直接运行此脚本
 if (import.meta.url === `file://${process.argv[1]}`) {
   checkUrls().catch(console.error);
 }
 
 export { checkUrls };
+=======
+// 主函数
+async function main() {
+  await checkUrls();
+}
+
+// 如果直接运行此脚本
+if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
+  main();
+}
+
+export { checkUrls };
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)

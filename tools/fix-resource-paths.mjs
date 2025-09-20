@@ -1,5 +1,9 @@
 #!/usr/bin/env node
+<<<<<<< HEAD
 // tools/fix-resource-paths.mjs - 修复资源路径
+=======
+// tools/fix-resource-paths.mjs - 修复资源路径问题
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -8,6 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
+<<<<<<< HEAD
 // 字体路径映射
 const fontPathMap = {
   '1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2': 'assets/fonts/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2',
@@ -123,20 +128,99 @@ async function fixResourcePathsInDirectory(dirPath, extensions = ['.css', '.html
         if (extensions.includes(ext)) {
           const success = await fixResourcePathsInFile(filePath);
           results.push({ file: filePath, success });
+=======
+// 修复字体路径的映射
+const fontPathMap = {
+  'https://aekhw.com/static/font/': 'https://fonts.gstatic.com/s/',
+  'https://aekhw.com/static/fonts/': 'https://fonts.gstatic.com/s/',
+  'https://aekhw.com/wp-content/themes/generatepress-child/fonts/': 'https://fonts.gstatic.com/s/',
+};
+
+// 修复图片路径的映射
+const imagePathMap = {
+  'https://aekhw.com/static/images/': 'https://aekhw.com/wp-content/themes/generatepress-child/src/',
+  'https://aekhw.com/wp-content/themes/generatepress-child/img/': 'https://aekhw.com/wp-content/themes/generatepress-child/src/',
+};
+
+// 修复CSS中字体路径的函数
+async function fixFontPathsInCss() {
+  const cssDir = path.join(PROJECT_ROOT, 'assets', 'css');
+  try {
+    const files = await fs.readdir(cssDir);
+    const cssFiles = files.filter(f => f.endsWith('.css'));
+    
+    for (const file of cssFiles) {
+      const filePath = path.join(cssDir, file);
+      let content = await fs.readFile(filePath, 'utf8');
+      
+      // 修复字体路径
+      for (const [oldPath, newPath] of Object.entries(fontPathMap)) {
+        const regex = new RegExp(oldPath.replace(/\//g, '\\/'), 'g');
+        content = content.replace(regex, newPath);
+      }
+      
+      // 修复图片路径
+      for (const [oldPath, newPath] of Object.entries(imagePathMap)) {
+        const regex = new RegExp(oldPath.replace(/\//g, '\\/'), 'g');
+        content = content.replace(regex, newPath);
+      }
+      
+      await fs.writeFile(filePath, content, 'utf8');
+      console.log(`修复了CSS文件中的路径: ${file}`);
+    }
+  } catch (error) {
+    console.error('修复CSS文件路径时出错:', error);
+  }
+}
+
+// 修复manifest.json中的资源路径
+async function fixManifestPaths() {
+  const manifestPath = path.join(PROJECT_ROOT, 'manifest.json');
+  try {
+    const manifestContent = await fs.readFile(manifestPath, 'utf8');
+    const manifest = JSON.parse(manifestContent);
+    
+    // 修复字体路径
+    if (manifest.fonts) {
+      for (const font of manifest.fonts) {
+        for (const [oldPath, newPath] of Object.entries(fontPathMap)) {
+          if (font.source.startsWith(oldPath)) {
+            font.source = font.source.replace(oldPath, newPath);
+          }
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
         }
       }
     }
     
+<<<<<<< HEAD
     return results;
     
   } catch (error) {
     console.error(`处理目录 ${dirPath} 时出错:`, error);
     return [];
+=======
+    // 修复图片路径
+    if (manifest.images) {
+      for (const image of manifest.images) {
+        for (const [oldPath, newPath] of Object.entries(imagePathMap)) {
+          if (image.source.startsWith(oldPath)) {
+            image.source = image.source.replace(oldPath, newPath);
+          }
+        }
+      }
+    }
+    
+    await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
+    console.log('修复了manifest.json中的路径');
+  } catch (error) {
+    console.error('修复manifest.json路径时出错:', error);
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   }
 }
 
 // 主函数
 async function main() {
+<<<<<<< HEAD
   const args = process.argv.slice(2);
   
   if (args.length === 0) {
@@ -183,3 +267,20 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export { fixResourcePathsInFile, fixResourcePathsInDirectory, fixFontPaths, fixImagePaths, fixHtmlPaths };
+=======
+  console.log('开始修复资源路径...');
+  
+  // 修复CSS文件中的路径
+  await fixFontPathsInCss();
+  
+  // 修复manifest.json中的路径
+  await fixManifestPaths();
+  
+  console.log('资源路径修复完成');
+}
+
+main().catch(e => {
+  console.error(e);
+  process.exit(1);
+});
+>>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
