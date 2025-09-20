@@ -100,73 +100,68 @@ async function downloadWithPlaywright(urls) {
   return { success: successCount, failed: failCount };
 }
 
-// 从 HTML 文件中提取资源 URL
+// 从 index.html 提取需要下载的资源 URL
 async function extractResourceUrls() {
-  const htmlFiles = [];
+  const indexPath = path.join(PROJECT_ROOT, 'index.html');
+  const html = await fs.readFile(indexPath, 'utf8');
   
-  // 递归查找所有 HTML 文件
-  const findHtmlFiles = async (dir) => {
-    const entries = await fs.readdir(dir, { withFileTypes: true });
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        await findHtmlFiles(fullPath);
-      } else if (entry.isFile() && path.extname(entry.name).toLowerCase() === '.html') {
-        htmlFiles.push(fullPath);
-      }
-    }
-  };
+  // 提取所有绝对 URL
+  const absUrlPattern = /https?:\/\/[^\s"'<>()]+/gi;
+  const absUrls = html.match(absUrlPattern) || [];
   
-  await findHtmlFiles(PROJECT_ROOT);
+  // 提取相对路径的资源 URL (assets/ 和 /static/ 开头的)
+  const relUrlPattern1 = /assets\/[^\s"'<>()]+\.(css|js|mjs|png|jpg|jpeg|gif|svg|webp|ico|bmp|avif|mp4|webm|ogg|mp3|wav|woff|woff2|ttf|otf|eot)(\?[^\s"'<>()]*)?/gi;
+  const relUrls1 = (html.match(relUrlPattern1) || []).map(relUrl => `https://aekhw.com/${relUrl}`);
   
-  const urls = new Set();
+  const relUrlPattern2 = /\/static\/[^\s"'<>()]+\.(css|js|mjs|png|jpg|jpeg|gif|svg|webp|ico|bmp|avif|mp4|webm|ogg|mp3|wav|woff|woff2|ttf|otf|eot)(\?[^\s"'<>()]*)?/gi;
+  const relUrls2 = (html.match(relUrlPattern2) || []).map(relUrl => `https://aekhw.com${relUrl}`);
   
-  for (const htmlFile of htmlFiles) {
+  const relUrls = [...relUrls1, ...relUrls2];
+  
+  // 合并所有 URL
+  const allUrls = [...absUrls, ...relUrls];
+  
+  // 过滤出需要下载的资源
+  const resourceUrls = allUrls.filter(url => {
     try {
-      const content = await fs.readFile(htmlFile, 'utf8');
+      const u = new URL(url);
+      const pathname = u.pathname.toLowerCase();
       
-      // 提取各种资源链接
-      const patterns = [
-        /href=['"]([^'"]+\.css[^'"]*)['"]/gi,
-        /src=['"]([^'"]+\.js[^'"]*)['"]/gi,
-        /src=['"]([^'"]+\.(png|jpg|jpeg|gif|svg|webp|ico|bmp|avif)[^'"]*)['"]/gi,
-        /url\(['"]?([^'"()]+\.(woff2?|ttf|otf|eot)[^'"()]*)['"]\)/gi,
-      ];
+      // 跳过根路径和 API 端点
+      if (pathname === '/' || pathname === '') return false;
       
-      for (const pattern of patterns) {
-        let match;
-        while ((match = pattern.exec(content)) !== null) {
-          const url = match[1];
-          if (url.startsWith('http://') || url.startsWith('https://')) {
-            urls.add(url);
-          }
-        }
-      }
-    } catch (error) {
-      console.log(`读取文件失败: ${htmlFile} - ${error.message}`);
+      // 包含资源文件扩展名
+      const hasResourceExt = /\.(css|js|mjs|png|jpg|jpeg|gif|svg|webp|ico|bmp|avif|mp4|webm|ogg|mp3|wav|woff|woff2|ttf|otf|eot)(\?|$)/i.test(pathname);
+      
+      // 或者是 Google Fonts CSS
+      const isGoogleFonts = u.hostname.includes('fonts.googleapis.com') && pathname.includes('/css');
+      
+      return hasResourceExt || isGoogleFonts;
+    } catch {
+      return false;
     }
-  }
+  });
   
-  return Array.from(urls);
+  // 去重
+  return [...new Set(resourceUrls)];
 }
 
 // 主函数
 async function main() {
   try {
-    console.log('正在扫描 HTML 文件中的外部资源...');
+    console.log('正在分析 index.html 中的资源链接...');
     const urls = await extractResourceUrls();
     
     if (urls.length === 0) {
-      console.log('未找到需要下载的外部资源');
+      console.log('未找到需要下载的资源链接');
       return;
     }
     
-    console.log(`找到 ${urls.length} 个外部资源`);
-    urls.forEach(url => console.log(`  - ${url}`));
+    console.log(`找到 ${urls.length} 个资源链接:`);
+    urls.forEach((url, i) => console.log(`${i + 1}. ${url}`));
     
-    const result = await downloadWithPlaywright(urls);
+    await downloadWithPlaywright(urls);
     
-    console.log(`\n总结: 成功下载 ${result.success} 个资源，失败 ${result.failed} 个`);
   } catch (error) {
     console.error('执行失败:', error);
     process.exit(1);
