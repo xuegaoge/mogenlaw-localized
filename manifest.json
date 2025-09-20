@@ -1,0 +1,90 @@
+{
+  "images": [
+    {
+      "name": "logo.png",
+      "source": "https://aekhw.com/static/picture/logo.png",
+      "localPath": "assets/images/logo.png",
+      "size": "14.5KB"
+    },
+    {
+      "name": "cropped-favicons-1-270x270.png",
+      "source": "https://aekhw.com/static/picture/cropped-favicons-1-270x270.png",
+      "localPath": "assets/images/cropped-favicons-1-270x270.png",
+      "size": "1097.6KB"
+    },
+    {
+      "name": "cropped-favicons-1-192x192.png",
+      "source": "https://aekhw.com/assets/images/cropped-favicons-1-192x192.png",
+      "localPath": "assets/images/cropped-favicons-1-192x192.png",
+      "size": "1097.6KB"
+    },
+    {
+      "name": "cropped-favicons-1-180x180.png",
+      "source": "https://aekhw.com/assets/images/cropped-favicons-1-180x180.png",
+      "localPath": "assets/images/cropped-favicons-1-180x180.png",
+      "size": "1097.6KB"
+    },
+    {
+      "name": "cropped-favicons-1-32x32.png",
+      "source": "https://aekhw.com/assets/images/cropped-favicons-1-32x32.png",
+      "localPath": "assets/images/cropped-favicons-1-32x32.png",
+      "size": "1097.6KB"
+    }
+  ],
+  "videos": [
+    {
+      "name": "video-logo-no-slogan-g.mp4",
+      "source": "https://aekhw.com/assets/media/video-logo-no-slogan-g.mp4",
+      "localPath": "assets/media/video-logo-no-slogan-g.mp4",
+      "size": "22064.5KB"
+    },
+    {
+      "name": "video-c-mobile-a-no-slogan.mp4",
+      "source": "https://aekhw.com/assets/media/video-c-mobile-a-no-slogan.mp4",
+      "localPath": "assets/media/video-c-mobile-a-no-slogan.mp4",
+      "size": "11197.6KB"
+    }
+  ],
+  "fonts": [
+    {
+      "name": "1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
+      "source": "https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Bb5nGJhOw.woff2",
+      "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
+      "size": "14.5KB"
+    },
+    {
+      "name": "1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
+      "source": "https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Bb5nGJhOw.woff2",
+      "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
+      "size": "14.5KB"
+    }
+  ],
+  "css": [
+    {
+      "name": "css.css",
+      "source": "https://aekhw.com/assets/css/css.css",
+      "localPath": "assets/css/css.css",
+      "size": "2.1KB"
+    },
+    {
+      "name": "main.min.css",
+      "source": "https://aekhw.com/assets/css/main.min.css",
+      "localPath": "assets/css/main.min.css",
+      "size": "45.2KB"
+    }
+  ],
+  "js": [
+    {
+      "name": "jquery.min.js",
+      "source": "https://aekhw.com/assets/js/jquery.min.js",
+      "localPath": "assets/js/jquery.min.js",
+      "size": "89.5KB"
+    },
+    {
+      "name": "script.min.js",
+      "source": "https://aekhw.com/assets/js/script.min.js",
+      "localPath": "assets/js/script.min.js",
+      "size": "12.3KB"
+    }
+  ]
+}
