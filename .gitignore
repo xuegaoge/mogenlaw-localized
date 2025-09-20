@@ -1,0 +1,12 @@
+# Ignore baseline comparison artifacts
+_baseline/
+
+# Ignore large video assets
+assets/videos/
+
+# Node.js dependencies
+node_modules/
+
+# OS-specific files
+Thumbs.db
+.DS_Store

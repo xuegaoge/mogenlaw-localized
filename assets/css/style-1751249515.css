@@ -1,0 +1,1871 @@
+/* @source: https://aekhw.com/static/css/style-1751249515.css */
+﻿/* CSS Document */
+
+/*
+Theme Name: Generatepress Child
+Theme URI: https://wordpress.org/themes/generatepress/
+Description: Generatepress The Treanor Law Firm 11-14-2025
+Author: DLS Design
+Author URL: https://www.dlsdesign.com
+Template: generatepress
+Version: 1.4
+Text Domain: generatepress-child  */
+/* Custom CSS goes after this line */
+
+/* fonts
+
+font-family: "Raleway", sans-serif;
+
+font-family: 'Archivo Narrow', sans-serif;
+
+*/
+
+/* colors
+
+curtis blue for top bar #323e57;
+curtis blue at midnight #2a364f;
+curtis blue for subheads #4b5b79;
+blue for links in body text #4c5c79;
+red for circle around logo #bd212b;
+red to correspond with circle when against white #d71e2b;
+
+*/
+
+/* can remove notes in this comment
+
+div#primary-menu > ul > li:nth-of-type(2) > ul > li:nth-of-type(1) {
+background-color: #ff0000
+}
+
+div#primary-menu > ul > li:nth-of-type(2) > ul > li:nth-of-type(2) {
+background-color: #00ff00
+}
+
+div#primary-menu > ul > li:nth-of-type(2) > ul > li:nth-of-type(3) {
+background-color: #0000ff
+} */
+
+
+/* improves padding especially on left and right compared to WP Customize */
+
+
+.site-header {
+	/* background-color: #323e57; */
+	background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%);
+}
+
+
+
+
+.main-navigation
+/*, .main-navigation ul ul */ {
+	background-color: #323f5700;
+}
+
+.inside-header {
+	padding-top: 20px;
+	padding-right: 80px;
+	padding-bottom: 20px;
+	padding-left: 75px;
+}
+
+/* submenu background */
+.menu li.menu-item ul.sub-menu {
+	background: #323f57;
+}
+
+/* submenu hover background, not working in most instances but showed up in some tablet tests */
+.menu li.menu-item ul.sub-menu a:hover {
+	background: #192130;
+	/* background: #0f0; */
+}
+
+/* sub sub menu background */
+.menu li.menu-item ul.sub-menu ul.sub-menu {
+	background: #273348;
+}
+
+/* sub sub menu hover background */
+.menu li.menu-item ul.sub-menu ul.sub-menu a:hover {
+	background: #192130;
+}
+
+.menu-item-has-children .dropdown-menu-toggle {
+	display: none;
+}
+
+.main-navigation .main-nav ul li.menu-item-has-children>a {
+	padding-right: 20px;
+}
+
+/* 6-20-25 Cyber Fraud in red */
+
+ul li#menu-item-471 a {
+	/*color: #d71e2b;*/
+	color: #ea1322;
+}
+
+ul li#menu-item-475 a,
+ul li#menu-item-477 a,
+ul li#menu-item-479 a,
+ul li#menu-item-482 a {
+	color: #fcfcfc;
+}
+
+
+
+.footer-widget-1 img {
+	width: 240px;
+	height: auto;
+}
+
+
+.home .footer-widget-3 .prior-results {
+	display: inline-block;
+	font-size: 14px;
+}
+
+.footer-widget-3 .prior-results {
+	display: none;
+}
+
+/* changed 12-30-24 */
+
+.home .site-header {
+	padding-top: 25px; /* was 30 */
+	padding-bottom: 40px; /*was 55 */
+}
+
+.home .site-logo {
+	background: #323f57;
+	-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 116px) 100%, 0% 100%);
+	clip-path: polygon(0% 0%, 100% 0%, calc(100% - 116px) 100%, 0% 100%);
+	display: inline-block;
+	padding-top: 8px;
+	padding-right: 115px;
+	padding-bottom: 30px;
+	padding-left: 73px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	z-index: 2;
+}
+
+.home .site-header .header-image {
+	width: 375px;
+}
+
+
+
+
+.home .inside-header {
+	padding-bottom: 0;
+}
+
+.home .grid-container {
+	width: 100%;
+	max-width: unset;
+}
+
+.home .inside-article {
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 0px;
+}
+
+.home .inside-article p {
+	font-size: 25px;
+}
+
+.home .entry-header h1 {
+	display: none;
+}
+
+.home .site-main {
+	margin-top: 0;
+}
+
+
+/* the word !important lets you re-size this section and overrides the expression element.style which is put in by a javascript function */
+
+#home-video-section,
+#home-video-section video,
+#home-video-section-mobile,
+#home-video-section-mobile video {
+	width: 100% !important;
+}
+
+/* 1-14-25 */
+#home-video-section-mobile {
+	display: none;
+}
+
+/*#mep_0 {
+width: 1920px !important;
+height: 1080px !important;
+min-width: unset !important;
+}*/
+
+.mejs-container .mejs-controls {
+	display: none;
+}
+
+#home-testimonials-slideshow {
+	display: none; /* 12-20-24 hide while testing captions in video */
+	/*margin-top: 0px;
+	width: 100%;
+	float: left;
+	border-bottom: solid 1px gray;
+	margin-bottom: 60px;
+	padding-bottom: 40px;
+	padding-left: 10%;
+	padding-right: 10%;*/
+}
+
+#metaslider-id-84 /*.flexslider*/ .caption-wrap {
+	background: #fff;
+}
+
+
+#metaslider-id-84 h3 {
+	color: black;
+	font-size: 29px;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 400;
+	text-transform: none;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+
+#metaslider-id-84 p {
+	color: black;
+}
+
+/* 12-3-24 ok to remove css for single practice areas because we can use Generatepress and WP settings to turn sidebars on or off on selected ones */
+
+/* 6-5-25 add announcements, media-coverage, publications, blockchain-blog */
+
+/* 6-19-25 factor publications out of these formattings */
+
+.post-type-archive-our-team .content-area,
+.single-our-team .content-area,
+.post-type-archive-practice-areas .content-area,
+/*.single-practice-areas .content-area,*/
+.post-type-archive-media-coverage .content-area,
+.single-media-coverage .content-area,
+.post-type-archive-crypto-fraud .content-area,
+.single-crypto-fraud .content-area,
+.post-type-archive-announcements .content-area,
+.single-announcements .content-area,
+.post-type-archive-media-coverage .content-area,
+.single-media-coverage .content-area,
+/*.post-type-archive-publications .content-area,
+.single-publications .content-area,*/
+.post-type-archive-blockchain-blog .content-area,
+.single-blockchain-blog .content-area {
+	width: 100%;
+}
+
+.post-type-archive-our-team .is-right-sidebar,
+.single-our-team .is-right-sidebar,
+.post-type-archive-practice-areas .is-right-sidebar,
+/*.single-practice-areas .is-right-sidebar,*/
+.post-type-archive-media-coverage .is-right-sidebar,
+.single-media-coverage .is-right-sidebar,
+.post-type-archive-crypto-fraud .is-right-sidebar,
+.single-crypto-fraud .is-right-sidebar,
+.post-type-archive-announcements .is-right-sidebar,
+.single-announcements .is-right-sidebar,
+.post-type-archive-media-coverage .is-right-sidebar,
+.single-media-coverage .is-right-sidebar,
+/*.post-type-archive-publications .is-right-sidebar,
+.single-publications .is-right-sidebar,*/
+.post-type-archive-blockchain-blog .is-right-sidebar,
+.single-blockchain-blog .is-right-sidebar {
+	display: none;
+}
+
+.post-type-archive-our-team .entry-summary {
+	display: none;
+}
+
+
+.page-template-default .content-area a {
+	text-decoration: none;
+	color: #4c5c79;
+	border-bottom: solid .9px #4c5c79;
+}
+
+.page-template-default .content-area a:hover {
+	color: #000;
+	border-bottom: solid .9px #000;
+}
+
+
+
+
+
+
+/* bios [single Our Team] */
+
+#bio-top-band {
+	float: left;
+	width: 100%;
+	height: fit-content;
+	border-bottom: solid 1px lightgray;
+	margin-bottom: 2.5%;
+	padding-bottom: 2%;
+}
+
+#bio-photo {
+	float: left;
+	width: 39%;
+	min-height: 400px;
+	margin-right: 1%;
+}
+
+#bio-contact {
+	text-align: center;
+	float: left;
+	height: fit-content;
+	width: 58%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	margin-top: 50px;
+	margin-left: 2%;
+}
+
+#bio-contact h1 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 60px;
+	color: #4b5b79;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 400;
+}
+
+#bio-contact h2 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 24px;
+	font-weight: 800;
+	color: #d71e2b;
+	text-transform: uppercase;
+	letter-spacing: 0.3em;
+}
+
+#bio-contact p {
+	font-size: 24px;
+	margin-bottom: 0.0em;
+}
+
+#bio-contact p a {
+	text-decoration: none;
+	color: black;
+	border-bottom: solid .9px lightgray;
+}
+
+#bio-contact p a:hover {
+	color: #323f57;
+	border-bottom: solid .9px #323f57;
+}
+
+#education-admissions-clerkships {
+	float: left;
+	width: 100%;
+	background-color: #dbe2ee;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	padding: 20px 14px 14px 20px;
+}
+
+#education {
+	float: left;
+	width: 33%;
+	margin-right: 1%;
+}
+
+#admissions {
+	float: left;
+	width: 33%;
+	margin-right: 1%;
+}
+
+#clerkships {
+	float: left;
+	width: 28%;
+}
+
+
+#education h3,
+#admissions h3,
+#clerkships h3 {
+	font-weight: 600;
+	font-size: 22px;
+	line-height: 1.65em;
+	padding-left: 14px;
+	margin-bottom: 7px;
+	margin-left: 7px;
+	border-left: solid 4px #d71e2b;
+}
+
+
+
+#education ul,
+#admissions ul,
+#clerkships ul {
+	list-style: none;
+}
+
+#education ul li,
+#admissions ul li,
+#clerkships ul li {
+	font-size: 17px;
+	line-height: 1.65em;
+	margin-bottom: 7px;
+	margin-left: -35px;
+}
+
+
+
+#education-admissions-clerkships p {
+	font-size: 18px;
+	line-height: 1.375em;
+}
+
+.email-break {
+	display: none;
+}
+
+#bio-middle-band {
+	width: 100%;
+	float: left;
+	border-bottom: solid 5px #4b5b79;
+	padding-bottom: 28px;
+	margin-bottom: 36px;
+}
+
+#bio-testimonial {
+	width: 100%;
+	float: left;
+}
+
+/* 1-16-25 #bio-testimonial p was original style when placed into a custom field;
+client preferred multiple quotations interspersed within body text, hence .single-our-team .inside-article h3 */
+
+#bio-testimonial p,
+.single-our-team .inside-article h3 {
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: 600;
+	font-style: italic;
+	color: #4b5b79;
+}
+
+#bio-main-text {
+	width: 100%;
+	float: left;
+}
+
+.single-our-team .inside-article {
+	padding-top: 0px;
+	padding-right: 40px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.single-our-team .entry-header h1,
+.single-our-team .featured-image {
+	display: none;
+}
+
+
+.single-our-team .entry-content {
+	margin-top: 0px;
+}
+
+.single-our-team .entry-content p {
+	font-size: 21px;
+}
+
+.single-our-team .entry-content p a,
+#publications a,
+#events a,
+#news a {
+	text-decoration: none;
+	color: #4c5c79;
+	border-bottom: solid .9px #4c5c79;
+}
+
+.single-our-team .entry-content p a:hover,
+#publications a:hover,
+#events a:hover,
+#news a:hover {
+	color: #000;
+	border-bottom: solid .9px #000;
+}
+
+.single-our-team ul li {
+	margin-bottom: 10px;
+}
+
+
+#representative-matters-corporate p a,
+#representative-matters-corporate ul li a,
+#representative-matters-individual p a,
+#representative-matters-individual ul li a {
+	color: #4c5c79;
+	text-decoration: none;
+	border-bottom: solid .9px #4c5c79;
+}
+
+#representative-matters-corporate p a:hover,
+#representative-matters-corporate ul li a:hover,
+#representative-matters-individual p a:hover,
+#representative-matters-individual ul li a:hover {
+	color: #000;
+	border-bottom: solid .9px #000;
+}
+
+
+#bio-experience-band {
+	float: left;
+	width: 100%;
+	border-bottom: solid 5px #4b5b79;
+}
+
+#bio-experience-band h2,
+#bio-bottom-band h2 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 52px;
+	text-align: center;
+	color: #4b5b79;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 400;
+}
+
+#bio-experience-band h2.small-caps {
+	font-size: 20px;
+	font-weight: 800;
+	color: #d71e2b;
+	text-transform: uppercase;
+	letter-spacing: 0.3em;
+}
+
+#representative-matters-intro {
+	padding: 20px 20px 25px 20px;
+	background-color: #dbe2ee;
+}
+
+#representative-matters-intro p {
+	font-size: 22px;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+
+
+#rep-matters-subnav {
+	width: 100%;
+	float: left;
+	background-color: #4c5c79;
+	padding-top: 6px;
+	padding-bottom: 9px;
+	margin-bottom: 20px;
+}
+
+#rep-matters-subnav ul {
+	list-style: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+#rep-matters-subnav ul li {
+	font-size: 22px;
+	float: left;
+	margin-left: 5%;
+}
+
+#rep-matters-subnav ul li a {
+	color: #eee;
+	text-decoration: none;
+	border-bottom: solid .9px #ccc;
+}
+
+#rep-matters-subnav ul li a:hover {
+	color: #fff;
+	border-bottom: solid .9px #fff;
+}
+
+.small-triangle-white {
+	color: #eee;
+	font-size: 13px;
+}
+
+
+h3.center-head {
+	text-align: center;
+	font-size: 36px;
+	color: #4c5c79;
+}
+
+#representative-matters-individual {
+	margin-top: 24px;
+	padding-top: 20px;
+	border-top: solid .9px lightgray;
+}
+
+.back-top-link {
+	font-size: 18px;
+}
+
+a.back-top-link {
+	text-decoration: none;
+	color: #4c5c79;
+	border-bottom: solid .9px #4c5c79;
+}
+
+a:hover.back-top-link {
+	color: black;
+	border-bottom: solid .9px black;
+	background-color: #f2f6ff;
+}
+
+#bio-bottom-band {
+	float: left;
+	width: 100%;
+	/* column-count: 2; */
+}
+
+#education-admissions h3, #bio-bottom-band h3 {
+	font-size: 29px;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 400;
+	color: #29405e;
+	text-transform: none;
+}
+
+/* practice areas */
+
+
+.post-type-archive-practice-areas .entry-summary {
+	display: none;
+}
+
+.small-triangle {
+	font-size: 14px;
+}
+
+
+
+/* on practice areas that need a sub-nav for certain sub practices, do not create custom fields and complex CSS -- instead use WP tools as follows:
+
+1. in WP editor, choose Layout > Sidebars and select Right Sidebar from dropdown menu
+2. under Customize, choose Widgets > Right Sidebar add a Custom HTML widget
+3. paste the list of sublinks into widget one time; use CSS to show or hide on applicable practice areas
+4. the right widget area has widget(s) needed for the Blog; use CSS here too, to show or hide as needed
+
+*/
+
+
+/* #custom_html-8 is the widget containing sub-pages of Criminal and Regulatory practice */
+
+/* 6-19-25 additionally hide this on Publications archive */
+
+.blog #custom_html-8,
+.single #custom_html-8,
+.search #custom_html-8,
+.category #custom_html-8,
+.postid-311.single-practice-areas #custom_html-8,
+.post-type-archive-publications #custom_html-8 {
+	display: none;
+}
+
+
+/* #custom_html-11 is the widget containing sub-pages of Trial Practice */
+
+.blog #custom_html-11,
+.single #custom_html-11,
+.search #custom_html-11,
+.category #custom_html-11,
+.post-type-archive-publications #custom_html-11 {
+	display: none;
+}
+
+
+
+.blog .byline,
+.single .byline,
+.blog .comments-link,
+.single .comments-area,
+.search .byline,
+.category .byline,
+.search .comments-link,
+.category .comments-link {
+	display: none;
+}
+
+.blog .posted-on,
+.single .posted-on,
+.search .posted-on,
+.category .posted-on {
+	color: #d71e2b;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 0.3em;
+}
+
+.blog .cat-links,
+.single .cat-links,
+.search .cat-links,
+.category .cat-links {
+	padding-left: 14px;
+	border-left: solid 4px #d71e2b;
+}
+
+.blog .inside-article,
+.post-type-archive-publications .inside-article {
+	border-bottom: solid .9px lightgray;
+}
+
+.blog .entry-summary a,
+.blog .entry-content a,
+.blog .cat-links a,
+.single .entry-content a,
+.single .cat-links a,
+.search .entry-content a,
+.search .cat-links a,
+.category .entry-content a,
+.category .cat-links a,
+.search .entry-summary a,
+.category .entry-summary a,
+.post-type-archive-announcements .entry-content a,
+.single-announcements .entry-content a,
+.post-type-archive-publications .entry-content a,
+.single-publications .entry-content a,
+#categories-3 ul li a,
+.site-info a {
+	color: #4c5c79;
+	text-decoration: none;
+	border-bottom: solid .9px #4c5c79;
+}
+
+
+.blog .entry-summary a:hover,
+.blog .entry-content a:hover, 
+.blog .cat-links a:hover,
+.blog .entry-summary a:hover,
+.blog .cat-links a:hover,
+.search .entry-summary a:hover,
+.search .cat-links a:hover,
+.category .entry-summary a:hover,
+.category .cat-links a:hover,
+.search .entry-summary a:hover,
+.category .entry-summary a:hover,
+.post-type-archive-announcements .entry-content a:hover,
+.single-announcements .entry-content a:hover,
+.post-type-archive-publications .entry-content a:hover,
+.single-publications .entry-content a:hover,
+#categories-3 ul li a:hover,
+.site-info a {
+	color: black;
+	border-bottom: solid .9px black;
+}
+
+
+
+.gp-icon {
+	display: none;
+}
+
+
+/* practice areas - keep below blog */
+
+/* 2-11-25 add fixed image to side of practice areas */
+
+/* 6-9-25 reduced line height from 1.75 to 1.35 for single practice areas; WP customize handled it for default pages */
+
+body.single-practice-areas {
+	line-height: 1.35; /* 6-9-25 */
+	background-image: url(https://aekhw.com/wp-content/themes/generatepress-child/img/practices-side-image-1-932x1995.jpg);
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-position-Y: 15%;
+	background-size: 33%;
+	background-attachment: fixed;
+}
+
+/* 6-9-25 add to improve workability of the above */
+
+.single-practice-areas ul li,
+.single-crypto-fraud ul li {
+	margin-bottom: 8px;
+}
+
+.single-practice-areas .content-area {
+	width: 70%;
+}
+
+.single-practice-areas .inside-article {
+	background-color: #ffffff00;
+}
+
+
+/* 2-11-25 */
+
+.single-practice-areas .inside-right-sidebar {
+	margin-top: -40px;
+	margin-bottom: 20px;
+}
+
+.single-practice-areas #search-3,
+.single-practice-areas #categories-3 {
+	display: none;
+}
+
+
+.single-practice-areas #custom_html-8 {
+	display: inline-block;
+}
+
+/*.postid-311.single-practice-areas #custom_html-11,
+.postid-27.single-practice-areas #custom_html-11  {
+display: inline-block;
+}*/
+
+.single-practice-areas #custom_html-8 h2,
+.single-practice-areas #custom_html-11 h2,
+#categories-3 .widget-title {
+	font-size: 24px;
+	font-weight: 600;
+	border-left: solid 4px #d71e2b;
+	padding-left: 14px;
+	margin-top: 40px; /* 2-11-25 */
+	margin-left: -18px;
+}
+
+.single-practice-areas #custom_html-8 h2 a,
+.single-practice-areas #custom_html-11 h2 a,
+#categories-3 .widget-title a {
+	text-decoration: none;
+	color: #323f57;
+	border-bottom: solid .9px #758bb5;
+}
+
+.single-practice-areas #custom_html-8 h2 a:hover,
+.single-practice-areas #custom_html-11 h2 a:hover,
+#categories-3 .widget-title a:hover {
+	color: #000;
+	border-bottom: solid .9px #000;
+}
+
+.single-practice-areas #custom_html-8 ul li,
+.single-practice-areas #custom_html-11 ul li {
+	margin-bottom: .65em;
+	line-height: 30px;
+}
+
+.single-practice-areas #custom_html-8 ul li a,
+.single-practice-areas #custom_html-11 ul li a {
+	text-decoration: none;
+	color: #323f57;
+	border-bottom: solid .9px #758bb5;
+}
+
+.single-practice-areas #custom_html-8 ul li a:hover,
+.single-practice-areas #custom_html-11 ul li a:hover {
+	color: #000;
+	border-bottom: solid .9px #000;
+}
+
+/* 1-31-25 */
+
+.single-practice-areas .inside-article {
+	padding-top: 40px;
+	padding-right: 40px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.single-practice-areas .site-footer {
+	margin-top: 40px;
+}
+
+.single-practice-areas #practices-rep-matters {
+	width: 100%;
+	float: left;
+	border-top: solid .9px #323f57;
+	margin-bottom: 10px;
+}
+
+.single-practice-areas #practices-rep-matters h2 {
+	font-size: 30px;
+	margin-left: 40px;
+	margin-top: 20px;
+}
+
+.single-practice-areas #practices-rep-matters ul li {
+	margin-bottom: 14px;
+}
+
+
+/* testimonials page, temporary until we create more formally structured custom fields */
+
+
+.page-id-124 h2 {
+	border-bottom: solid .9px gray;
+	padding-bottom: 14px;
+}
+
+
+/* 1-20-25 publications [blog] */
+/* 6-19-25 add publications as distinct from blog */
+
+.blog .inside-right-sidebar,
+.single .inside-right-sidebar,
+.post-type-archive-publications .is-right-sidebar {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    border: solid .9px black;
+}
+
+.blog button,
+.single button {
+	color: #ffffff;
+    background-color: #323f57;
+}
+
+#categories-3 .widget-title {
+    margin-top: -60px;
+}
+
+/* 1-20-25 media coverage */
+
+/*.post-type-archive-media-coverage .article {
+	padding-bottom: 40px;	
+}*/
+
+/* 6-16-25 */
+
+/* if this doesn't improve anything, drop it
+
+.post-type-archive-media-coverage article {
+	background-color: #eee;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -moz-box-flex: 0;
+    flex: 0 0 100%;
+} */
+
+.post-type-archive-media-coverage .inside-article {
+	width: 100%; /* 6-16-25 changed this from 76% */
+	border-bottom: solid .9px gray;
+	margin-top: -20px;
+	padding-top: 20px;
+	margin-bottom: 40px;
+}
+
+.post-type-archive-media-coverage .page-header h1 {
+	margin-bottom: -20px;
+	padding-bottom: 0px;
+}
+
+.post-type-archive-media-coverage .entry-header h2 {
+	font-size: 32px;
+    line-height: 1.4em;
+	margin-bottom: -16px;
+	border-left: solid 4px #d71e2b;
+	padding-left: 20px;
+    margin-left: -25px;
+	}
+
+/* 6-16-25
+
+.post-type-archive-media-coverage .vp-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+} */
+
+/* 6-16-25 controls height of video thumbnail */
+
+iframe {
+	height: 300px;
+}
+
+/* 6-16-25 kept at 2em but added so it could be edited */
+
+.post-type-archive-media-coverage .entry-content {
+	margin-top: 2em;
+}
+
+.post-type-archive-media-coverage .entry-content a {
+	color: #4c5c79;
+	text-decoration: none;
+	border-bottom: solid .9px #4c5c79;
+}
+
+.post-type-archive-media-coverage .entry-content a:hover {
+	color: #444;
+	text-decoration: none;
+	border-bottom: solid .9px #333;
+}
+
+
+
+/* submit button */
+
+.gform_wrapper .gform_footer input.button,
+.gform_wrapper .gform_footer input[type=submit] {
+    font-family: 'Raleway-Regular', sans-serif;
+    color: #fff;
+    font-size: 1em;
+    width: auto;
+    margin: 0 16px 0 0;
+    background-color: #426b84;
+}
+
+
+input#gform_submit_button_1.gform_button.button {
+	background-color: #2a364f;
+}
+
+/* hides captcha */
+
+#field_1_8 .gform-field-label {
+	display: none;
+}
+
+/* IMPORTANT -- 12-23-24, re-installing css below, which was deleted, probably overwritten by Josiah when doing video work */
+
+
+@media screen and (min-width: 1261px) and (max-width: 1350px) {
+	.home .inside-header {
+		padding-left: 35px;
+		padding-right: 35px;
+	}
+	.home .main-navigation .main-nav ul li a,
+	.home .main-navigation .main-nav ul li.menu-item-has-children>a {
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+}
+
+@media screen and (max-width: 1260px) {
+
+	.inside-header {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 35px;
+		padding-right: 35px;
+	}
+
+	.main-navigation .main-nav ul li a {
+		padding-left: 14px;
+		padding-right: 14px;
+		line-height: 16px;
+		font-size: 15px;
+	}
+
+	.main-navigation .main-nav>ul>li.menu-item-has-children>a {
+		font-size: 15px;
+	}
+
+	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 86.5px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 86.5px) 100%, 0% 100%);
+		padding-bottom: 20px;
+	}
+	.home .site-header .header-image {
+		width: 280px;
+	}
+
+}
+
+
+@media screen and (max-width: 1200px) {
+
+	.site-content {
+		margin-left: 1.5%;
+		margin-right: 1.5%;
+	}
+
+	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 81.5px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 81.5px) 100%, 0% 100%);
+	}
+
+	.home .site-header .header-image {
+		width: 260px;
+	}
+
+	.home .site-content {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+}
+
+
+@media screen and (max-width: 1080px) {
+
+	.inside-header {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+
+	.main-navigation .main-nav ul li a {
+		padding-left: 14px;
+		padding-right: 14px;
+		line-height: 16px;
+		font-size: 14px;
+	}
+
+
+	/* tablet bio */
+
+	#bio-photo {
+		float: left;
+		width: 39%;
+		min-height: 400px;
+		margin-right: 0%;
+		padding-left: 5%;
+	}
+
+
+	#bio-photo img {
+		height: auto;
+		max-width: 80%;
+	}
+
+	#bio-contact {
+		text-align: center;
+		float: left;
+		height: fit-content;
+		width: 58%;
+		padding-top: 10%;
+		padding-bottom: 5%;
+		margin-top: 50px;
+		margin-left: 2%;
+	}
+
+	#bio-contact h1 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 52px;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-contact h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 24px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.32em;
+	}
+
+	#bio-contact p {
+		font-size: 22px;
+		margin-bottom: 0.0em;
+	}
+
+	.post-type-archive-media-coverage .inside-article {
+		width: 100%;
+		border-bottom: solid .9px gray;
+		margin-top: -20px;
+		padding-top: 20px;
+		margin-bottom: 40px;
+	}
+	
+	.blog .entry-header h2 {
+		font-size: 30px;
+	}
+
+}
+
+
+
+
+@media screen and (max-width: 980px) {
+
+
+	/* 1-15-25 temporary workarounds to improve dropdown nav in mobile */
+
+	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
+		display: inline-block;
+	}
+
+
+
+	/* 1-15-25 temporarily hide the word menu because clicking it opens links in different location */
+
+	.menu-toggle .gp-icon+.mobile-menu {
+		padding-left: 9px;
+		display: none;
+	}
+
+	/* 1-15-25 this moves it to the right */
+
+	.has-inline-mobile-toggle #site-navigation {
+		flex-basis: auto;
+	}
+
+
+	/* 1-15-25 do not show sub-sub menu for practices in mobile */
+
+	.menu li.menu-item ul.sub-menu ul.sub-menu {
+		background: #273348;
+		display: none;
+	}
+
+	.main-navigation .main-nav>ul>li>a {
+		min-width: 178px;
+	}
+
+
+
+	/* 12-18-24 */
+
+	.main-navigation.toggled .main-nav {
+		background: #323f57;
+		flex-basis: 100%;
+		line-height: 18px;
+		order: 3;
+		position: absolute;
+		z-index: 1000;
+		width: 160px;
+		margin-top: 30px;
+		margin-left: 80%;
+		padding-bottom: 10px;
+	}
+
+
+	.single-our-team .main-navigation.toggled .main-nav {
+		padding-left: 30px;
+		margin-top: 70px;
+	}
+
+	.single-our-team #primary-menu ul li {
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		font-size: 19px;
+	}
+
+	.main-navigation:not(.toggled) ul li.sfHover>ul {
+		/* margin-left: -30px; */
+	}
+
+
+	.main-navigation .main-nav ul ul li a {
+		line-height: normal;
+		padding-top: 5px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-left: 20px;
+		font-size: 13px;
+	}
+
+	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 129px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 129px) 100%, 0% 100%);
+		padding-top: 30px;
+		padding-bottom: 30px;
+		padding-left: 20px;
+	}
+
+	.home .site-header .header-image {
+		width: 375px;
+	}
+
+
+	#bio-top-band {
+		float: left;
+		width: 100%;
+		height: fit-content;
+		border-bottom: solid 1px lightgray;
+		margin-bottom: 2.5%;
+		padding-bottom: 0%;
+	}
+
+	#bio-contact {
+		text-align: center;
+		float: left;
+		height: fit-content;
+		width: 58%;
+		padding-top: 3%;
+		padding-bottom: 0%;
+		margin-top: 50px;
+		margin-left: 2%;
+	}
+
+
+	#bio-contact h1 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 45px;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-contact h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 20px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.32em;
+	}
+
+	#bio-contact p {
+		font-size: 19px;
+		margin-bottom: 0.0em;
+	}
+
+	.post-type-archive-media-coverage .entry-header h2 {
+		font-size: 30px;
+		margin-bottom: -16px;
+		border-left: solid 4px #d71e2b;
+		padding-left: 20px;
+		margin-left: -25px;
+	}
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+
+
+	.site-header .header-image,
+	.home .site-header .header-image {
+		width: 140px;
+	}
+
+
+	.home .site-logo {
+		-webkit-clip-path: none;
+		clip-path: none;
+		padding: 0;
+		position: relative;
+		top: unset;
+		left: unset;
+		max-width: 100%;
+	}
+
+	.site-logo {
+		margin-right: -20px;
+	}
+
+	#home-video-section-mobile h1 {
+		color: white;
+		font-weight: 300;
+		font-size: 18.5px;
+		line-height: 30px;
+		font-family: 'Raleway', sans-serif;
+		text-align: center;
+		padding-top: 45px;
+	}
+	
+	
+
+	/* 1-15-25 temporary workarounds to improve dropdown nav in mobile */
+
+	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
+		display: inline-block;
+		margin-right: -20px;
+	}
+
+
+
+
+
+	/**/
+	.main-navigation.toggled .main-nav {
+		background: #323f57;
+		flex-basis: 100%;
+		line-height: 28px;
+		order: 3;
+		position: absolute;
+		z-index: 1000;
+		width: 160px;
+		margin-top: 30px;
+		margin-left: 56%;
+		padding-bottom: 10px;
+	}
+
+	/**/
+	.single-our-team .main-navigation.toggled .main-nav {
+		padding-left: 30px;
+		margin-top: 70px;
+	}
+
+	.single-our-team #primary-menu ul li {
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		font-size: 19px;
+	}
+
+	.main-navigation .main-nav>ul>li>a {
+		min-width: 160px;
+	}
+
+
+	.main-navigation:not(.toggled) ul li.sfHover>ul {
+		/* margin-left: -30px; */
+	}
+
+
+	.main-navigation .main-nav ul ul li a {
+		line-height: normal;
+		padding-top: 5px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-left: 20px;
+		font-size: 13px;
+	}
+
+	.menu li.menu-item ul.sub-menu {
+		max-width: 100%;
+	}
+
+
+
+	.inside-footer-widgets>div:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	.footer-widget-2 p,
+	.footer-widget-3 p {
+		font-size: 15px;
+	}
+
+	.page-template-default .entry-header h1,
+	.post-type-archive-media-coverage .page-header h1,
+	.post-type-archive-announcements .page-header h1,
+	.post-type-archive-publications .page-header h1,
+	.blog .entry-header h2,
+	.single .entry-header h1 {
+		font-size: 25px;
+		line-height: 32px;
+	}
+	
+	
+	.post-type-archive-announcements h2.entry-title,
+	.post-type-archive-publications h2.entry-title {
+		font-size: 24px;
+		line-height: 1.65em;
+	}
+
+	.page-template-default .entry-content p,
+	.blog .entry-summary p,
+	.single .entry-content p {
+		font-size: 19px;
+	}
+
+	.page-template-default .entry-content ul,
+	.blog .entry-summary ul,
+	.single .entry-content ul {
+		font-size: 19px;
+		margin-left: 0px;
+	}
+
+	.blog .entry-header h2 {
+		font-size: 24px;
+	}
+
+	.blog .posted-on, .single .posted-on, .search .posted-on, .category .posted-on {
+		color: #d71e2b;
+		font-weight: 800;
+		text-transform: uppercase;
+		font-size: 14px;
+		letter-spacing: 0.3em;
+	}
+
+	.blog .entry-content p {
+		font-size: 19px;
+	}
+
+	/* 1-14-25 */
+
+	#home-video-section {
+		display: none;
+	}
+
+	#home-video-section-mobile {
+		display: inline-block;
+		width: 100%;
+		height: 170px;
+		background-color: #323f57;
+		background-image: url(https://aekhw.com/wp-content/themes/generatepress-child/src/home-video-background-850x476-100q.jpg);
+		background-repeat: no-repeat;
+		background-position: center top;
+		background-size: cover;
+	}
+
+
+
+	/* mobile slider */
+	
+	/* this was below the video in white area, displaying regular text but hiding it now because all the quotes were about Tim alone */
+
+	#home-testimonials-slideshow {
+		display: none;
+/*		display: inline-block;   */
+		margin-top: 0px;
+		width: 100%;
+		float: left;
+		border-bottom: solid 1px gray;
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+		padding-left: 0%;
+		padding-right: 0%;
+	}
+
+	#metaslider-id-84 ul.slides {
+		margin-top: -60px;
+	}
+
+	#metaslider-id-84 .flexslider .caption-wrap {
+		position: relative;
+		color: #ffffff;
+	}
+
+	#metaslider-id-84 h3 {
+		color: black;
+		font-size: 20px;
+		margin-bottom: 20px;
+		line-height: 1.4em;
+		font-weight: 400;
+		text-transform: none;
+		padding-left: 7.5%;
+		padding-right: 7.5%;
+	}
+
+
+	/* mobile bio */
+
+
+	.site-content {
+		margin-left: unset;
+		margin-right: unset;
+	}
+
+
+	#bio-photo {
+		float: unset;
+		width: 100%;
+		min-height: unset;
+		margin-right: unset;
+	}
+
+	#bio-photo img {
+		height: auto;
+		max-width: 60%;
+		width: 60%;
+		margin-left: 20%;
+		margin-right: 20%;
+	}
+
+	#bio-contact {
+		text-align: center;
+		float: left;
+		height: fit-content;
+		width: 100%;
+		padding-top: 2%;
+		padding-bottom: 5%;
+		margin-top: 0px;
+		margin-left: unset;
+	}
+
+	#bio-contact h1 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 34px;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-contact h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 18px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+	}
+
+	#bio-contact p {
+		font-size: 18px;
+		margin-bottom: 0.0em;
+	}
+
+	.email-break {
+		display: inline;
+	}
+
+
+	#bio-testimonial {
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+		float: none;
+	}
+
+	#bio-testimonial p {
+		text-align: center;
+		font-family: 'Raleway', sans-serif;
+		font-size: 20px;
+		line-height: 28px;
+		font-weight: 600;
+		font-style: italic;
+		color: #4b5b79;
+	}
+
+	.single-our-team .inside-article {
+		padding-top: 0px;
+		padding-right: 20px;
+		padding-bottom: 0px;
+		padding-left: 20px;
+	}
+
+	#education,
+	#admissions,
+	#clerkships {
+		float: none;
+		width: 100%;
+		margin-right: unset;
+	}
+
+	#bio-experience-band h2,
+	#bio-bottom-band h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 45px;
+		text-align: center;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-experience-band h2.small-caps {
+		font-size: 18px;
+		line-height: 25px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.3em;
+	}
+
+	#representative-matters-intro p {
+		font-size: 20px;
+		text-align: center;
+		margin-bottom: 0px;
+	}
+
+	#rep-matters-subnav ul li {
+		font-size: 22px;
+		float: left;
+		margin-left: 0%;
+	}
+
+	h3.center-head {
+		text-align: center;
+		font-size: 30px;
+		color: #4c5c79;
+	}
+
+	#representative-matters-corporate h3,
+	#representative-matters-individual h3 {
+		font-size: 24px;
+		margin-bottom: 20px;
+		padding-left: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+		text-transform: none;
+	}
+
+	.single-our-team ul li {
+		margin-bottom: 10px;
+		margin-left: -20px;
+		margin-right: 20px;
+		font-size: 19px;
+	}
+
+	#bio-bottom-band h3 {
+		font-size: 24px;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+		color: #29405e;
+		text-transform: none;
+		margin-left: 20px;
+	}
+
+	/* mobile practice areas */
+	
+	/* 2-11-25 omit the building image on the practice area pages */
+	
+	body.single-practice-areas {
+		background-image: none;
+	}
+
+	.single-practice-areas #practices-rep-matters {
+		width: 100%;
+		float: left;
+		border-top: solid .9px #323f57;
+		margin-left: -12px;
+		margin-bottom: 50px;
+	}
+
+	.single-practice-areas #practices-rep-matters h2 {
+		font-size: 26px;
+		margin-left: 40px;
+		margin-top: 20px;
+	}
+
+	.single-practice-areas #practices-rep-matters ul li {
+		font-size: 18px;
+		margin-bottom: 14px;
+		margin-left: -18px;
+	}
+
+	.post-type-archive-media-coverage .entry-header h2 {
+		font-size: 26px;
+		margin-bottom: -16px;
+		border-left: solid 4px #d71e2b;
+		padding-left: 20px;
+		margin-left: -25px;
+    }
+
+	.post-type-archive-media-coverage .entry-content p {
+		font-size: 19px;
+	}
+
+
+	#news p {
+		margin-bottom: 20px;
+		margin-left: 20px;
+		margin-right: 20px;
+		font-size: 19px;
+	}
+
+}
+
+/* client font requests of 1-9-25 re-instituted after accidentally erasing 1-13-25 */
+
+.page-id-274 p.raleway-heavier,
+.page-id-274 .entry-content p {
+	font-weight: 500;
+}
+
+.roboto,
+.page-id-277 .entry-header h1 {
+	font-family: 'Roboto', sans-serif;
+}
+
+.page-id-283 .entry-header h1 {
+	font-weight: 500;
+	color: #3a4d6f;
+}
+
+.page-id-283 .entry-content p {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+/* Arlo font requests of 5-28-25 */
+
+/* https://aekhw.com/about/matters-we-handle-2/ -- need to get rid of -2 in page name */
+
+/* the tight-size leading was 1.24 */
+
+/* 6-6-25 EXAMPLE CHOSEN BY CLIENT 6-5-25: matters tighter lines.png -- use 1.35 */
+
+.page-id-380 .entry-content p,
+.page-id-380 .entry-content ul li {
+	line-height: 1.35em;
+}
+
+.page-id-380 .entry-content ul li {
+	margin-bottom: 8px;
+}
+
+
+/* https://aekhw.com/about/our-approach/ */
+
+.page-id-375 .entry-content h2 {
+	font-size: 31px;
+}
+
+.page-id-375 .entry-content p,
+.page-id-375 .entry-content ul li {
+	font-size: 18.5px;
+	line-height: 1.32em;
+}
+
+.page-id-375 .entry-content p {
+	margin-bottom: 11px;	
+}
+
+.page-id-375 .entry-content ul li {
+	margin-bottom: 8px;
+}
+
+
+/* https://aekhw.com/about/our-experience/ */
+
+.page-id-373 .entry-content p,
+.page-id-373 .entry-content ul li,
+.page-id-373 .entry-content h2,
+.page-id-373 .entry-content h3 {
+	font-family: 'Archivo Narrow', sans-serif;
+}
+
+
+.page-id-373 .entry-content p {
+	margin-bottom: 11px;	
+}
+
+.page-id-373 .entry-content ul li {
+	margin-bottom: 8px;
+}
+
+.page-id-373 .entry-content h2,
+.page-id-373 .entry-content h3 {
+	margin-top: 15px;
+	margin-bottom: 5px;	
+}
+
+
+
+
