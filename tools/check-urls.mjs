@@ -53,36 +53,26 @@ async function checkUrls() {
       return navLinks;
     });
     
-    // 去重并排序
-    const uniqueLinks = [...new Map(links.map(link => [link.href, link])).values()]
-      .sort((a, b) => a.href.localeCompare(b.href));
-    
-    console.log(`找到 ${uniqueLinks.length} 个唯一链接:`);
-    uniqueLinks.forEach(link => {
-      console.log(`- ${link.href} (${link.text})`);
+    console.log('找到的页面链接:');
+    links.forEach((link, index) => {
+      console.log(`${index + 1}. ${link.text} -> ${link.href}`);
     });
     
-    // 保存到文件
-    const outputPath = path.join(__dirname, '..', 'urls.json');
-    await fs.writeFile(outputPath, JSON.stringify(uniqueLinks, null, 2), 'utf8');
-    console.log(`\n链接列表已保存到: ${outputPath}`);
-    
-    return uniqueLinks;
+    // 保存链接到文件
+    const outputPath = path.join(__dirname, '..', 'page-links.json');
+    await fs.writeFile(outputPath, JSON.stringify(links, null, 2), 'utf8');
+    console.log(`\n链接已保存到: ${outputPath}`);
     
   } catch (error) {
     console.error('检查URL时出错:', error);
-    throw error;
   } finally {
     await browser.close();
   }
 }
 
-async function main() {
-  await checkUrls();
-}
-
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
+// 如果直接运行此脚本
+if (import.meta.url === `file://${process.argv[1]}`) {
+  checkUrls().catch(console.error);
 }
 
 export { checkUrls };
