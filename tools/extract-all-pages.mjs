@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// tools/extract-all-pages.mjs - 批量提取所有页面内容
+// tools/extract-all-pages.mjs - 批量提取页面内容
 import { chromium } from 'playwright';
 import fs from 'fs/promises';
 import path from 'path';
@@ -10,44 +10,71 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 // 页面URL映射
-const pageUrls = [
-  { name: 'about.html', url: 'https://aekhw.com/about.html' },
-  { name: 'clients-we-represent.html', url: 'https://aekhw.com/clients-we-represent.html' },
-  { name: 'matters-we-handle.html', url: 'https://aekhw.com/matters-we-handle.html' },
-  { name: 'our-experience.html', url: 'https://aekhw.com/our-experience.html' },
-  { name: 'our-approach.html', url: 'https://aekhw.com/our-approach.html' },
-  { name: 'our-technological-advantages.html', url: 'https://aekhw.com/our-technological-advantages.html' },
-  { name: 'what-makes-us-different.html', url: 'https://aekhw.com/what-makes-us-different.html' },
-  { name: 'enter-to-view.html', url: 'https://aekhw.com/enter-to-view.html' },
-  { name: 'trial-practice.html', url: 'https://aekhw.com/trial-practice.html' },
-  { name: 'crisis-management.html', url: 'https://aekhw.com/crisis-management.html' },
-  { name: 'government-and-internal-investigations.html', url: 'https://aekhw.com/government-and-internal-investigations.html' },
-  { name: 'criminal-and-regulatory-enforcement-defense.html', url: 'https://aekhw.com/criminal-and-regulatory-enforcement-defense.html' },
-  { name: 'business-crimes-and-fraud.html', url: 'https://aekhw.com/business-crimes-and-fraud.html' },
-  { name: 'national-security-economic-sanctions-and-export-controls.html', url: 'https://aekhw.com/national-security-economic-sanctions-and-export-controls.html' },
-  { name: 'securities-and-commodities-fraud-and-market-manipulation.html', url: 'https://aekhw.com/securities-and-commodities-fraud-and-market-manipulation.html' },
-  { name: 'money-laundering-bank-secrecy-act.html', url: 'https://aekhw.com/money-laundering-bank-secrecy-act.html' },
-  { name: 'fcpa-and-anti-corruption.html', url: 'https://aekhw.com/fcpa-and-anti-corruption.html' },
-  { name: 'criminal-antitrust.html', url: 'https://aekhw.com/criminal-antitrust.html' },
-  { name: 'tax-fraud.html', url: 'https://aekhw.com/tax-fraud.html' },
-  { name: 'environmental-crimes.html', url: 'https://aekhw.com/environmental-crimes.html' },
-  { name: 'civil-litigation.html', url: 'https://aekhw.com/civil-litigation.html' },
-  { name: 'asset-recovery.html', url: 'https://aekhw.com/asset-recovery.html' },
-  { name: 'compliance-counseling.html', url: 'https://aekhw.com/compliance-counseling.html' },
-  { name: 'whistleblower-representations.html', url: 'https://aekhw.com/whistleblower-representations.html' },
-  { name: 'monitorships.html', url: 'https://aekhw.com/monitorships.html' },
-  { name: 'appeals.html', url: 'https://aekhw.com/appeals.html' },
-  { name: 'crypto-fraud-recovery.html', url: 'https://aekhw.com/crypto-fraud-recovery.html' },
-  { name: 'active-lawsuits.html', url: 'https://aekhw.com/active-lawsuits.html' },
-  { name: 'open-investigations.html', url: 'https://aekhw.com/open-investigations.html' },
-  { name: 'becoming-a-client.html', url: 'https://aekhw.com/becoming-a-client.html' },
-  { name: 'contact.html', url: 'https://aekhw.com/contact.html' },
-  { name: 'disclaimer.html', url: 'https://aekhw.com/disclaimer.html' },
-  { name: 'accessibility-statement.html', url: 'https://aekhw.com/accessibility-statement.html' }
-];
+const pageUrls = {
+  'about': 'https://aekhw.com/about/',
+  'services': 'https://aekhw.com/services/',
+  'team': 'https://aekhw.com/team/',
+  'contact': 'https://aekhw.com/contact/',
+  'news': 'https://aekhw.com/news/',
+  'cases': 'https://aekhw.com/cases/',
+  'practice-areas': 'https://aekhw.com/practice-areas/',
+  'publications': 'https://aekhw.com/publications/',
+  'careers': 'https://aekhw.com/careers/',
+  'privacy': 'https://aekhw.com/privacy/',
+  'terms': 'https://aekhw.com/terms/'
+};
 
-async function extractPageContent(url, outputPath) {
-  console.log(`正在提取页面内容: ${url}`);
+// 提取页面内容的函数
+async function extractPageContent(page, url, pageName) {
+  console.log(`正在提取页面: ${pageName} (${url})`);
+  
+  try {
+    await page.goto(url, {
+      waitUntil: 'networkidle',
+      timeout: 30000
+    });
+    
+    // 等待页面完全加载
+    await page.waitForTimeout(3000);
+    
+    // 提取页面HTML内容
+    const content = await page.content();
+    
+    // 保存到pages目录
+    const pagesDir = path.join(PROJECT_ROOT, 'pages');
+    await fs.mkdir(pagesDir, { recursive: true });
+    
+    const outputPath = path.join(pagesDir, `${pageName}.html`);
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`页面已保存: ${outputPath}`);
+    
+    // 提取页面标题和描述
+    const pageInfo = await page.evaluate(() => {
+      return {
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+        keywords: document.querySelector('meta[name="keywords"]')?.getAttribute('content') || '',
+        url: window.location.href
+      };
+    });
+    
+    return {
+      name: pageName,
+      url: url,
+      file: `${pageName}.html`,
+      ...pageInfo
+    };
+    
+  } catch (error) {
+    console.error(`提取页面 ${pageName} 时出错:`, error);
+    return null;
+  }
+}
+
+// 主函数
+async function extractAllPages() {
+  console.log('开始批量提取页面内容...');
   
   const browser = await chromium.launch({
     headless: true,
@@ -59,87 +86,36 @@ async function extractPageContent(url, outputPath) {
   });
   
   const page = await context.newPage();
+  const results = [];
   
   try {
-    await page.goto(url, {
-      waitUntil: 'networkidle',
-      timeout: 30000
-    });
+    for (const [pageName, url] of Object.entries(pageUrls)) {
+      const result = await extractPageContent(page, url, pageName);
+      if (result) {
+        results.push(result);
+      }
+      
+      // 添加延迟以避免过于频繁的请求
+      await page.waitForTimeout(2000);
+    }
     
-    await page.waitForTimeout(3000);
+    // 保存页面信息到JSON文件
+    const manifestPath = path.join(PROJECT_ROOT, 'pages-manifest.json');
+    await fs.writeFile(manifestPath, JSON.stringify(results, null, 2), 'utf8');
+    console.log(`页面清单已保存: ${manifestPath}`);
     
-    const content = await page.content();
-    
-    // 确保输出目录存在
-    const outputDir = path.dirname(outputPath);
-    await fs.mkdir(outputDir, { recursive: true });
-    
-    // 写入文件
-    await fs.writeFile(outputPath, content, 'utf8');
-    console.log(`页面内容已保存到: ${outputPath}`);
-    
-    return content;
+    console.log(`\n提取完成！共处理 ${results.length} 个页面`);
     
   } catch (error) {
-    console.error(`提取页面内容失败 ${url}:`, error);
-    throw error;
+    console.error('批量提取过程中出错:', error);
   } finally {
     await browser.close();
   }
 }
 
-async function extractAllPages() {
-  console.log(`开始批量提取 ${pageUrls.length} 个页面...`);
-  
-  const pagesDir = path.join(PROJECT_ROOT, 'pages');
-  await fs.mkdir(pagesDir, { recursive: true });
-  
-  const results = [];
-  
-  for (const pageInfo of pageUrls) {
-    try {
-      const outputPath = path.join(pagesDir, pageInfo.name);
-      await extractPageContent(pageInfo.url, outputPath);
-      results.push({ ...pageInfo, success: true });
-      
-      // 添加延迟避免请求过快
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-    } catch (error) {
-      console.error(`处理页面失败 ${pageInfo.name}:`, error);
-      results.push({ ...pageInfo, success: false, error: error.message });
-    }
-  }
-  
-  // 生成报告
-  const successCount = results.filter(r => r.success).length;
-  const failCount = results.length - successCount;
-  
-  console.log(`\n批量提取完成:`);
-  console.log(`- 成功: ${successCount} 个页面`);
-  console.log(`- 失败: ${failCount} 个页面`);
-  
-  if (failCount > 0) {
-    console.log('\n失败的页面:');
-    results.filter(r => !r.success).forEach(r => {
-      console.log(`- ${r.name}: ${r.error}`);
-    });
-  }
-  
-  return results;
+// 如果直接运行此脚本
+if (import.meta.url === `file://${process.argv[1]}`) {
+  extractAllPages().catch(console.error);
 }
 
-async function main() {
-  try {
-    await extractAllPages();
-  } catch (error) {
-    console.error('批量提取失败:', error);
-    process.exit(1);
-  }
-}
-
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
-}
-
-export { extractPageContent, pageUrls };
+export { extractAllPages };

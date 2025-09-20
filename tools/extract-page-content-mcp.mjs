@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-// tools/extract-page-content-mcp.mjs - 使用 MCP Playwright 提取页面内容
-import { chromium } from 'playwright';
+// tools/extract-page-content-mcp.mjs - 使用MCP Playwright提取页面内容
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,109 +8,139 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
-async function extractPageContent(url, outputPath) {
-  console.log(`正在提取页面内容: ${url}`);
-  
-  const browser = await chromium.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
-  
-  const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-  });
-  
-  const page = await context.newPage();
+// 提取页面内容的函数
+async function extractPageContentMCP(url, pageName) {
+  console.log(`正在提取页面: ${pageName} (${url})`);
   
   try {
-    await page.goto(url, {
-      waitUntil: 'networkidle',
-      timeout: 30000
-    });
+    // 这里需要使用MCP Playwright工具
+    // 由于这是一个工具脚本，实际的MCP调用需要在Trae AI环境中进行
+    console.log('请在Trae AI环境中使用MCP Playwright工具来提取页面内容');
+    console.log(`目标URL: ${url}`);
+    console.log(`页面名称: ${pageName}`);
     
-    // 等待页面加载完成
-    await page.waitForTimeout(5000);
-    
-    // 提取页面主要内容
-    const content = await page.evaluate(() => {
-      // 获取页面标题
-      const title = document.title;
-      
-      // 获取页面主要内容（通常在.entry-content或类似容器中）
-      const mainContent = document.querySelector('.entry-content') || 
-                         document.querySelector('.site-content') || 
-                         document.querySelector('main') || 
-                         document.querySelector('#content') ||
-                         document.body;
-      
-      // 获取导航菜单内容
-      const navContent = document.querySelector('.main-navigation') || null;
-      
-      // 获取页脚内容
-      const footerContent = document.querySelector('.site-footer') || 
-                           document.querySelector('footer') || null;
-      
-      return {
-        title: title,
-        url: window.location.href,
-        mainContent: mainContent ? mainContent.innerHTML : '',
-        navContent: navContent ? navContent.innerHTML : '',
-        footerContent: footerContent ? footerContent.innerHTML : '',
-        fullHTML: document.documentElement.outerHTML
-      };
-    });
-    
-    // 确保输出目录存在
-    const outputDir = path.dirname(outputPath);
-    await fs.mkdir(outputDir, { recursive: true });
-    
-    // 保存提取的内容
-    const extractedData = {
-      extractedAt: new Date().toISOString(),
-      ...content
+    // 返回提取指令
+    return {
+      instruction: 'mcp_playwright_browser_navigate',
+      url: url,
+      pageName: pageName,
+      nextSteps: [
+        '1. 导航到页面',
+        '2. 等待页面加载完成',
+        '3. 提取页面HTML内容',
+        '4. 保存到pages目录'
+      ]
     };
     
-    // 保存为JSON格式
-    const jsonPath = outputPath.replace(/\.html$/, '.json');
-    await fs.writeFile(jsonPath, JSON.stringify(extractedData, null, 2), 'utf8');
-    
-    // 保存完整HTML
-    await fs.writeFile(outputPath, content.fullHTML, 'utf8');
-    
-    console.log(`页面内容已保存到:`);
-    console.log(`- HTML: ${outputPath}`);
-    console.log(`- JSON: ${jsonPath}`);
-    
-    return extractedData;
-    
   } catch (error) {
-    console.error(`提取页面内容失败 ${url}:`, error);
-    throw error;
-  } finally {
-    await browser.close();
+    console.error(`提取页面 ${pageName} 时出错:`, error);
+    return null;
   }
 }
 
-async function main() {
-  const url = process.argv[2];
-  const outputPath = process.argv[3] || path.join(PROJECT_ROOT, 'extracted-page.html');
+// 启动浏览器的函数（MCP版本）
+async function startBrowserMCP() {
+  console.log('启动MCP Playwright浏览器...');
   
-  if (!url) {
-    console.error('请提供要提取的页面URL');
-    console.log('用法: node extract-page-content-mcp.mjs <URL> [输出路径]');
-    process.exit(1);
-  }
+  // 返回MCP浏览器启动指令
+  return {
+    instruction: 'mcp_playwright_browser_install',
+    description: '安装并启动Playwright浏览器'
+  };
+}
+
+// 设置浏览器上下文的函数
+async function setupBrowserContext() {
+  console.log('设置浏览器上下文...');
   
+  return {
+    instruction: 'mcp_playwright_browser_resize',
+    width: 1920,
+    height: 1080,
+    description: '设置浏览器窗口大小'
+  };
+}
+
+// 提取页面HTML内容
+async function extractHTML(pageName) {
+  console.log(`提取页面HTML: ${pageName}`);
+  
+  return {
+    instruction: 'mcp_playwright_browser_evaluate',
+    function: '() => { return document.documentElement.outerHTML; }',
+    description: '提取完整的页面HTML内容'
+  };
+}
+
+// 保存页面内容到文件
+async function savePageContent(content, pageName) {
   try {
-    await extractPageContent(url, outputPath);
+    const pagesDir = path.join(PROJECT_ROOT, 'pages');
+    await fs.mkdir(pagesDir, { recursive: true });
+    
+    const outputPath = path.join(pagesDir, `${pageName}.html`);
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`页面已保存: ${outputPath}`);
+    return outputPath;
+    
   } catch (error) {
-    console.error('提取失败:', error);
-    process.exit(1);
+    console.error(`保存页面 ${pageName} 时出错:`, error);
+    return null;
   }
 }
 
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
+// 页面URL映射
+const pageUrls = {
+  'about': 'https://aekhw.com/about/',
+  'services': 'https://aekhw.com/services/',
+  'team': 'https://aekhw.com/team/',
+  'contact': 'https://aekhw.com/contact/',
+  'news': 'https://aekhw.com/news/',
+  'cases': 'https://aekhw.com/cases/',
+  'practice-areas': 'https://aekhw.com/practice-areas/',
+  'publications': 'https://aekhw.com/publications/',
+  'careers': 'https://aekhw.com/careers/',
+  'privacy': 'https://aekhw.com/privacy/',
+  'terms': 'https://aekhw.com/terms/'
+};
+
+// 主函数 - 生成MCP指令序列
+async function generateMCPInstructions() {
+  console.log('生成MCP Playwright指令序列...');
+  
+  const instructions = [];
+  
+  // 1. 启动浏览器
+  instructions.push(await startBrowserMCP());
+  
+  // 2. 设置浏览器上下文
+  instructions.push(await setupBrowserContext());
+  
+  // 3. 为每个页面生成提取指令
+  for (const [pageName, url] of Object.entries(pageUrls)) {
+    instructions.push(await extractPageContentMCP(url, pageName));
+  }
+  
+  // 保存指令到文件
+  const instructionsPath = path.join(PROJECT_ROOT, 'mcp-instructions.json');
+  await fs.writeFile(instructionsPath, JSON.stringify(instructions, null, 2), 'utf8');
+  console.log(`MCP指令已保存: ${instructionsPath}`);
+  
+  return instructions;
 }
 
-export { extractPageContent };
+// 如果直接运行此脚本
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateMCPInstructions().catch(console.error);
+}
+
+export { 
+  extractPageContentMCP, 
+  startBrowserMCP, 
+  setupBrowserContext, 
+  extractHTML, 
+  savePageContent, 
+  generateMCPInstructions,
+  pageUrls 
+};

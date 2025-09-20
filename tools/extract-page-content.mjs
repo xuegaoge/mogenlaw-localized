@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// tools/extract-page-content.mjs - 使用 Playwright 提取页面内容
+// tools/extract-page-content.mjs - 使用Playwright提取页面内容
 import { chromium } from 'playwright';
 import fs from 'fs/promises';
 import path from 'path';
@@ -9,8 +9,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
-async function extractPageContent(url, outputPath) {
-  console.log(`正在提取页面内容: ${url}`);
+// 提取页面内容的函数
+async function extractPageContent(url, pageName) {
+  console.log(`正在提取页面: ${pageName} (${url})`);
   
   const browser = await chromium.launch({
     headless: true,
@@ -29,89 +30,95 @@ async function extractPageContent(url, outputPath) {
       timeout: 30000
     });
     
-    // 等待页面加载完成
-    await page.waitForTimeout(5000);
+    // 等待页面完全加载
+    await page.waitForTimeout(3000);
     
-    // 提取页面主要内容
-    const content = await page.evaluate(() => {
-      // 获取页面标题
-      const title = document.title;
-      
-      // 获取页面主要内容（通常在.entry-content或类似容器中）
-      const mainContent = document.querySelector('.entry-content') || 
-                         document.querySelector('.site-content') || 
-                         document.querySelector('main') || 
-                         document.querySelector('#content') ||
-                         document.body;
-      
-      // 获取导航菜单内容
-      const navContent = document.querySelector('.main-navigation') || null;
-      
-      // 获取页脚内容
-      const footerContent = document.querySelector('.site-footer') || 
-                           document.querySelector('footer') || null;
-      
+    // 提取页面HTML内容
+    const content = await page.content();
+    
+    // 保存到pages目录
+    const pagesDir = path.join(PROJECT_ROOT, 'pages');
+    await fs.mkdir(pagesDir, { recursive: true });
+    
+    const outputPath = path.join(pagesDir, `${pageName}.html`);
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`页面已保存: ${outputPath}`);
+    
+    // 提取页面元数据
+    const pageInfo = await page.evaluate(() => {
       return {
-        title: title,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+        keywords: document.querySelector('meta[name="keywords"]')?.getAttribute('content') || '',
         url: window.location.href,
-        mainContent: mainContent ? mainContent.innerHTML : '',
-        navContent: navContent ? navContent.innerHTML : '',
-        footerContent: footerContent ? footerContent.innerHTML : '',
-        fullHTML: document.documentElement.outerHTML
+        lang: document.documentElement.lang || 'en'
       };
     });
     
-    // 确保输出目录存在
-    const outputDir = path.dirname(outputPath);
-    await fs.mkdir(outputDir, { recursive: true });
-    
-    // 保存提取的内容
-    const extractedData = {
-      extractedAt: new Date().toISOString(),
-      ...content
+    return {
+      name: pageName,
+      url: url,
+      file: `${pageName}.html`,
+      ...pageInfo
     };
     
-    // 保存为JSON格式
-    const jsonPath = outputPath.replace(/\.html$/, '.json');
-    await fs.writeFile(jsonPath, JSON.stringify(extractedData, null, 2), 'utf8');
-    
-    // 保存完整HTML
-    await fs.writeFile(outputPath, content.fullHTML, 'utf8');
-    
-    console.log(`页面内容已保存到:`);
-    console.log(`- HTML: ${outputPath}`);
-    console.log(`- JSON: ${jsonPath}`);
-    
-    return extractedData;
-    
   } catch (error) {
-    console.error(`提取页面内容失败 ${url}:`, error);
-    throw error;
+    console.error(`提取页面 ${pageName} 时出错:`, error);
+    return null;
   } finally {
     await browser.close();
   }
 }
 
-async function main() {
-  const url = process.argv[2];
-  const outputPath = process.argv[3] || path.join(PROJECT_ROOT, 'extracted-page.html');
+// 批量提取多个页面
+async function extractMultiplePages(urls) {
+  const results = [];
   
-  if (!url) {
-    console.error('请提供要提取的页面URL');
-    console.log('用法: node extract-page-content.mjs <URL> [输出路径]');
+  for (const [pageName, url] of Object.entries(urls)) {
+    const result = await extractPageContent(url, pageName);
+    if (result) {
+      results.push(result);
+    }
+    
+    // 添加延迟以避免过于频繁的请求
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  
+  return results;
+}
+
+// 主函数
+async function main() {
+  const args = process.argv.slice(2);
+  
+  if (args.length < 2) {
+    console.log('用法: node extract-page-content.mjs <URL> <页面名称>');
+    console.log('示例: node extract-page-content.mjs https://aekhw.com/about/ about');
     process.exit(1);
   }
+  
+  const url = args[0];
+  const pageName = args[1];
   
   try {
-    await extractPageContent(url, outputPath);
+    const result = await extractPageContent(url, pageName);
+    if (result) {
+      console.log('\n提取完成！');
+      console.log('页面信息:', JSON.stringify(result, null, 2));
+    } else {
+      console.log('提取失败');
+      process.exit(1);
+    }
   } catch (error) {
-    console.error('提取失败:', error);
+    console.error('提取过程中出错:', error);
     process.exit(1);
   }
 }
 
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
+// 如果直接运行此脚本
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch(console.error);
 }
 
-export { extractPageContent };
+export { extractPageContent, extractMultiplePages };
