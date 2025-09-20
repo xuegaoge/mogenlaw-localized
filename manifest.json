@@ -48,43 +48,295 @@
   "fonts": [
     {
       "name": "1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
-      "source": "https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Bb5nGJhOw.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
       "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4Q4FqPfE.woff2",
-      "size": "14.5KB"
+      "size": "32.7KB"
     },
     {
       "name": "1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
-      "source": "https://fonts.gstatic.com/s/archivonarrow/v30/tss5ApVBdCYD5Q7hcxTE1ArZ0Bb5nGJhOw.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
       "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2",
-      "size": "14.5KB"
+      "size": "29.8KB"
+    },
+    {
+      "name": "1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",
+      "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4QoFqPfE.woff2",
+      "size": "11.5KB"
+    },
+    {
+      "name": "1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
+      "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4SYFqPfE.woff2",
+      "size": "25.5KB"
+    },
+    {
+      "name": "1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
+      "localPath": "assets/fonts/1Ptsg8zYS_SKggPNyCg4TYFq.woff2",
+      "size": "49.1KB"
+    },
+    {
+      "name": "1Ptug8zYS_SKggPNyC0ITw.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptug8zYS_SKggPNyC0ITw.woff2",
+      "localPath": "assets/fonts/1Ptug8zYS_SKggPNyC0ITw.woff2",
+      "size": "47.1KB"
+    },
+    {
+      "name": "1Ptug8zYS_SKggPNyCAIT5lu.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptug8zYS_SKggPNyCAIT5lu.woff2",
+      "localPath": "assets/fonts/1Ptug8zYS_SKggPNyCAIT5lu.woff2",
+      "size": "26.4KB"
+    },
+    {
+      "name": "1Ptug8zYS_SKggPNyCIIT5lu.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptug8zYS_SKggPNyCIIT5lu.woff2",
+      "localPath": "assets/fonts/1Ptug8zYS_SKggPNyCIIT5lu.woff2",
+      "size": "11.1KB"
+    },
+    {
+      "name": "1Ptug8zYS_SKggPNyCMIT5lu.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptug8zYS_SKggPNyCMIT5lu.woff2",
+      "localPath": "assets/fonts/1Ptug8zYS_SKggPNyCMIT5lu.woff2",
+      "size": "30.7KB"
+    },
+    {
+      "name": "1Ptug8zYS_SKggPNyCkIT5lu.woff2",
+      "source": "https://fonts.gstatic.com/s/1Ptug8zYS_SKggPNyCkIT5lu.woff2",
+      "localPath": "assets/fonts/1Ptug8zYS_SKggPNyCkIT5lu.woff2",
+      "size": "25.2KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2",
+      "size": "24.0KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2",
+      "size": "18.4KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2",
+      "size": "43.2KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2",
+      "size": "38.5KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2",
+      "size": "27.9KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2",
+      "size": "13.6KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2",
+      "size": "4.4KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2",
+      "size": "21.8KB"
+    },
+    {
+      "name": "KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2",
+      "localPath": "assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2",
+      "size": "43.3KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2",
+      "size": "17.2KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2",
+      "size": "4.2KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2",
+      "size": "34.7KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2",
+      "size": "25.8KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2",
+      "size": "12.7KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2",
+      "size": "22.3KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+      "size": "39.2KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2",
+      "size": "39.6KB"
+    },
+    {
+      "name": "KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2",
+      "source": "https://fonts.gstatic.com/s/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2",
+      "localPath": "assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2",
+      "size": "19.9KB"
     }
   ],
   "css": [
     {
-      "name": "css.css",
-      "source": "https://aekhw.com/assets/css/css.css",
-      "localPath": "assets/css/css.css",
-      "size": "2.1KB"
+      "name": "style.min-6.8.1.css",
+      "source": "https://aekhw.com/assets/css/style.min-6.8.1.css",
+      "localPath": "assets/css/style.min-6.8.1.css",
+      "size": "113.7KB"
+    },
+    {
+      "name": "widget-areas.min.css",
+      "source": "https://aekhw.com/assets/css/widget-areas.min.css",
+      "localPath": "assets/css/widget-areas.min.css",
+      "size": "3.3KB"
     },
     {
       "name": "main.min.css",
       "source": "https://aekhw.com/assets/css/main.min.css",
       "localPath": "assets/css/main.min.css",
-      "size": "45.2KB"
+      "size": "19.1KB"
+    },
+    {
+      "name": "style-1751249515.css",
+      "source": "https://aekhw.com/assets/css/style-1751249515.css",
+      "localPath": "assets/css/style-1751249515.css",
+      "size": "34.4KB"
+    },
+    {
+      "name": "css.css",
+      "source": "https://aekhw.com/assets/css/css.css",
+      "localPath": "assets/css/css.css",
+      "size": "87.9KB"
+    },
+    {
+      "name": "css2-Ralewayitalwght0100..9001100..900_swap.css",
+      "source": "https://aekhw.com/assets/css/css2-Ralewayitalwght0100..9001100..900_swap.css",
+      "localPath": "assets/css/css2-Ralewayitalwght0100..9001100..900_swap.css",
+      "size": "3.3KB"
+    },
+    {
+      "name": "css2-Robotoitalwght0100..9001100..900_swap.css",
+      "source": "https://aekhw.com/assets/css/css2-Robotoitalwght0100..9001100..900_swap.css",
+      "localPath": "assets/css/css2-Robotoitalwght0100..9001100..900_swap.css",
+      "size": "10.5KB"
+    },
+    {
+      "name": "css2-ArchivoNarrowitalwght0400..7001400..700_swap.css",
+      "source": "https://aekhw.com/assets/css/css2-ArchivoNarrowitalwght0400..7001400..700_swap.css",
+      "localPath": "assets/css/css2-ArchivoNarrowitalwght0400..7001400..700_swap.css",
+      "size": "2.3KB"
+    },
+    {
+      "name": "flexslider.css",
+      "source": "https://aekhw.com/assets/css/flexslider.css",
+      "localPath": "assets/css/flexslider.css",
+      "size": "3.7KB"
+    },
+    {
+      "name": "public.css",
+      "source": "https://aekhw.com/assets/css/public.css",
+      "localPath": "assets/css/public.css",
+      "size": "11.7KB"
+    },
+    {
+      "name": "style-1.0.0.css",
+      "source": "https://aekhw.com/assets/css/style-1.0.0.css",
+      "localPath": "assets/css/style-1.0.0.css",
+      "size": "1.4KB"
     }
   ],
   "js": [
     {
-      "name": "jquery.min.js",
-      "source": "https://aekhw.com/assets/js/jquery.min.js",
-      "localPath": "assets/js/jquery.min.js",
-      "size": "89.5KB"
+      "name": "frontend-gtag.min.js",
+      "source": "https://aekhw.com/assets/js/frontend-gtag.min.js",
+      "localPath": "assets/js/frontend-gtag.min.js",
+      "size": "11.6KB"
     },
     {
       "name": "script.min.js",
-      "source": "https://aekhw.com/assets/js/script.min.js",
+      "source": "https://aekhw.com/static/js/script.min.js",
       "localPath": "assets/js/script.min.js",
-      "size": "12.3KB"
+      "size": "0.6KB"
+    },
+    {
+      "name": "jQuery.easing.min.js",
+      "source": "https://aekhw.com/static/js/jQuery.easing.min.js",
+      "localPath": "assets/js/jQuery.easing.min.js",
+      "size": "4.2KB"
+    },
+    {
+      "name": "jquery-migrate.min.js",
+      "source": "https://aekhw.com/assets/js/jquery-migrate.min.js",
+      "localPath": "assets/js/jquery-migrate.min.js",
+      "size": "13.3KB"
+    },
+    {
+      "name": "jquery.flexslider.min.js",
+      "source": "https://aekhw.com/assets/js/jquery.flexslider.min.js",
+      "localPath": "assets/js/jquery.flexslider.min.js",
+      "size": "24.5KB"
+    },
+    {
+      "name": "jquery.min.js",
+      "source": "https://aekhw.com/assets/js/jquery.min.js",
+      "localPath": "assets/js/jquery.min.js",
+      "size": "85.5KB"
+    },
+    {
+      "name": "menu.min.js",
+      "source": "https://aekhw.com/assets/js/menu.min.js",
+      "localPath": "assets/js/menu.min.js",
+      "size": "7.2KB"
+    },
+    {
+      "name": "wp-emoji-release.min.js",
+      "source": "https://aekhw.com/assets/js/wp-emoji-release.min.js",
+      "localPath": "assets/js/wp-emoji-release.min.js",
+      "size": "18.8KB"
+    },
+    {
+      "name": "classList.min-1278caee.js",
+      "source": "https://aekhw.com/assets/js/classList.min-1278caee.js",
+      "localPath": "assets/js/classList.min-1278caee.js",
+      "size": "2.3KB"
     }
   ]
 }
