@@ -1,10 +1,5 @@
-#!/usr/bin/env node
-<<<<<<< HEAD
-// tools/extract-page-content-mcp.mjs - 使用MCP Playwright提取页面内容
-=======
-// tools/extract-page-content-mcp.mjs - 使用 MCP Playwright 提取页面内容
-import { chromium } from 'playwright';
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
+﻿#!/usr/bin/env node
+// tools/extract-page-content-mcp.mjs - 浣跨敤MCP Playwright鎻愬彇椤甸潰鍐呭
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,72 +8,71 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
-<<<<<<< HEAD
-// 提取页面内容的函数
+// 鎻愬彇椤甸潰鍐呭鐨勫嚱鏁?
 async function extractPageContentMCP(url, pageName) {
-  console.log(`正在提取页面: ${pageName} (${url})`);
+  console.log(`姝ｅ湪鎻愬彇椤甸潰: ${pageName} (${url})`);
   
   try {
-    // 这里需要使用MCP Playwright工具
-    // 由于这是一个工具脚本，实际的MCP调用需要在Trae AI环境中进行
-    console.log('请在Trae AI环境中使用MCP Playwright工具来提取页面内容');
-    console.log(`目标URL: ${url}`);
-    console.log(`页面名称: ${pageName}`);
+    // 杩欓噷闇€瑕佷娇鐢∕CP Playwright宸ュ叿
+    // 鐢变簬杩欐槸涓€涓伐鍏疯剼鏈紝瀹為檯鐨凪CP璋冪敤闇€瑕佸湪Trae AI鐜涓繘琛?
+    console.log('璇峰湪Trae AI鐜涓娇鐢∕CP Playwright宸ュ叿鏉ユ彁鍙栭〉闈㈠唴瀹?);
+    console.log(`鐩爣URL: ${url}`);
+    console.log(`椤甸潰鍚嶇О: ${pageName}`);
     
-    // 返回提取指令
+    // 杩斿洖鎻愬彇鎸囦护
     return {
       instruction: 'mcp_playwright_browser_navigate',
       url: url,
       pageName: pageName,
       nextSteps: [
-        '1. 导航到页面',
-        '2. 等待页面加载完成',
-        '3. 提取页面HTML内容',
-        '4. 保存到pages目录'
+        '1. 瀵艰埅鍒伴〉闈?,
+        '2. 绛夊緟椤甸潰鍔犺浇瀹屾垚',
+        '3. 鎻愬彇椤甸潰HTML鍐呭',
+        '4. 淇濆瓨鍒皃ages鐩綍'
       ]
     };
     
   } catch (error) {
-    console.error(`提取页面 ${pageName} 时出错:`, error);
+    console.error(`鎻愬彇椤甸潰 ${pageName} 鏃跺嚭閿?`, error);
     return null;
   }
 }
 
-// 启动浏览器的函数（MCP版本）
+// 鍚姩娴忚鍣ㄧ殑鍑芥暟锛圡CP鐗堟湰锛?
 async function startBrowserMCP() {
-  console.log('启动MCP Playwright浏览器...');
+  console.log('鍚姩MCP Playwright娴忚鍣?..');
   
-  // 返回MCP浏览器启动指令
+  // 杩斿洖MCP娴忚鍣ㄥ惎鍔ㄦ寚浠?
   return {
     instruction: 'mcp_playwright_browser_install',
-    description: '安装并启动Playwright浏览器'
+    description: '瀹夎骞跺惎鍔≒laywright娴忚鍣?
   };
 }
 
-// 设置浏览器上下文的函数
+// 璁剧疆娴忚鍣ㄤ笂涓嬫枃鐨勫嚱鏁?
 async function setupBrowserContext() {
-  console.log('设置浏览器上下文...');
+  console.log('璁剧疆娴忚鍣ㄤ笂涓嬫枃...');
   
   return {
     instruction: 'mcp_playwright_browser_resize',
     width: 1920,
     height: 1080,
-    description: '设置浏览器窗口大小'
+    description: '璁剧疆娴忚鍣ㄧ獥鍙ｅぇ灏?
   };
 }
 
-// 提取页面HTML内容
+// 鎻愬彇椤甸潰HTML鍐呭
 async function extractHTML(pageName) {
-  console.log(`提取页面HTML: ${pageName}`);
+  console.log(`鎻愬彇椤甸潰HTML: ${pageName}`);
   
   return {
     instruction: 'mcp_playwright_browser_evaluate',
     function: '() => { return document.documentElement.outerHTML; }',
-    description: '提取完整的页面HTML内容'
+    description: '鎻愬彇瀹屾暣鐨勯〉闈TML鍐呭'
   };
 }
 
-// 保存页面内容到文件
+// 淇濆瓨椤甸潰鍐呭鍒版枃浠?
 async function savePageContent(content, pageName) {
   try {
     const pagesDir = path.join(PROJECT_ROOT, 'pages');
@@ -87,16 +81,16 @@ async function savePageContent(content, pageName) {
     const outputPath = path.join(pagesDir, `${pageName}.html`);
     await fs.writeFile(outputPath, content, 'utf8');
     
-    console.log(`页面已保存: ${outputPath}`);
+    console.log(`椤甸潰宸蹭繚瀛? ${outputPath}`);
     return outputPath;
     
   } catch (error) {
-    console.error(`保存页面 ${pageName} 时出错:`, error);
+    console.error(`淇濆瓨椤甸潰 ${pageName} 鏃跺嚭閿?`, error);
     return null;
   }
 }
 
-// 页面URL映射
+// 椤甸潰URL鏄犲皠
 const pageUrls = {
   'about': 'https://aekhw.com/about/',
   'services': 'https://aekhw.com/services/',
@@ -111,32 +105,32 @@ const pageUrls = {
   'terms': 'https://aekhw.com/terms/'
 };
 
-// 主函数 - 生成MCP指令序列
+// 涓诲嚱鏁?- 鐢熸垚MCP鎸囦护搴忓垪
 async function generateMCPInstructions() {
-  console.log('生成MCP Playwright指令序列...');
+  console.log('鐢熸垚MCP Playwright鎸囦护搴忓垪...');
   
   const instructions = [];
   
-  // 1. 启动浏览器
+  // 1. 鍚姩娴忚鍣?
   instructions.push(await startBrowserMCP());
   
-  // 2. 设置浏览器上下文
+  // 2. 璁剧疆娴忚鍣ㄤ笂涓嬫枃
   instructions.push(await setupBrowserContext());
   
-  // 3. 为每个页面生成提取指令
+  // 3. 涓烘瘡涓〉闈㈢敓鎴愭彁鍙栨寚浠?
   for (const [pageName, url] of Object.entries(pageUrls)) {
     instructions.push(await extractPageContentMCP(url, pageName));
   }
   
-  // 保存指令到文件
+  // 淇濆瓨鎸囦护鍒版枃浠?
   const instructionsPath = path.join(PROJECT_ROOT, 'mcp-instructions.json');
   await fs.writeFile(instructionsPath, JSON.stringify(instructions, null, 2), 'utf8');
-  console.log(`MCP指令已保存: ${instructionsPath}`);
+  console.log(`MCP鎸囦护宸蹭繚瀛? ${instructionsPath}`);
   
   return instructions;
 }
 
-// 如果直接运行此脚本
+// 濡傛灉鐩存帴杩愯姝よ剼鏈?
 if (import.meta.url === `file://${process.argv[1]}`) {
   generateMCPInstructions().catch(console.error);
 }
@@ -150,125 +144,4 @@ export {
   generateMCPInstructions,
   pageUrls 
 };
-=======
-async function extractPageContent(url, outputPath) {
-  console.log(`正在提取页面内容: ${url}`);
-  
-  const browser = await chromium.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
-  
-  const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-  });
-  
-  const page = await context.newPage();
-  
-  try {
-    await page.goto(url, {
-      waitUntil: 'networkidle',
-      timeout: 30000
-    });
-    
-    // 等待页面加载完成
-    await page.waitForTimeout(5000);
-    
-    // 提取页面主要内容
-    const content = await page.evaluate(() => {
-      // 获取页面标题
-      const title = document.title;
-      
-      // 获取页面主要内容（通常在.entry-content或类似容器中）
-      const mainContent = document.querySelector('.entry-content') || 
-                         document.querySelector('.site-content') || 
-                         document.querySelector('main') || 
-                         document.querySelector('#content') ||
-                         document.body;
-      
-      // 获取导航菜单内容
-      const navContent = document.querySelector('.main-navigation') || null;
-      
-      // 获取页脚内容
-      const footerContent = document.querySelector('.site-footer') || 
-                           document.querySelector('footer') || null;
-      
-      return {
-        title,
-        mainContent: mainContent ? mainContent.innerHTML : '',
-        navContent: navContent ? navContent.innerHTML : '',
-        footerContent: footerContent ? footerContent.innerHTML : ''
-      };
-    });
-    
-    // 生成完整的 HTML 文件
-    const html = `<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${content.title}</title>
-    <link rel="stylesheet" href="../assets/css/style.min-6.8.1.css">
-    <link rel="stylesheet" href="../assets/css/widget-areas.min.css">
-    <link rel="stylesheet" href="../assets/css/main.min.css">
-    <link rel="stylesheet" href="../assets/css/style-1751249515.css">
-    <link rel="stylesheet" href="../assets/css/css.css">
-    <link rel="stylesheet" href="../assets/css/css2-Ralewayitalwght0100..9001100..900_swap.css">
-    <link rel="stylesheet" href="../assets/css/css2-Robotoitalwght0100..9001100..900_swap.css">
-    <link rel="stylesheet" href="../assets/css/css2-ArchivoNarrowitalwght0400..7001400..700_swap.css">
-    <link rel="stylesheet" href="../assets/css/flexslider.css">
-    <link rel="stylesheet" href="../assets/css/public.css">
-    <link rel="stylesheet" href="../assets/css/style-1.0.0.css">
-</head>
-<body>
-    <header class="site-header">
-        ${content.navContent}
-    </header>
-    <main class="site-content">
-        <div class="entry-content">
-            ${content.mainContent}
-        </div>
-    </main>
-    <footer class="site-footer">
-        ${content.footerContent}
-    </footer>
-    
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/jquery-migrate.min.js"></script>
-    <script src="../assets/js/jquery.flexslider.min.js"></script>
-    <script src="../assets/js/script.min.js"></script>
-    <script src="../assets/js/jQuery.easing.min.js"></script>
-    <script src="../assets/js/menu.min.js"></script>
-    <script src="../assets/js/wp-emoji-release.min.js"></script>
-    <script src="../assets/js/frontend-gtag.min.js"></script>
-    <script src="../assets/js/classList.min-1278caee.js"></script>
-</body>
-</html>`;
-    
-    // 保存文件
-    await fs.writeFile(outputPath, html, 'utf8');
-    console.log(`页面内容已保存到: ${outputPath}`);
-    
-  } catch (error) {
-    console.error('提取页面内容时出错:', error);
-  } finally {
-    await browser.close();
-  }
-}
 
-// 主函数
-async function main() {
-  const url = process.argv[2] || 'https://aekhw.com/about.html';
-  const outputPath = process.argv[3] || path.join(PROJECT_ROOT, 'pages', 'about.html');
-  
-  await extractPageContent(url, outputPath);
-}
-
-// 如果直接运行此脚本
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
-}
-
-export { extractPageContent };
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)

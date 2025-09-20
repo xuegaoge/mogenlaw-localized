@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-// tools/download-missing-resources.mjs - 下载缺失的资源
+﻿#!/usr/bin/env node
+// tools/download-missing-resources.mjs - 涓嬭浇缂哄け鐨勮祫婧?
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,9 +10,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
-// 缺失的资源列表
+// 缂哄け鐨勮祫婧愬垪琛?
 const missingResources = [
-  // 字体资源
+  // 瀛椾綋璧勬簮
   {
     url: 'https://fonts.gstatic.com/s/raleway/v28/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2',
     localPath: 'assets/fonts/1Ptsg8zYS_SKggPNyCg4QIFqPfE.woff2'
@@ -53,8 +53,7 @@ const missingResources = [
     url: 'https://fonts.gstatic.com/s/raleway/v28/1Ptug8zYS_SKggPNyC0ITw.woff2',
     localPath: 'assets/fonts/1Ptug8zYS_SKggPNyC0ITw.woff2'
   },
-<<<<<<< HEAD
-  // Roboto字体
+// Roboto瀛椾綋
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2'
@@ -67,44 +66,31 @@ const missingResources = [
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2'
   },
-=======
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkC3kaWzU.woff2'
   },
   {
-<<<<<<< HEAD
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2',
+url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2'
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2'
-=======
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkAnkaWzU.woff2'
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCnkaWzU.woff2'
   },
   {
-<<<<<<< HEAD
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2',
+url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2'
-=======
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBXkaWzU.woff2'
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2',
     localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkenkaWzU.woff2'
   },
-<<<<<<< HEAD
-  // Roboto Bold字体
+// Roboto Bold瀛椾綋
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2'
@@ -112,31 +98,13 @@ const missingResources = [
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2'
-=======
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkaHkaWzU.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCXkaWzU.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkCHkaWzU.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2',
-    localPath: 'assets/fonts/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2'
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2'
   },
   {
-<<<<<<< HEAD
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2',
+url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2'
   },
   {
@@ -144,42 +112,30 @@ const missingResources = [
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2'
   },
   {
-=======
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2'
   },
   {
-<<<<<<< HEAD
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
+url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2'
-=======
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2'
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   },
   {
     url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2'
   },
   {
-<<<<<<< HEAD
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2',
+url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2',
     localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMMaxKUBGEe.woff2'
   }
 ];
 
-// 下载文件的函数
+// 涓嬭浇鏂囦欢鐨勫嚱鏁?
 function downloadFile(url, localPath) {
   return new Promise((resolve, reject) => {
     const fullPath = path.join(PROJECT_ROOT, localPath);
     const dir = path.dirname(fullPath);
     
-    // 确保目录存在
+    // 纭繚鐩綍瀛樺湪
     fs.mkdir(dir, { recursive: true }).then(() => {
       const protocol = url.startsWith('https:') ? https : http;
       
@@ -190,176 +146,58 @@ function downloadFile(url, localPath) {
           response.pipe(file);
           file.on('finish', () => {
             file.close();
-            console.log(`下载完成: ${localPath}`);
+            console.log(`涓嬭浇瀹屾垚: ${localPath}`);
             resolve();
           });
         } else {
           file.close();
-          fs.unlink(fullPath).catch(() => {}); // 删除空文件
+          fs.unlink(fullPath).catch(() => {}); // 鍒犻櫎绌烘枃浠?
           reject(new Error(`HTTP ${response.statusCode}: ${url}`));
         }
       }).on('error', (err) => {
         file.close();
-        fs.unlink(fullPath).catch(() => {}); // 删除空文件
+        fs.unlink(fullPath).catch(() => {}); // 鍒犻櫎绌烘枃浠?
         reject(err);
       });
     }).catch(reject);
-=======
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2'
-  },
-  {
-    url: 'https://fonts.gstatic.com/s/roboto/v30/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
-    localPath: 'assets/fonts/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2'
-  },
-  // 图片资源
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/bg_direction_nav.png',
-    localPath: 'assets/images/bg_direction_nav.png'
-  },
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/left.svg',
-    localPath: 'assets/images/left.svg'
-  },
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/right.svg',
-    localPath: 'assets/images/right.svg'
-  },
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/flexslider-icon.svg',
-    localPath: 'assets/images/flexslider-icon.svg'
-  },
-  // 其他缺失的资源
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/practices-side-image-1-932x1995.jpg',
-    localPath: 'assets/images/practices-side-image-1-932x1995.jpg'
-  },
-  {
-    url: 'https://aekhw.com/wp-content/themes/generatepress-child/src/home-video-background-850x476-100q.jpg',
-    localPath: 'assets/images/home-video-background-850x476-100q.jpg'
-  }
-];
-
-// 确保目录存在
-async function ensureDir(dirPath) {
-  try {
-    await fs.access(dirPath);
-  } catch {
-    await fs.mkdir(dirPath, { recursive: true });
-  }
-}
-
-// 下载文件
-function downloadFile(url, localPath) {
-  return new Promise((resolve, reject) => {
-    const filePath = path.join(PROJECT_ROOT, localPath);
-    
-    const protocol = url.startsWith('https') ? https : http;
-    
-    const request = protocol.get(url, (response) => {
-      if (response.statusCode === 200) {
-        // 收集数据
-        const chunks = [];
-        response.on('data', (chunk) => {
-          chunks.push(chunk);
-        });
-        
-        response.on('end', async () => {
-          try {
-            // 合并数据并写入文件
-            const buffer = Buffer.concat(chunks);
-            await fs.writeFile(filePath, buffer);
-            console.log(`下载完成: ${localPath}`);
-            resolve();
-          } catch (err) {
-            reject(err);
-          }
-        });
-      } else {
-        reject(new Error(`HTTP ${response.statusCode} for ${url}`));
-      }
-    });
-    
-    request.on('error', (err) => {
-      reject(err);
-    });
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
   });
 }
 
-// 主函数
-<<<<<<< HEAD
+// 涓诲嚱鏁?
 async function downloadMissingResources() {
-  console.log('开始下载缺失的资源...');
+  console.log('寮€濮嬩笅杞界己澶辩殑璧勬簮...');
   
   for (const resource of missingResources) {
     try {
       const fullPath = path.join(PROJECT_ROOT, resource.localPath);
       
-      // 检查文件是否已存在
+      // 妫€鏌ユ枃浠舵槸鍚﹀凡瀛樺湪
       try {
         await fs.access(fullPath);
-        console.log(`文件已存在，跳过: ${resource.localPath}`);
+        console.log(`鏂囦欢宸插瓨鍦紝璺宠繃: ${resource.localPath}`);
         continue;
       } catch {
-        // 文件不存在，需要下载
+        // 鏂囦欢涓嶅瓨鍦紝闇€瑕佷笅杞?
       }
       
-      console.log(`正在下载: ${resource.url}`);
+      console.log(`姝ｅ湪涓嬭浇: ${resource.url}`);
       await downloadFile(resource.url, resource.localPath);
       
-      // 添加延迟以避免过于频繁的请求
+      // 娣诲姞寤惰繜浠ラ伩鍏嶈繃浜庨绻佺殑璇锋眰
       await new Promise(resolve => setTimeout(resolve, 100));
       
     } catch (error) {
-      console.error(`下载失败 ${resource.url}:`, error.message);
+      console.error(`涓嬭浇澶辫触 ${resource.url}:`, error.message);
     }
   }
   
-  console.log('资源下载完成！');
+  console.log('璧勬簮涓嬭浇瀹屾垚锛?);
 }
 
-// 如果直接运行此脚本
+// 濡傛灉鐩存帴杩愯姝よ剼鏈?
 if (import.meta.url === `file://${process.argv[1]}`) {
   downloadMissingResources().catch(console.error);
 }
 
 export { downloadMissingResources };
-=======
-async function main() {
-  console.log('开始下载缺失的资源...');
-  
-  let successCount = 0;
-  let failCount = 0;
-  
-  for (const resource of missingResources) {
-    try {
-      // 确保目标目录存在
-      const dirPath = path.dirname(path.join(PROJECT_ROOT, resource.localPath));
-      await ensureDir(dirPath);
-      
-      // 下载文件
-      await downloadFile(resource.url, resource.localPath);
-      successCount++;
-    } catch (error) {
-      console.error(`下载失败: ${resource.localPath} - ${error.message}`);
-      failCount++;
-    }
-  }
-  
-  console.log(`资源下载完成: 成功 ${successCount}, 失败 ${failCount}`);
-}
 
-main().catch(e => {
-  console.error(e);
-  process.exit(1);
-});
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)

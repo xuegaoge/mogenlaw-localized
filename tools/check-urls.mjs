@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-// tools/check-urls.mjs - 使用 Playwright 检查网站页面URL
+﻿#!/usr/bin/env node
+// tools/check-urls.mjs - 浣跨敤 Playwright 妫€鏌ョ綉绔欓〉闈RL
 import { chromium } from 'playwright';
 import fs from 'fs/promises';
 import path from 'path';
@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function checkUrls() {
-  console.log('正在检查网站页面URL结构...');
+  console.log('姝ｅ湪妫€鏌ョ綉绔欓〉闈RL缁撴瀯...');
   
   const browser = await chromium.launch({
     headless: true,
@@ -23,16 +23,16 @@ async function checkUrls() {
   const page = await context.newPage();
   
   try {
-    // 访问主页
+    // 璁块棶涓婚〉
     await page.goto('https://aekhw.com/', {
       waitUntil: 'networkidle',
       timeout: 30000
     });
     
-    // 等待页面加载完成
+    // 绛夊緟椤甸潰鍔犺浇瀹屾垚
     await page.waitForTimeout(5000);
     
-    // 提取所有导航链接
+    // 鎻愬彇鎵€鏈夊鑸摼鎺?
     const links = await page.evaluate(() => {
       const navLinks = [];
       const linkElements = document.querySelectorAll('a[href]');
@@ -41,7 +41,7 @@ async function checkUrls() {
         const href = link.getAttribute('href');
         const text = link.textContent.trim();
         
-        // 只收集相对链接和同域链接
+        // 鍙敹闆嗙浉瀵归摼鎺ュ拰鍚屽煙閾炬帴
         if (href && (href.startsWith('/') || href.includes('aekhw.com'))) {
           navLinks.push({
             text: text,
@@ -53,58 +53,27 @@ async function checkUrls() {
       return navLinks;
     });
     
-<<<<<<< HEAD
-    console.log('找到的页面链接:');
-=======
-    console.log('找到以下链接:');
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
+console.log('鎵惧埌鐨勯〉闈㈤摼鎺?');
     links.forEach((link, index) => {
       console.log(`${index + 1}. ${link.text} -> ${link.href}`);
     });
     
-<<<<<<< HEAD
-    // 保存链接到文件
+// 淇濆瓨閾炬帴鍒版枃浠?
     const outputPath = path.join(__dirname, '..', 'page-links.json');
     await fs.writeFile(outputPath, JSON.stringify(links, null, 2), 'utf8');
-    console.log(`\n链接已保存到: ${outputPath}`);
-=======
-    // 特别检查 about 相关链接
-    console.log('\n检查 about 相关链接:');
-    const aboutLinks = links.filter(link => 
-      link.href.includes('about') || 
-      link.text.toLowerCase().includes('about') ||
-      link.href.includes('关于我们')
-    );
-    
-    aboutLinks.forEach((link, index) => {
-      console.log(`${index + 1}. ${link.text} -> ${link.href}`);
-    });
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
+    console.log(`\n閾炬帴宸蹭繚瀛樺埌: ${outputPath}`);
     
   } catch (error) {
-    console.error('检查URL时出错:', error);
+    console.error('妫€鏌RL鏃跺嚭閿?', error);
   } finally {
     await browser.close();
   }
 }
 
-<<<<<<< HEAD
-// 如果直接运行此脚本
+// 濡傛灉鐩存帴杩愯姝よ剼鏈?
 if (import.meta.url === `file://${process.argv[1]}`) {
   checkUrls().catch(console.error);
 }
 
 export { checkUrls };
-=======
-// 主函数
-async function main() {
-  await checkUrls();
-}
 
-// 如果直接运行此脚本
-if (import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.includes(process.argv[1].replace(/\\/g, '/'))) {
-  main();
-}
-
-export { checkUrls };
->>>>>>> 21cefa2 (chore(extract): 备份并全量覆盖所有内页（完整 DOM 模式）)
