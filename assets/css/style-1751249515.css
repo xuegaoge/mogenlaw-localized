@@ -59,7 +59,7 @@ background-color: #0000ff
 
 .main-navigation
 /*, .main-navigation ul ul */ {
-	background-color: #323f5700;
+	background-color: #323f57;
 }
 
 .inside-header {
@@ -1371,6 +1371,285 @@ input#gform_submit_button_1.gform_button.button {
 
 
 	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 86.5px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 86.5px) 100%, 0% 100%);
+		padding-bottom: 20px;
+	}
+	.home .site-header .header-image {
+		width: 280px;
+	}
+
+}
+
+
+@media screen and (max-width: 1200px) {
+
+	.site-content {
+		margin-left: 1.5%;
+		margin-right: 1.5%;
+	}
+
+	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 81.5px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 81.5px) 100%, 0% 100%);
+	}
+
+	.home .site-header .header-image {
+		width: 260px;
+	}
+
+	.home .site-content {
+		margin-right: 0;
+		margin-left: 0;
+	}
+
+}
+
+
+@media screen and (max-width: 1080px) {
+
+	.inside-header {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 22px;
+		padding-right: 22px;
+	}
+
+	.main-navigation .main-nav ul li a {
+		padding-left: 14px;
+		padding-right: 14px;
+		line-height: 16px;
+		font-size: 14px;
+	}
+
+
+	/* tablet bio */
+
+	#bio-photo {
+		float: left;
+		width: 39%;
+		min-height: 400px;
+		margin-right: 0%;
+		padding-left: 5%;
+	}
+
+
+	#bio-photo img {
+		height: auto;
+		max-width: 80%;
+	}
+
+	#bio-contact {
+		text-align: center;
+		float: left;
+		height: fit-content;
+		width: 58%;
+		padding-top: 10%;
+		padding-bottom: 5%;
+		margin-top: 50px;
+		margin-left: 2%;
+	}
+
+	#bio-contact h1 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 52px;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-contact h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 24px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.32em;
+	}
+
+	#bio-contact p {
+		font-size: 22px;
+		margin-bottom: 0.0em;
+	}
+
+	.post-type-archive-media-coverage .inside-article {
+		width: 100%;
+		border-bottom: solid .9px gray;
+		margin-top: -20px;
+		padding-top: 20px;
+		margin-bottom: 40px;
+	}
+	
+	.blog .entry-header h2 {
+		font-size: 30px;
+	}
+
+}
+
+
+
+
+@media screen and (max-width: 980px) {
+
+
+	/* 1-15-25 temporary workarounds to improve dropdown nav in mobile */
+
+	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
+		display: inline-block;
+	}
+
+
+
+	/* 1-15-25 temporarily hide the word menu because clicking it opens links in different location */
+
+	.menu-toggle .gp-icon+.mobile-menu {
+		padding-left: 9px;
+		display: none;
+	}
+
+	/* 1-15-25 this moves it to the right */
+
+	.has-inline-mobile-toggle #site-navigation {
+		flex-basis: auto;
+	}
+
+
+	/* 1-15-25 do not show sub-sub menu for practices in mobile */
+
+	.menu li.menu-item ul.sub-menu ul.sub-menu {
+		background: #273348;
+		display: none;
+	}
+
+	.main-navigation .main-nav>ul>li>a {
+		min-width: 178px;
+	}
+
+
+
+	/* 12-18-24 */
+
+	.main-navigation.toggled .main-nav {
+		background: #323f57;
+		flex-basis: 100%;
+		line-height: 18px;
+		order: 3;
+		position: absolute;
+		z-index: 1000;
+		width: 160px;
+		margin-top: 30px;
+		margin-left: 80%;
+		padding-bottom: 10px;
+	}
+
+
+	.single-our-team .main-navigation.toggled .main-nav {
+		padding-left: 30px;
+		margin-top: 70px;
+	}
+
+	.single-our-team #primary-menu ul li {
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		font-size: 19px;
+	}
+
+	.main-navigation:not(.toggled) ul li.sfHover>ul {
+		/* margin-left: -30px; */
+	}
+
+
+	.main-navigation .main-nav ul ul li a {
+		line-height: normal;
+		padding-top: 5px;
+		padding-right: 20px;
+		padding-bottom: 5px;
+		padding-left: 20px;
+		font-size: 13px;
+	}
+
+	.home .site-logo {
+		-webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 129px) 100%, 0% 100%);
+		clip-path: polygon(0% 0%, 100% 0%, calc(100% - 129px) 100%, 0% 100%);
+		padding-top: 30px;
+		padding-bottom: 30px;
+		padding-left: 20px;
+	}
+
+	.home .site-header .header-image {
+		width: 375px;
+	}
+
+
+	#bio-top-band {
+		float: left;
+		width: 100%;
+		height: fit-content;
+		border-bottom: solid 1px lightgray;
+		margin-bottom: 2.5%;
+		padding-bottom: 0%;
+	}
+
+	#bio-contact {
+		text-align: center;
+		float: left;
+		height: fit-content;
+		width: 58%;
+		padding-top: 3%;
+		padding-bottom: 0%;
+		margin-top: 50px;
+		margin-left: 2%;
+	}
+
+
+	#bio-contact h1 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 45px;
+		color: #4b5b79;
+		margin-bottom: 20px;
+		line-height: 1.2em;
+		font-weight: 400;
+	}
+
+	#bio-contact h2 {
+		font-family: 'Raleway', sans-serif;
+		font-size: 20px;
+		font-weight: 800;
+		color: #d71e2b;
+		text-transform: uppercase;
+		letter-spacing: 0.32em;
+	}
+
+	#bio-contact p {
+		font-size: 19px;
+		margin-bottom: 0.0em;
+	}
+
+	.post-type-archive-media-coverage .entry-header h2 {
+		font-size: 30px;
+		margin-bottom: -16px;
+		border-left: solid 4px #d71e2b;
+		padding-left: 20px;
+		margin-left: -25px;
+	}
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+
+
+	.site-header .header-image,
+	.home .site-header .header-image {
+		width: 140px;
+	}
+
+
+	.home .site-logo {
 		-webkit-clip-path: none;
 		clip-path: none;
 		padding: 0;
@@ -1813,57 +2092,41 @@ input#gform_submit_button_1.gform_button.button {
 
 .page-id-380 .entry-content p,
 .page-id-380 .entry-content ul li {
-	line-height: 1.35em;
+	line-height: 1.35;
 }
 
-.page-id-380 .entry-content ul li {
-	margin-bottom: 8px;
+/* ==========================================
+   内页统一覆盖：让主导航/移动控制条透明，露出 header 渐变（不影响首页）
+   - 目标：所有内页顶部 header 显示深色渐变；首页不变
+   - 说明：本主题的 header 渐变已在 .site-header 定义。导致看不到渐变的主因是
+           顶部主导航与移动菜单控制条的背景色盖住了 header。这里统一将其透明化。
+========================================== */
+body:not(.home) nav.main-navigation,
+body:not(.home) nav.main-navigation.mobile-menu-control-wrapper,
+body:not(.home) #mobile-menu-control-wrapper {
+  background: transparent;
+  background-color: transparent;
 }
 
-
-/* https://aekhw.com/about/our-approach/ */
-
-.page-id-375 .entry-content h2 {
-	font-size: 31px;
+/* 移动端展开态同样保持透明（避免灰底） */
+body:not(.home) .has-inline-mobile-toggle #site-navigation.toggled,
+body.has-inline-mobile-toggle:not(.home) #site-navigation.toggled {
+  background: transparent;
+  background-color: transparent;
 }
 
-.page-id-375 .entry-content p,
-.page-id-375 .entry-content ul li {
-	font-size: 18.5px;
-	line-height: 1.32em;
+/* 移动菜单按钮不加底色，适配深色渐变 */
+body:not(.home) .mobile-menu-control-wrapper .menu-toggle,
+body:not(.home) .mobile-menu-control-wrapper .menu-toggle:hover,
+body:not(.home) .mobile-menu-control-wrapper .menu-toggle:focus {
+  background: transparent;
+  background-color: transparent;
 }
 
-.page-id-375 .entry-content p {
-	margin-bottom: 11px;	
-}
-
-.page-id-375 .entry-content ul li {
-	margin-bottom: 8px;
-}
-
-
-/* https://aekhw.com/about/our-experience/ */
-
-.page-id-373 .entry-content p,
-.page-id-373 .entry-content ul li,
-.page-id-373 .entry-content h2,
-.page-id-373 .entry-content h3 {
-	font-family: 'Archivo Narrow', sans-serif;
-}
-
-
-.page-id-373 .entry-content p {
-	margin-bottom: 11px;	
-}
-
-.page-id-373 .entry-content ul li {
-	margin-bottom: 8px;
-}
-
-.page-id-373 .entry-content h2,
-.page-id-373 .entry-content h3 {
-	margin-top: 15px;
-	margin-bottom: 5px;	
+/* === 内页通用：复用首页 header 渐变（不影响首页） === */
+body:not(.home) .site-header {
+  background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%) !important;
+  background-color: transparent !important;
 }
 
 
