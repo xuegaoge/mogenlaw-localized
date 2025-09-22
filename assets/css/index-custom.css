@@ -1,0 +1,106 @@
+/* 首页专用样式，确保视频区域铺满并保持正确的导航栏显示 */
+
+/* 首页视频区域样式 */
+.home #home-video-section,
+.home #home-video-section video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+}
+
+.home #home-video-section {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.home #home-video-section video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+}
+
+.home #home-video-section-mobile {
+    display: none !important;
+}
+
+/* 确保首页导航栏样式正确 */
+.home .main-navigation {
+    background-color: transparent !important;
+}
+
+.home .site-header {
+    background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%) !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* 首页内容区域样式 */
+.home .site-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.home .content-area {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 首页主内容区域 */
+.home .site-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 确保首页文章内容区域正确 */
+.home .inside-article {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 首页标题隐藏 */
+.home .entry-header h1 {
+    display: none !important;
+}
+
+/* 首页页脚样式 */
+.home .site-footer {
+    width: 100% !important;
+    clear: both !important;
+}
+
+/* 确保首页网格容器铺满 */
+.home .grid-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 首页主体内容样式 */
+.home .entry-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .home #home-video-section,
+    .home #home-video-section video {
+        height: auto !important;
+    }
+    
+    .home .entry-content {
+        padding: 15px !important;
+    }
+}
