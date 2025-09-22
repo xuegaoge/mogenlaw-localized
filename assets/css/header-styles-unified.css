@@ -19,7 +19,8 @@
 }
 
 /* 限制main元素的最大宽度，使其与目标网站保持一致 */
-main.site-content {
+main.site-content,
+.site-content {
     max-width: 1140px;
     margin-left: auto;
     margin-right: auto;
