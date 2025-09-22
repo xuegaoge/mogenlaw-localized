@@ -1,0 +1,111 @@
+/* Team List Styles */
+.team-list {
+    width: 100%;
+    float: left;
+    border-top: 5px solid rgb(75, 91, 121);
+    padding-top: 28px;
+    margin-top: 36px;
+}
+
+.team-title {
+    text-align: center;
+    font-size: 36px;
+    color: rgb(75, 91, 121);
+    margin: 0px auto 30px;
+}
+
+.team-list ul {
+    margin: 0px;
+    width: 100%;
+}
+
+.team-list li {
+    float: left;
+    width: 25%;
+    padding: 1%;
+    text-align: center;
+    list-style: none;
+}
+
+.team-list li img {
+    width: 100%;
+}
+
+.team-list li p {
+    margin: 0px;
+}
+
+/* Bio Top Band Styles */
+#bio-top-band {
+    float: left;
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 2.5%;
+    padding-bottom: 2%;
+}
+
+#bio-photo {
+    float: left;
+    width: 39%;
+    min-height: 400px;
+    margin-right: 1%;
+}
+
+#bio-contact {
+    text-align: center;
+    float: left;
+    height: fit-content;
+    width: 58%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 50px;
+    margin-left: 2%;
+}
+
+#bio-contact h1 {
+    font-family: Raleway, sans-serif;
+    font-size: 60px;
+    color: rgb(75, 91, 121);
+    margin-bottom: 20px;
+    line-height: 1.2em;
+    font-weight: 400;
+}
+
+#bio-contact h2 {
+    font-family: Raleway, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: rgb(215, 30, 43);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+#bio-contact p {
+    font-size: 24px;
+    margin-bottom: 0em;
+}
+
+#bio-contact p a {
+    text-decoration: none;
+    color: black;
+    border-bottom: 0.9px solid lightgray;
+}
+
+#bio-contact p a:hover {
+    color: rgb(50, 63, 87);
+    border-bottom: 0.9px solid rgb(50, 63, 87);
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+    .team-list li {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .team-list li {
+        width: 100%;
+    }
+}

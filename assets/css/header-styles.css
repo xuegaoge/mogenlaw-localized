@@ -1,0 +1,112 @@
+/* Header Styles for all pages except index.html */
+/* This ensures consistent header display across all pages to match the original site */
+
+.site-header {
+    background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%);
+    position: relative;
+}
+
+.inside-header {
+    padding: 20px 80px 20px 75px;
+    display: flex;
+    align-items: center;
+}
+
+.site-header .header-image {
+    vertical-align: middle;
+    width: 300px;
+}
+
+/* Ensure navigation styles are consistent */
+.main-navigation {
+    background-color: #323f57;
+}
+
+.main-navigation .main-nav ul li a {
+    line-height: 60px;
+}
+
+.main-navigation .main-nav>ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Submenu styles */
+.menu li.menu-item ul.sub-menu {
+    background: #323f57;
+}
+
+.menu li.menu-item ul.sub-menu ul.sub-menu {
+    background: #273348;
+}
+
+/* Hide dropdown arrows for submenus */
+.menu-item-has-children .dropdown-menu-toggle {
+    display: none;
+}
+
+.main-navigation .main-nav ul li.menu-item-has-children>a {
+    padding-right: 20px;
+}
+
+/* Adjustments for mobile menu */
+.menu-toggle {
+    padding: 0 20px;
+    line-height: 60px;
+    margin: 0;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.has-inline-mobile-toggle #site-navigation.toggled {
+    margin-top: 1.5em;
+}
+
+/* Cyber Fraud menu item in red */
+ul li#menu-item-471 a {
+    color: #ea1322;
+}
+
+ul li#menu-item-475 a,
+ul li#menu-item-477 a,
+ul li#menu-item-479 a,
+ul li#menu-item-482 a {
+    color: #fcfcfc;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .inside-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 22px;
+    }
+    
+    .site-header .header-image,
+    .home .site-header .header-image {
+        width: 140px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .inside-header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    
+    .main-navigation .main-nav ul li a {
+        padding-left: 14px;
+        padding-right: 14px;
+        line-height: 16px;
+        font-size: 14px;
+    }
+}

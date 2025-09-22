@@ -1,0 +1,147 @@
+/* Header Styles for all pages except index.html */
+/* This ensures consistent header display across all pages to match the original site */
+
+.site-header {
+    background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%);
+    position: relative;
+    padding: 13px 0px;
+}
+
+/* 首页特殊样式 */
+.home .site-header {
+    padding: 25px 0px 40px;
+}
+
+.inside-header {
+    padding: 20px 80px 0px 75px;
+    display: flex;
+    align-items: center;
+}
+
+/* 限制main元素的最大宽度，使其与目标网站保持一致 */
+main.site-content {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 更具体的规则以确保覆盖其他样式 */
+/* 首页样式 */
+.home .site-header .inside-header {
+    padding: 20px 80px 0px 75px !important;
+}
+
+/* 首页.header-image样式 */
+.home .site-header .header-image {
+    vertical-align: middle;
+    width: 375px;
+    height: 164px;
+    max-height: 164px;
+}
+
+/* 非首页页面样式 */
+.site-header .inside-header {
+    padding: 20px 80px 20px 75px !important;
+}
+
+.site-header .header-image {
+    vertical-align: middle;
+    width: 300px;
+    height: auto;
+    max-height: 131px;
+}
+
+/* Ensure navigation styles are consistent */
+.main-navigation {
+    background-color: rgba(50, 63, 87, 0);
+}
+
+.main-navigation .main-nav ul li a {
+    line-height: 60px;
+}
+
+.main-navigation .main-nav>ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+}
+
+/* Submenu styles */
+.menu li.menu-item ul.sub-menu {
+    background: rgb(50, 63, 87);
+}
+
+.menu li.menu-item ul.sub-menu ul.sub-menu {
+    background: #273348;
+}
+
+/* Hide dropdown arrows for submenus */
+.menu-item-has-children .dropdown-menu-toggle {
+    display: none;
+}
+
+.main-navigation .main-nav ul li.menu-item-has-children>a {
+    padding-right: 20px;
+}
+
+/* Adjustments for mobile menu */
+.menu-toggle {
+    padding: 0 20px;
+    line-height: 60px;
+    margin: 0;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.has-inline-mobile-toggle #site-navigation.toggled {
+    margin-top: 1.5em;
+}
+
+/* Cyber Fraud menu item in red */
+ul li#menu-item-471 a {
+    color: #ea1322;
+}
+
+ul li#menu-item-475 a,
+ul li#menu-item-477 a,
+ul li#menu-item-479 a,
+ul li#menu-item-482 a {
+    color: #fcfcfc;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .inside-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 22px;
+    }
+    
+    .site-header .header-image,
+    .home .site-header .header-image {
+        width: 140px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .inside-header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    
+    .main-navigation .main-nav ul li a {
+        padding-left: 14px;
+        padding-right: 14px;
+        line-height: 16px;
+        font-size: 14px;
+    }
+}
