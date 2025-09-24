@@ -243,23 +243,65 @@
     padding: 8px 56px 8px 16px !important; /* right side space for hamburger */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start !important; /* 强制左对齐，覆盖首页等居中影响 */
+    text-align: left !important;
     gap: 12px;
+  }
+  /* 首页（.home）在移动端统一与内页相同的左右内边距 */
+  .home .site-header .inside-header {
+    padding-left: 16px !important;
+    padding-right: 56px !important;
+  }
+  /* 统一子元素顺序与左右分布（无视不同页面的 DOM 插入顺序差异） */
+  .site-header .inside-header > .site-logo {
+    order: 1;
+    margin-right: auto;   /* 将汉堡按钮推到最右 */
+    flex: 0 1 auto;
+  }
+  .site-header .inside-header > .m-header-toggle {
+    order: 2;
   }
 
   .site-header .site-logo { line-height: 0; }
+  .site-header .site-logo,
+  .site-header .site-logo a {
+    display: flex;
+    align-items: center;
+  }
 
   /* logo keep aspect ratio, cap height to avoid “too tall” look */
   .site-header .header-image,
   .home .site-header .header-image {
-    height: 52px !important;
+    height: 60px !important;
     width: auto !important;
     max-width: 70vw !important;
+    display: block;              /* 统一为块级，消除基线差异 */
+    vertical-align: middle;      /* 保险：即使作为内联元素也不中线抖动 */
+  }
+
+  /* 统一 logo 容器与链接在 flex 中的对齐与间距 */
+  .site-header .site-logo,
+  .site-header .site-logo a {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   /* fine tune hamburger placement to match new padding */
   .m-header-toggle {
     right: 12px;
-    top: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Ensure consistent left alignment across all pages (including .home) on mobile */
+  .site-header .site-logo { flex: 0 0 auto; }
+  .site-header .site-logo,
+  .site-header .site-logo a,
+  .site-header .site-logo img {
+    margin: 0 !important;
+  }
+  .home .site-header .inside-header {
+    justify-content: flex-start !important;
+    text-align: left !important;
   }
 }
