@@ -157,6 +157,9 @@ body{background-color:#ffffff;color:var(--contrast);}a{color:var(--accent);}a{te
 <body class="home wp-singular page-template-default page page-id-16 wp-custom-logo wp-embed-responsive wp-theme-generatepress wp-child-theme-generatepress-child post-image-aligned-center sticky-menu-fade metaslider-plugin no-sidebar nav-float-right separate-containers header-aligned-left dropdown-hover" itemtype="https://schema.org/WebPage" itemscope>
     <a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<header class="site-header has-inline-mobile-toggle" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
 			<div class="inside-header">
+<button id="m-header-toggle" class="m-header-toggle" aria-controls="m-drawer" aria-expanded="false" aria-label="Open menu">
+  <span class="m-hamburger" aria-hidden="true"></span>
+</button>
 				<div class="site-logo">
 					<a href="/" rel="home">
 						<img class="header-image is-logo-image" alt="Malva Morgan LLP" src="assets/images/logo.png" width="1046" height="456">
@@ -224,6 +227,17 @@ body{background-color:#ffffff;color:var(--contrast);}a{color:var(--accent);}a{te
 		</nav>
 					</div>
 		</header>
+<aside id="m-drawer" class="m-drawer" role="dialog" aria-modal="true" aria-label="Site menu" tabindex="-1">
+  <nav class="m-drawer-nav" aria-label="Mobile">
+    <ul class="m-drawer-list">
+      <li><a href="/pages/about.html">About Us</a></li>
+      <li><a href="/pages/enter-to-view.html">Our Team</a></li>
+      <li><a href="/pages/trial-practice.html">Trial Practice</a></li>
+      <li><a href="/pages/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</aside>
+<div class="m-drawer-overlay" hidden></div>
 		
 	<div class="site grid-container container hfeed" id="page">
 				<div class="site-content" id="content">

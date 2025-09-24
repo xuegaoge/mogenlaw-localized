@@ -1,0 +1,158 @@
+/* Mobile Header Drawer - isolated to mobile, no desktop impact */
+@media (max-width: 768px) {
+  /* Hide theme's mobile UI to avoid double menus */
+  .mobile-menu-control-wrapper,
+  .main-navigation .menu-toggle,
+  .has-inline-mobile-toggle #site-navigation.toggled,
+  #site-navigation.toggled,
+  #site-navigation .main-nav {
+    display: none !important;
+  }
+
+  /* Ensure header layout is not broken */
+  .site-header .inside-header {
+    position: relative;
+  }
+
+  /* Our hamburger button */
+  .m-header-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    cursor: pointer;
+  }
+  .m-header-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  /* Hamburger icon (3 bars) */
+  .m-hamburger,
+  .m-hamburger::before,
+  .m-hamburger::after {
+    display: block;
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform .25s ease, opacity .2s ease;
+  }
+  .m-hamburger::before { transform: translateY(-6px); }
+  .m-hamburger::after { transform: translateY(6px); }
+  body.is-mobile-menu-open .m-hamburger { opacity: 0; }
+
+  /* Drawer container */
+  .m-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(80vw, 360px);
+    background: #323e57;
+    color: #fff;
+    transform: translateX(100%);
+    transition: transform .3s ease;
+    z-index: 1300;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    outline: none;
+  }
+  .m-drawer.open {
+    transform: translateX(0);
+  }
+
+  .m-drawer-nav {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 18px 16px 24px;
+  }
+
+  .m-drawer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .m-drawer-list li { margin: 0; }
+  .m-drawer-list a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 10px;
+    border-radius: 6px;
+    line-height: 1.2;
+  }
+  .m-drawer-list a:hover,
+  .m-drawer-list a:focus {
+    background: #2a364f;
+  }
+
+  /* Overlay */
+  .m-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    transition: opacity .25s ease;
+    z-index: 1200;
+  }
+  body.is-mobile-menu-open .m-drawer-overlay {
+    opacity: 1;
+  }
+  .m-drawer-overlay[hidden] { display: none; }
+
+  /* Body scroll lock when drawer open */
+  body.is-mobile-menu-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+/* Desktop: ensure no visual changes */
+@media (min-width: 769px) {
+  .m-header-toggle { display: none !important; }
+  .m-drawer, .m-drawer-overlay { display: none !important; }
+}
+
+/* Mobile header visual tuning based on logo 600x262 */
+@media (max-width: 768px) {
+  /* tighter header rhythm on mobile */
+  .site-header { padding: 0 !important; }
+
+  .site-header .inside-header {
+    padding: 8px 56px 8px 16px !important; /* right side space for hamburger */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .site-header .site-logo { line-height: 0; }
+
+  /* logo keep aspect ratio, cap height to avoid “too tall” look */
+  .site-header .header-image,
+  .home .site-header .header-image {
+    height: 52px !important;
+    width: auto !important;
+    max-width: 70vw !important;
+  }
+
+  /* fine tune hamburger placement to match new padding */
+  .m-header-toggle {
+    right: 12px;
+    top: 8px;
+  }
+}
