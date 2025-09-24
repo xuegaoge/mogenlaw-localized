@@ -78,8 +78,114 @@
   .m-drawer-nav {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 18px 16px 24px;
+    padding: 18px 12px 28px;
   }
+
+  /* Nested menu styles */
+  .m-drawer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .m-drawer-nav > .m-built > ul { /* top level */
+    padding: 4px 4px 8px 4px;
+  }
+
+  .m-drawer-nav li {
+    position: relative;
+  }
+
+  .m-drawer-nav li > a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 64px 12px 12px; /* more space for bigger toggle on the right */
+    border-radius: 8px;
+  }
+
+  .m-drawer-nav li > a:focus,
+  .m-drawer-nav li > a:hover {
+    background: #2a364f;
+  }
+  /* subtle affordance for items with submenu */
+  .m-drawer-nav li.m-has-sub > a {
+    background: rgba(255,255,255,0.03);
+  }
+  .m-drawer-nav li.m-has-sub.m-open > a {
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Submenu block (collapsed by default via hidden attr) */
+  .m-drawer-nav ul.m-sub {
+    margin: 4px 0 6px;
+    padding-left: 14px; /* indent level */
+    border-left: 2px solid rgba(255,255,255,0.08);
+  }
+
+  /* Submenu toggle button (arrow on the right) */
+  .m-sub-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0; /* full row height for easier tapping */
+    transform: none;
+    width: 52px;
+    height: 44px; /* minimum size; actual height follows row */
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* ensure it's above the link area */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* visual button background inside the hit area */
+  .m-sub-toggle::after {
+    content: "";
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    transition: background-color .2s ease, border-color .2s ease, opacity .2s ease;
+  }
+  .m-sub-toggle:focus-visible::after,
+  .m-sub-toggle:hover::after {
+    background: rgba(255,255,255,0.15);
+  }
+  .m-sub-toggle::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg);
+    transition: transform .2s ease;
+  }
+  /* Expanded state rotates the arrow */
+  li.m-open > .m-sub-toggle::before,
+  li.m-open > a + .m-sub-toggle::before {
+    transform: rotate(45deg); /* pointing up */
+  }
+  /* highlight the button bubble when expanded */
+  li.m-open > .m-sub-toggle::after,
+  li.m-open > a + .m-sub-toggle::after {
+    background: #1e73be;
+  }
+
+  /* Level-based indentation (progressive) */
+  .m-drawer-nav ul > li > ul.m-sub > li > a { padding-left: 18px; }
+  .m-drawer-nav ul > li > ul.m-sub > li > ul.m-sub > li > a { padding-left: 24px; }
+
+  /* Small transition when revealing sub lists (hidden attr toggled in JS) */
+  .m-drawer-nav ul.m-sub[hidden] { display: none; }
+  .m-drawer-nav ul.m-sub:not([hidden]) { display: block; }
+
+  /* Active/hover affordance */
+  .m-drawer-nav a:active { opacity: 0.9; }
 
   .m-drawer-list {
     list-style: none;
