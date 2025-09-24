@@ -13,6 +13,10 @@
 
   function init() {
     if (!mq.matches) return; // mobile only
+
+    // Ensure mobile menu structural elements exist on pages that haven't been manually injected
+    ensureStructure();
+
     toggleBtn = qs('#m-header-toggle');
     drawer = qs('#m-drawer');
     overlay = qs('.m-drawer-overlay');
@@ -83,6 +87,60 @@
     }
   }
 
+  // Ensure hamburger button, drawer and overlay exist (for pages not manually injected)
+  function ensureStructure() {
+    // 1) Hamburger button inside header
+    var headerInner = document.querySelector('.site-header .inside-header');
+    var hasToggle = document.getElementById('m-header-toggle');
+    if (!hasToggle && headerInner) {
+      var btn = document.createElement('button');
+      btn.id = 'm-header-toggle';
+      btn.className = 'm-header-toggle';
+      btn.setAttribute('aria-controls', 'm-drawer');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+      var span = document.createElement('span');
+      span.className = 'm-hamburger';
+      span.setAttribute('aria-hidden', 'true');
+      btn.appendChild(span);
+      // 尽量放在右侧，插在 headerInner 的末尾
+      headerInner.appendChild(btn);
+    }
+
+    // 2) Drawer and overlay right after header
+    var headerEl = document.querySelector('.site-header, header.site-header, header');
+    var hasDrawer = document.getElementById('m-drawer');
+    var hasOverlay = document.querySelector('.m-drawer-overlay');
+
+    if (headerEl && (!hasDrawer || !hasOverlay)) {
+      // 找到 header 后的插入位置
+      var insertRef = headerEl.nextSibling;
+
+      if (!hasDrawer) {
+        var aside = document.createElement('aside');
+        aside.id = 'm-drawer';
+        aside.className = 'm-drawer';
+        aside.setAttribute('role', 'dialog');
+        aside.setAttribute('aria-modal', 'true');
+        aside.setAttribute('aria-label', 'Site menu');
+        aside.setAttribute('tabindex', '-1');
+
+        var nav = document.createElement('nav');
+        nav.className = 'm-drawer-nav';
+        aside.appendChild(nav);
+
+        headerEl.parentNode.insertBefore(aside, insertRef);
+      }
+
+      if (!hasOverlay) {
+        var overlayDiv = document.createElement('div');
+        overlayDiv.className = 'm-drawer-overlay';
+        overlayDiv.hidden = true;
+        headerEl.parentNode.insertBefore(overlayDiv, insertRef);
+      }
+    }
+  }
+
   // Clone and build nested, collapsible menu into drawer
   function ensureDrawerMenu() {
     var navWrapper = drawer.querySelector('.m-drawer-nav');
@@ -127,6 +185,7 @@
       var link = li.querySelector(':scope > a');
 
       if (sub) {
+        li.classList.add('m-has-sub');
         sub.classList.add('m-sub');
         // collapse by default
         sub.hidden = true;
@@ -152,15 +211,8 @@
           toggleSubmenu(li, sub, btn);
         });
 
-        // smart first-tap on link: first opens, second navigates
-        if (link) {
-          link.addEventListener('click', function(e){
-            if (sub.hidden) {
-              e.preventDefault();
-              toggleSubmenu(li, sub, btn);
-            }
-          });
-        }
+        // Link navigates normally; expansion is controlled only by the toggle button.
+        // No click interception on the link to avoid delaying navigation.
       }
     });
   }

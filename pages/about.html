@@ -28,7 +28,10 @@
 					<a href="/" rel="home">
 						<img class="header-image is-logo-image" alt="Malva Morgan LLP" src="/assets/images/logo.png" width="1046" height="456">
 					</a>
-				</div>	<nav class="main-navigation mobile-menu-control-wrapper" id="mobile-menu-control-wrapper" aria-label="Mobile Toggle">
+				</div>
+				<button id="m-header-toggle" class="m-header-toggle" aria-controls="m-drawer" aria-expanded="false" aria-label="Open menu">
+					<span class="m-hamburger" aria-hidden="true"></span>
+				</button>	<nav class="main-navigation mobile-menu-control-wrapper" id="mobile-menu-control-wrapper" aria-label="Mobile Toggle">
 				<button data-nav="site-navigation" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 			<span class="gp-icon icon-menu-bars"><svg viewbox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z"></path></svg><svg viewbox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path></svg></span><span class="mobile-menu">Menu</span>		</button>
 	</nav>
@@ -91,6 +94,17 @@
 		</nav>
 					</div>
 		</header>
+		<aside id="m-drawer" class="m-drawer" role="dialog" aria-modal="true" aria-label="Site menu" tabindex="-1">
+			<nav class="m-drawer-nav">
+				<ul class="m-drawer-list">
+					<li><a href="/pages/about.html">About Us</a></li>
+					<li><a href="/pages/enter-to-view.html">Our Team</a></li>
+					<li><a href="/pages/trial-practice.html">Trial Practice</a></li>
+					<li><a href="/pages/contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</aside>
+		<div class="m-drawer-overlay" hidden></div>
     <main class="site-content">
         <div class="entry-content">
 			<p><span style="font-weight: 400;">Malva Morgan LLP is a trial and litigation boutique built for high-impact cases. </span></p>
