@@ -136,3 +136,23 @@
 .home .main-navigation .inside-navigation {
     background-color: transparent !important;
 }
+
+/* 仅PC端：首页导航距顶部固定 16px（不改变水平位置与logo特效） */
+@media (min-width: 981px) {
+  .home .main-navigation {
+    top: 12px !important; /* 从顶部下移12px */
+  }
+}
+
+/* 仅PC端：首页只做垂直居中（不动水平） */
+@media (min-width: 981px) {
+  /* 不改变水平位置：不设置/不覆盖 justify-content、margin、max-width 等 */
+  .home .site-header .inside-header {
+    display: flex !important;
+    align-items: center !important; /* 让 logo 与导航在 header 行内垂直居中 */
+  }
+  .home #site-navigation .inside-navigation {
+    display: flex !important;
+    align-items: center !important; /* 让导航内容在自身容器垂直居中 */
+  }
+}
