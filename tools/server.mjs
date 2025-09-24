@@ -9,7 +9,7 @@ import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
-const PORT = Number(process.env.PORT || 8091);
+const PORT = Number(process.env.PORT || 8090);
 
 const MIME = {
   '.html':'text/html; charset=utf-8',
