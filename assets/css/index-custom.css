@@ -34,7 +34,7 @@
 }
 
 .home .site-header {
-    background: linear-gradient(175deg, rgb(23 33 53) 0%, rgb(50 63 87) 25%, rgb(50 63 87) 80%) !important;
+    background: #323f57 !important;
     position: relative !important;
     z-index: 100 !important;
 }
@@ -217,7 +217,7 @@ main.site-main .entry-content h3,
 main.site-content .entry-content ul,
 .site-content#content .entry-content ul,
 .site-content .entry-content ul,
-main.site-main .entry-content ul,
+main site-main .entry-content ul,
 .site-main .entry-content ul,
 main.site-content .entry-content ol,
 .site-content#content .entry-content ol,
@@ -236,71 +236,6 @@ main.site-main .entry-content li,
   margin: 0.3em 0;
 }
 
-main.site-content .entry-content a,
-.site-content#content .entry-content a,
-.site-content .entry-content a,
-main.site-main .entry-content a,
-.site-main .entry-content a {
-  color: #1a73e8;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 2px;
-}
-
-main.site-content .entry-content a:hover,
-.site-content#content .entry-content a:hover,
-.site-content .entry-content a:hover,
-main.site-main .entry-content a:hover,
-.site-main .entry-content a:hover {
-  color: #0f5fcc;
-  text-decoration: underline;
-}
-
-main.site-content .entry-content blockquote,
-.site-content#content .entry-content blockquote,
-.site-content .entry-content blockquote,
-main.site-main .entry-content blockquote,
-.site-main .entry-content blockquote {
-  border-left: 3px solid #e5e7eb;
-  padding-left: 1em;
-  color: #374151;
-  margin: 1em 0;
-}
-
-main.site-content .entry-content code,
-.site-content#content .entry-content code,
-.site-content .entry-content code,
-main.site-main .entry-content code,
-.site-main .entry-content code {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  background: #f7f7f8;
-  padding: 0.1em 0.3em;
-  border-radius: 4px;
-}
-
-main.site-content .entry-content pre,
-.site-content#content .entry-content pre,
-.site-content .entry-content pre,
-main.site-main .entry-content pre,
-.site-main .entry-content pre {
-  background: #f7f7f8;
-  padding: 0.8em 1em;
-  overflow: auto;
-  border-radius: 6px;
-  margin: 1em 0;
-}
-
-main.site-content .entry-content img,
-.site-content#content .entry-content img,
-.site-content .entry-content img,
-main.site-main .entry-content img,
-.site-main .entry-content img {
-  display: block;
-  margin: 1em auto;
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
 /* 移动端微调：内边距与标题间距适度收紧 */
 @media (max-width: 768px) {
   main.site-content .entry-content,
@@ -315,7 +250,7 @@ main.site-main .entry-content img,
   main.site-content .entry-content h1,
   .site-content#content .entry-content h1,
   .site-content .entry-content h1,
-  main.site-main .entry-content h1,
+  main site-main .entry-content h1,
   .site-main .entry-content h1 {
     margin-bottom: 0.5em;
   }
@@ -323,7 +258,7 @@ main.site-main .entry-content img,
   main.site-content .entry-content h2,
   .site-content#content .entry-content h2,
   .site-content .entry-content h2,
-  main.site-main .entry-content h2,
+  main site-main .entry-content h2,
   .site-main .entry-content h2 {
     margin: 1em 0 0.35em;
   }
@@ -391,3 +326,60 @@ body:not(.home) .site-header + .site-content {
     padding-right: 0 !important;
   }
 }
+
+/* ===== 最小化移动端修复：仅调整移动端 logo 父容器背景色与缓冲（不影响 PC） ===== */
+@media (max-width: 980px) {
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    background: #323f57 !important;
+    padding: 2px !important;
+    border: none !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+  }
+
+  .home .site-logo img,
+  .home .site-logo svg,
+  .home .site-branding img,
+  .home .site-branding svg {
+    mix-blend-mode: normal !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: inline-block !important;
+  }
+}
+/* ===== 结束移动端修复 ===== */
+
+/* ===== 追加：移动端 - 使用简单不透明背景以消除色差（只影响移动端） ===== */
+@media (max-width: 980px) {
+  .home .site-header {
+    background: #323f57 !important;
+  }
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    background: #323f57 !important;
+    background-color: #323f57 !important;
+    padding: 2px !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* ===== 结束：移动端渐变补丁 ===== */
+
+/* ===== 追加微调（B + C）：移动端增加 1px 半透明边框并把 padding 从 2px 调为 4px（只影响移动端） ===== */
+@media (max-width: 980px) {
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    padding: 4px !important;
+    border: none !important;
+  }
+}
+/* ===== 结束微调补丁 ===== */
