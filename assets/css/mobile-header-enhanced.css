@@ -305,3 +305,41 @@
     text-align: left !important;
   }
 }
+
+/* --- START: small touch/click compatibility patch --- */
+/* Improve tap target and touch behavior for menu toggle and sub-toggle */
+@media (max-width: 768px) {
+  /* Ensure primary header toggle is large enough and prioritized above overlays */
+  .m-header-toggle, .menu-toggle {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 6px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation; /* reduce 300ms delay on some browsers */
+    z-index: 1400 !important; /* ensure above overlays */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Make sure sub-toggle uses full row height for easier tapping (already set, reinforce) */
+  .m-sub-toggle {
+    width: 56px;
+    height: 100%;
+    min-height: 48px;
+    right: 6px;
+    z-index: 1400;
+    touch-action: manipulation;
+  }
+
+  /* If overlays are hidden via [hidden], still avoid pointer capture issues */
+  .m-drawer-overlay[hidden] { display: none; pointer-events: none; }
+
+  /* When open, ensure overlay does not cover the toggle */
+  body.is-mobile-menu-open .m-header-toggle {
+    z-index: 1500 !important;
+    position: fixed; /* keep it reachable even during transitions */
+  }
+}
+/* --- END: small touch/click compatibility patch --- */
