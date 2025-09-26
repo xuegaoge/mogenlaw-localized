@@ -19,7 +19,27 @@
   <link id="wp-inline-css-unified" rel="stylesheet" href="../assets/css/wp-inline.css">
 <link id="header-unified-css" rel="stylesheet" href="../assets/css/header-styles-unified.css">
 <link id="mobile-header-enhanced-css" rel="stylesheet" href="../assets/css/mobile-header-enhanced.css">
+<link rel="stylesheet" href="../assets/css/index-custom.css">
 </head>
+<style>
+/* 紧急内联（仅针对此页面）——确保非首页页面在移动端拥有顶部与左右安全间距 */
+@media (max-width: 980px) {
+  body:not(.home) main.site-content,
+  body:not(.home) main,
+  body:not(.home) main > article,
+  body:not(.home) main > div,
+  body:not(.home) main > section {
+    padding-top: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+  body:not(.home) main.site-content * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
 <body class="nav-float-right separate-containers header-aligned-left dropdown-hover">
     <header class="site-header has-inline-mobile-toggle" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
         <div class="inside-header">

@@ -383,3 +383,27 @@ body:not(.home) .site-header + .site-content {
   }
 }
 /* ===== 结束微调补丁 ===== */
+
+/* ===== 来自 pages/about.html 的移动端紧急内联样式（已合并） =====
+   目的：确保非首页页面在移动端拥有顶部与左右安全间距，避免内容贴边与触控抖动。
+   来源：pages/about.html — 紧急内联样式
+   时间：2025-09-26
+*/
+@media (max-width: 980px) {
+  body:not(.home) main.site-content,
+  body:not(.home) main,
+  body:not(.home) main > article,
+  body:not(.home) main > div,
+  body:not(.home) main > section {
+    padding-top: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+  body:not(.home) main.site-content * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* End of merged about.html mobile-safe styles */
