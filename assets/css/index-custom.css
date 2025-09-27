@@ -176,6 +176,19 @@ main.site-main .entry-content,
   color: #243242;
 }
 
+/* 桌面端复位：不收窄内容宽度，也不额外添加左右内边距（避免与主题叠加） */
+@media (min-width: 981px) {
+  main.site-content .entry-content,
+  .site-content#content .entry-content,
+  .site-content .entry-content,
+  main.site-main .entry-content,
+  .site-main .entry-content {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 main.site-content .entry-content p,
 .site-content#content .entry-content p,
 .site-content .entry-content p,
@@ -274,13 +287,14 @@ body:not(.home) .site-header + .site-content {
   padding-top: 24px;
 }
 
+/* 首页同样增加与导航的垂直间距，保持内容区一致性 */
+.home .site-header + .site-content {
+  padding-top: 24px;
+}
+
 /* 桌面：左右页边距（gutter）与内容容器内边距 */
 @media (min-width: 981px) {
-  body:not(.home) .grid-container { padding-left: 32px; padding-right: 32px; }
-  body:not(.home) .inside-article { padding: 28px; }
-  /* 若页面没有 inside-article，则为 entry-content 提供左右边距 */
-  body:not(.home) main.site-main .entry-content,
-  body:not(.home) .site-content .entry-content { padding-left: 24px; padding-right: 24px; }
+  /* 桌面端不做额外内边距调整，避免与主题叠加 */
 }
 
 /* 移动端：左右页边距与内容容器内边距 */
@@ -407,3 +421,38 @@ body:not(.home) .site-header + .site-content {
 }
 
 /* End of merged about.html mobile-safe styles */
+
+/* =========================================
+   首页桌面端：正文区域收窄并居中，对齐内页风格
+   - 保持视频区全宽（100vw）
+   - 仅桌面端生效，不影响移动端
+   - 不改动 HTML 结构
+   ========================================= */
+@media (min-width: 981px) {
+  /* 保持首页视频区全宽（不被容器限制） */
+  .home #home-video-section,
+  .home #home-video-section-mobile {
+    margin-left: calc(50% - 50vw) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  /* 首页正文容器对齐内页：容器最大宽度并左右安全内边距 */
+  .home article .inside-article {
+    max-width: 1140px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 首页正文文本宽度采用 72ch 排版，居中 */
+  .home article .entry-content {
+    max-width: 72ch !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
