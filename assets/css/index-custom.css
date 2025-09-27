@@ -1,1 +1,469 @@
-{{UPDATED_INDEX_CUSTOM_CSS}}
+/* 首页专用样式，确保视频区域铺满并保持正确的导航栏显示 */
+
+/* 首页视频区域样式 */
+.home #home-video-section,
+.home #home-video-section video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+}
+
+.home #home-video-section {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.home #home-video-section video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+}
+
+.home #home-video-section-mobile {
+    display: none !important;
+}
+
+/* 确保首页导航栏样式正确 */
+.home .main-navigation {
+    background-color: transparent !important;
+}
+
+.home .site-header {
+    background: #323f57 !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* 首页内容区域样式 */
+.home .site-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.home .content-area {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 首页主内容区域 */
+.home .site-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 确保首页文章内容区域正确 */
+.home .inside-article {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 首页标题隐藏 */
+.home .entry-header h1 {
+    display: none !important;
+}
+
+/* 首页页脚样式 */
+.home .site-footer {
+    width: 100% !important;
+    clear: both !important;
+}
+
+/* 确保首页网格容器铺满 */
+.home .grid-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 首页主体内容样式 */
+.home .entry-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .home #home-video-section,
+    .home #home-video-section video {
+        height: auto !important;
+    }
+    
+    .home .entry-content {
+        padding: 15px !important;
+    }
+}
+
+/* 修复视频区域铺满显示问题 */
+#home-video-section {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+#home-video-section video {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+    position: relative !important;
+}
+
+/* 修复导航栏显示问题 */
+.home .main-navigation {
+    background-color: transparent !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+}
+
+/* 确保导航栏在视频上方 */
+.home .main-navigation .inside-navigation {
+    background-color: transparent !important;
+}
+
+/* 仅PC端：首页导航距顶部固定 16px（不改变水平位置与logo特效） */
+@media (min-width: 981px) {
+  .home .main-navigation {
+    top: 12px !important; /* 从顶部下移12px */
+  }
+}
+
+/* 仅PC端：首页只做垂直居中（不动水平） */
+@media (min-width: 981px) {
+  /* 不改变水平位置：不设置/不覆盖 justify-content、margin、max-width 等 */
+  .home .site-header .inside-header {
+    display: flex !important;
+    align-items: center !important; /* 让 logo 与导航在 header 行内垂直居中 */
+  }
+  .home #site-navigation .inside-navigation {
+    display: flex !important;
+    align-items: center !important; /* 让导航内容在自身容器垂直居中 */
+  }
+}
+
+/* =============================== */
+/* 全站内容区：美式可读性排版（72ch） */
+/* 作用域：main.site-content / .site-content#content / .site-content / main.site-main / .site-main 下的 .entry-content */
+/* =============================== */
+
+main.site-content .entry-content,
+.site-content#content .entry-content,
+.site-content .entry-content,
+main.site-main .entry-content,
+.site-main .entry-content {
+  max-width: 72ch;          /* 推荐的内容行宽，提升可读性 */
+  margin-left: auto;
+  margin-right: auto;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #243242;
+}
+
+/* 桌面端复位：不收窄内容宽度，也不额外添加左右内边距（避免与主题叠加） */
+@media (min-width: 981px) {
+  main.site-content .entry-content,
+  .site-content#content .entry-content,
+  .site-content .entry-content,
+  main.site-main .entry-content,
+  .site-main .entry-content {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+main.site-content .entry-content p,
+.site-content#content .entry-content p,
+.site-content .entry-content p,
+main-site-main .entry-content p,
+.site-main .entry-content p {
+  margin: 0 0 1.1em;
+}
+
+main.site-content .entry-content h1,
+.site-content#content .entry-content h1,
+.site-content .entry-content h1,
+main-site-main .entry-content h1,
+.site-main .entry-content h1 {
+  font-weight: 700;
+  font-size: clamp(26px, 3.2vw, 34px);
+  margin: 0 0 0.6em;
+}
+
+main.site-content .entry-content h2,
+.site-content#content .entry-content h2,
+.site-content .entry-content h2,
+main-site-main .entry-content h2,
+.site-main .entry-content h2 {
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin: 1.2em 0 0.4em;
+}
+
+main-site-content .entry-content h3,
+.site-content#content .entry-content h3,
+.site-content .entry-content h3,
+main-site-main .entry-content h3,
+.site-main .entry-content h3 {
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 22px);
+  margin: 1.1em 0 0.3em;
+}
+
+main.site-content .entry-content ul,
+.site-content#content .entry-content ul,
+.site-content .entry-content ul,
+main site-main .entry-content ul,
+.site-main .entry-content ul,
+main-site-content .entry-content ol,
+.site-content#content .entry-content ol,
+.site-content .entry-content ol,
+main-site-main .entry-content ol,
+.site-main .entry-content ol {
+  margin: 0 0 1.1em;
+  padding-left: 2.2em;
+}
+
+/* 统一全站列表缩进为 2 个汉字；显式兼容 crisis-management.html 的 data-spread 列表 */
+ul[data-spread="false"],
+.entry-content ul[data-spread="false"] {
+  padding-left: 2.2em !important;
+  list-style-position: outside;
+}
+ul[data-spread="false"] li,
+.entry-content ul[data-spread="false"] li {
+  text-indent: 0;
+}
+
+main-site-content .entry-content li,
+.site-content#content .entry-content li,
+.site-content .entry-content li,
+main-site-main .entry-content li,
+.site-main .entry-content li {
+  margin: 0.3em 0;
+}
+
+/* 移动端微调：内边距与标题间距适度收紧 */
+@media (max-width: 768px) {
+  main-site-content .entry-content,
+  .site-content#content .entry-content,
+  .site-content .entry-content,
+  main-site-main .entry-content,
+  .site-main .entry-content {
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  main-site-content .entry-content h1,
+  .site-content#content .entry-content h1,
+  .site-content .entry-content h1,
+  main site-main .entry-content h1,
+  .site-main .entry-content h1 {
+    margin-bottom: 0.5em;
+  }
+
+  main-site-content .entry-content h2,
+  .site-content#content .entry-content h2,
+  .site-content .entry-content h2,
+  main-site-main .entry-content h2,
+  .site-main .entry-content h2 {
+    margin: 1em 0 0.35em;
+  }
+}
+
+/* =============================== */
+/* 非首页：内容区与导航的安全间距（全局更流行的可读布局） */
+/* =============================== */
+
+/* 与导航的垂直间距 */
+body:not(.home) .site-header + main-site-main,
+body:not(.home) .site-header + .site-content {
+  padding-top: 24px;
+}
+
+/* 首页同样增加与导航的垂直间距，保持内容区一致性 */
+.home .site-header + .site-content {
+  padding-top: 24px;
+}
+
+/* 桌面：左右页边距（gutter）与内容容器内边距 */
+@media (min-width: 981px) {
+  /* 桌面端不做额外内边距调整，避免与主题叠加 */
+}
+
+/* 移动端：左右页边距与内容容器内边距 */
+@media (max-width: 980px) {
+  body:not(.home) .grid-container { padding-left: 20px !important; padding-right: 20px !important; }
+  body:not(.home) .inside-article { padding: 20px !important; }
+  /* 非首页：若没有 inside-article，为正文提供左右内边距（两种结构全面覆盖） */
+  body:not(.home) main-site-main .entry-content,
+  body:not(.home) .site-main .entry-content,
+  body:not(.home) .site-content#content .entry-content,
+  body:not(.home) .site-content .entry-content { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* Fallback：非首页页面在移动端的全局安全间距，适配没有类名的 main/article 结构 */
+  body:not(.home) .site-header + main { padding-top: 20px !important; }
+
+  /* 移动端更强 Fallback：命中无类名的 main 及其直系容器，确保左右安全间距 */
+  body:not(.home) main,
+  body:not(.home) main > article,
+  body:not(.home) main > div,
+  body:not(.home) main > section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 若页面仍有 grid/inside-article，保持一致 */
+  body:not(.home) main article,
+  body:not(.home) main .grid-container,
+  body:not(.home) main .inside-article {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 强制命中 main.site-content（fallback）——解决 about 页贴边问题 */
+  body:not(.home) main-site-content {
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  /* 避免内层元素使用负边距或宽度撑满导致视觉贴边 */
+  body:not(.home) main-site-content > * {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ===== 最小化移动端修复：仅调整移动端 logo 父容器背景色与缓冲（不影响 PC） ===== */
+@media (max-width: 980px) {
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    background: #323f57 !important;
+    padding: 2px !important;
+    border: none !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+  }
+
+  .home .site-logo img,
+  .home .site-logo svg,
+  .home .site-branding img,
+  .home .site-branding svg {
+    mix-blend-mode: normal !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: inline-block !important;
+  }
+}
+/* ===== 结束移动端修复 ===== */
+
+/* ===== 追加：移动端 - 使用简单不透明背景以消除色差（只影响移动端） ===== */
+@media (max-width: 980px) {
+  .home .site-header {
+    background: #323f57 !important;
+  }
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    background: #323f57 !important;
+    background-color: #323f57 !important;
+    padding: 2px !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    mix-blend-mode: normal !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* ===== 结束：移动端渐变补丁 ===== */
+
+/* ===== 追加微调（B + C）：移动端增加 1px 半透明边框并把 padding 从 2px 调为 4px（只影响移动端） ===== */
+@media (max-width: 980px) {
+  .home .site-logo,
+  .home .site-branding,
+  .home .logo-wrapper {
+    padding: 4px !important;
+    border: none !important;
+  }
+}
+/* ===== 结束微调补丁 ===== */
+
+/* ===== 来自 pages/about.html 的移动端紧急内联样式（已合并） =====
+   目的：确保非首页页面在移动端拥有顶部与左右安全间距，避免内容贴边与触控抖动。
+   来源：pages/about.html — 紧急内联样式
+   时间：2025-09-26
+*/
+@media (max-width: 980px) {
+  body:not(.home) main-site-content,
+  body:not(.home) main,
+  body:not(.home) main > article,
+  body:not(.home) main > div,
+  body:not(.home) main > section {
+    padding-top: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+  body:not(.home) main-site-content * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* End of merged about.html mobile-safe styles */
+
+/* =========================================
+   首页桌面端：正文区域收窄并居中，对齐内页风格
+   - 保持视频区全宽（100vw）
+   - 仅桌面端生效，不影响移动端
+   - 不改动 HTML 结构
+   ========================================= */
+@media (min-width: 981px) {
+  /* 保持首页视频区全宽（不被容器限制） */
+  .home #home-video-section,
+  .home #home-video-section-mobile {
+    margin-left: calc(50% - 50vw) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  /* 首页正文容器对齐内页：容器最大宽度并左右安全内边距 */
+  .home article .inside-article {
+    max-width: 1140px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 首页正文文本宽度采用 72ch 排版，居中 */
+  .home article .entry-content {
+    max-width: 72ch !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
