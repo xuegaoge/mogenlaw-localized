@@ -192,7 +192,7 @@ main.site-main .entry-content,
 main.site-content .entry-content p,
 .site-content#content .entry-content p,
 .site-content .entry-content p,
-main.site-main .entry-content p,
+main-site-main .entry-content p,
 .site-main .entry-content p {
   margin: 0 0 1.1em;
 }
@@ -200,7 +200,7 @@ main.site-main .entry-content p,
 main.site-content .entry-content h1,
 .site-content#content .entry-content h1,
 .site-content .entry-content h1,
-main.site-main .entry-content h1,
+main-site-main .entry-content h1,
 .site-main .entry-content h1 {
   font-weight: 700;
   font-size: clamp(26px, 3.2vw, 34px);
@@ -210,17 +210,17 @@ main.site-main .entry-content h1,
 main.site-content .entry-content h2,
 .site-content#content .entry-content h2,
 .site-content .entry-content h2,
-main.site-main .entry-content h2,
+main-site-main .entry-content h2,
 .site-main .entry-content h2 {
   font-weight: 600;
   font-size: clamp(22px, 2.4vw, 28px);
   margin: 1.2em 0 0.4em;
 }
 
-main.site-content .entry-content h3,
+main-site-content .entry-content h3,
 .site-content#content .entry-content h3,
 .site-content .entry-content h3,
-main.site-main .entry-content h3,
+main-site-main .entry-content h3,
 .site-main .entry-content h3 {
   font-weight: 600;
   font-size: clamp(18px, 2vw, 22px);
@@ -232,13 +232,27 @@ main.site-content .entry-content ul,
 .site-content .entry-content ul,
 main site-main .entry-content ul,
 .site-main .entry-content ul,
-main.site-content .entry-content ol,
+main-site-content .entry-content ol,
 .site-content#content .entry-content ol,
 .site-content .entry-content ol,
-main.site-main .entry-content ol,
+main-site-main .entry-content ol,
 .site-main .entry-content ol {
   margin: 0 0 1.1em;
   padding-left: 2.2em;
+<<<<<<< HEAD
+}
+
+/* 统一全站列表缩进为 2 个汉字；显式兼容 crisis-management.html 的 data-spread 列表 */
+ul[data-spread="false"],
+.entry-content ul[data-spread="false"] {
+  padding-left: 2.2em !important;
+  list-style-position: outside;
+}
+ul[data-spread="false"] li,
+.entry-content ul[data-spread="false"] li {
+  text-indent: 0;
+=======
+>>>>>>> 9b8589e76f55257d210bcad4ad3b5a9fcfbb0841
 }
 
 /* 统一全站列表缩进为 2 个汉字；显式兼容 crisis-management.html 的 data-spread 列表 */
@@ -252,26 +266,26 @@ ul[data-spread="false"] li,
   text-indent: 0;
 }
 
-main.site-content .entry-content li,
+main-site-content .entry-content li,
 .site-content#content .entry-content li,
 .site-content .entry-content li,
-main.site-main .entry-content li,
+main-site-main .entry-content li,
 .site-main .entry-content li {
   margin: 0.3em 0;
 }
 
 /* 移动端微调：内边距与标题间距适度收紧 */
 @media (max-width: 768px) {
-  main.site-content .entry-content,
+  main-site-content .entry-content,
   .site-content#content .entry-content,
   .site-content .entry-content,
-  main.site-main .entry-content,
+  main-site-main .entry-content,
   .site-main .entry-content {
     padding: 0 16px;
     font-size: 16px;
   }
 
-  main.site-content .entry-content h1,
+  main-site-content .entry-content h1,
   .site-content#content .entry-content h1,
   .site-content .entry-content h1,
   main site-main .entry-content h1,
@@ -279,10 +293,10 @@ main.site-main .entry-content li,
     margin-bottom: 0.5em;
   }
 
-  main.site-content .entry-content h2,
+  main-site-content .entry-content h2,
   .site-content#content .entry-content h2,
   .site-content .entry-content h2,
-  main site-main .entry-content h2,
+  main-site-main .entry-content h2,
   .site-main .entry-content h2 {
     margin: 1em 0 0.35em;
   }
@@ -293,7 +307,7 @@ main.site-main .entry-content li,
 /* =============================== */
 
 /* 与导航的垂直间距 */
-body:not(.home) .site-header + main.site-main,
+body:not(.home) .site-header + main-site-main,
 body:not(.home) .site-header + .site-content {
   padding-top: 24px;
 }
@@ -313,7 +327,7 @@ body:not(.home) .site-header + .site-content {
   body:not(.home) .grid-container { padding-left: 20px !important; padding-right: 20px !important; }
   body:not(.home) .inside-article { padding: 20px !important; }
   /* 非首页：若没有 inside-article，为正文提供左右内边距（两种结构全面覆盖） */
-  body:not(.home) main.site-main .entry-content,
+  body:not(.home) main-site-main .entry-content,
   body:not(.home) .site-main .entry-content,
   body:not(.home) .site-content#content .entry-content,
   body:not(.home) .site-content .entry-content { padding-left: 20px !important; padding-right: 20px !important; }
@@ -341,12 +355,12 @@ body:not(.home) .site-header + .site-content {
   }
 
   /* 强制命中 main.site-content（fallback）——解决 about 页贴边问题 */
-  body:not(.home) main.site-content {
+  body:not(.home) main-site-content {
     padding: 20px !important;
     box-sizing: border-box !important;
   }
   /* 避免内层元素使用负边距或宽度撑满导致视觉贴边 */
-  body:not(.home) main.site-content > * {
+  body:not(.home) main-site-content > * {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -415,7 +429,7 @@ body:not(.home) .site-header + .site-content {
    时间：2025-09-26
 */
 @media (max-width: 980px) {
-  body:not(.home) main.site-content,
+  body:not(.home) main-site-content,
   body:not(.home) main,
   body:not(.home) main > article,
   body:not(.home) main > div,
@@ -425,7 +439,7 @@ body:not(.home) .site-header + .site-content {
     padding-right: 20px !important;
     box-sizing: border-box !important;
   }
-  body:not(.home) main.site-content * {
+  body:not(.home) main-site-content * {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
@@ -466,4 +480,8 @@ body:not(.home) .site-header + .site-content {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9b8589e76f55257d210bcad4ad3b5a9fcfbb0841
