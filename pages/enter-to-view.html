@@ -23,6 +23,33 @@
 
 
 
+<style>
+/* Desktop-only: widen left gutter on this page, align with about.html grid-container */
+@media (min-width: 981px) {
+  /* Move gutter to grid-container to match about.html */
+  main.site-main { padding-left: 0 !important; box-sizing: border-box !important; margin-left: auto !important; margin-right: auto !important; max-width: 1140px; }
+
+  main.site-main > .grid-container {
+    padding-left: 0px !important;
+    margin-left: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Neutralize inner containers to prevent stacking */
+  main.site-main .post { padding-left: 0 !important; margin-left: 0 !important; }
+  main.site-main .inside-article { padding-left: 0 !important; }
+  main.site-main .entry-content { padding-left: 0 !important; }
+  /* 强覆盖：与 about 一致，桌面端主容器左右自动居中 */
+  @media (min-width: 981px) {
+    body.separate-containers main.site-main {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      max-width: 1140px !important;
+      width: auto !important;
+    }
+  }
+}
+</style>
 </head>
 <body class="nav-float-right separate-containers header-aligned-left dropdown-hover">
     <header class="site-header has-inline-mobile-toggle" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
