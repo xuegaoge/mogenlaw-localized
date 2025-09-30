@@ -238,13 +238,13 @@ main-site-content .entry-content ol,
 main-site-main .entry-content ol,
 .site-main .entry-content ol {
   margin: 0 0 1.1em;
-  padding-left: 2.2em;
+  padding-left: 3em;
 }
 
 /* 统一全站列表缩进为 2 个汉字；显式兼容 crisis-management.html 的 data-spread 列表 */
 ul[data-spread="false"],
 .entry-content ul[data-spread="false"] {
-  padding-left: 2.2em !important;
+  padding-left: 3em !important;
   list-style-position: outside;
 }
 ul[data-spread="false"] li,
