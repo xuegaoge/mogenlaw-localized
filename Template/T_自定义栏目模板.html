@@ -77,16 +77,8 @@
       </article>
     </div>
   </main>
-
-  <footer class="site-footer">
-    <footer class="site-info" aria-label="Site" itemtype="https://schema.org/WPFooter" itemscope>
-      <div class="inside-site-info grid-container">
-        <div class="copyright-bar">
-          ©<stl:site field="Copyright" />
-        </div>
-      </div>
-    </footer>
-  </footer>
+  <!-- 导航使用 SSCMS 引用foot -->
+  <stl:include file="@/footer.html" />
 
   <!-- 脚本引入与 enter-to-view 一致，路径改为根目录 -->
   <script src="/assets/js/jquery.min.js"></script>
