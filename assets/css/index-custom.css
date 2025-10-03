@@ -326,8 +326,8 @@ body:not(.home) .site-header + .site-content {
   body:not(.home) main > article,
   body:not(.home) main > div,
   body:not(.home) main > section {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     box-sizing: border-box !important;
   }
 
@@ -335,14 +335,14 @@ body:not(.home) .site-header + .site-content {
   body:not(.home) main article,
   body:not(.home) main .grid-container,
   body:not(.home) main .inside-article {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     box-sizing: border-box !important;
   }
 
   /* 强制命中 main.site-content（fallback）——解决 about 页贴边问题 */
   body:not(.home) main-site-content {
-    padding: 20px !important;
+    padding: 10px !important;
     box-sizing: border-box !important;
   }
   /* 避免内层元素使用负边距或宽度撑满导致视觉贴边 */
@@ -421,8 +421,8 @@ body:not(.home) .site-header + .site-content {
   body:not(.home) main > div,
   body:not(.home) main > section {
     padding-top: 20px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     box-sizing: border-box !important;
   }
   body:not(.home) main-site-content * {
@@ -453,8 +453,8 @@ body:not(.home) .site-header + .site-content {
     max-width: 1140px !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     box-sizing: border-box !important;
   }
 
@@ -505,11 +505,19 @@ body:not(.home) .site-header + .site-content {
 }
 /* ===== 追加：移动端容器内边距与列表类重置（全局覆盖） ===== */
 @media (max-width: 768px) {
-  /* 非首页：减少容器左右内边距，扩大正文宽度 */
-  body:not(.home) .grid-container { padding-left: 12px !important; padding-right: 12px !important; }
-  body:not(.home) .inside-article { padding-left: 0 !important; padding-right: 0 !important; }
+  /* 非首页：取消祖先容器左右内边距，统一正文为 30px */
+  body:not(.home) main.site-main,
+  body:not(.home) .site-content,
+  body:not(.home) .grid-container,
+  body:not(.home) article { padding-left: 0 !important; padding-right: 0 !important; }
+
+  body:not(.home) .inside-article { padding-left: 30px !important; padding-right: 30px !important; }
+  body:not(.home) .inside-article { font-size: 20px; line-height: 27px; }
   body:not(.home) .site-main .entry-content,
-  body:not(.home) .site-content .entry-content { padding-left: 0 !important; padding-right: 0 !important; }
+  body:not(.home) .site-content .entry-content { padding-left: 0 !important; padding-right: 0 !important; max-width: none !important; }
+
+  /* 与 about.html 容器对齐：确保 main > .grid-container 居中并限定宽度 */
+  body:not(.home) main.site-main > .grid-container { max-width: 1140px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
 
   /* UEditor 列表类重置，避免左缩进 */
   .entry-content ul.list-paddingleft-2,
@@ -521,8 +529,13 @@ body:not(.home) .site-header + .site-content {
 }
 
 @media (max-width: 480px) {
-  body:not(.home) .grid-container { padding-left: 10px !important; padding-right: 10px !important; }
-  body:not(.home) .inside-article { padding-left: 0 !important; padding-right: 0 !important; }
+  /* 非首页：小屏维持同样策略，inside-article 30px，祖先归零 */
+  body:not(.home) main.site-main,
+  body:not(.home) .site-content,
+  body:not(.home) .grid-container,
+  body:not(.home) article { padding-left: 0 !important; padding-right: 0 !important; }
+
+  body:not(.home) .inside-article { padding-left: 30px !important; padding-right: 30px !important; font-size: 20px; line-height: 27px; }
   body:not(.home) .site-main .entry-content,
-  body:not(.home) .site-content .entry-content { padding-left: 0 !important; padding-right: 0 !important; }
+  body:not(.home) .site-content .entry-content { padding-left: 15px !important; padding-right: 15px !important; max-width: none !important; }
 }
