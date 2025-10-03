@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><stl:content type="title" /> - <stl:site field="SiteName" /></title>
+  <!-- 样式以 enter-to-view.html 为准，路径改为站点根目录 -->
+  <link rel="stylesheet" href="/assets/css/style.min-6.8.1.css">
+  <link rel="stylesheet" href="/assets/css/widget-areas.min.css">
+  <link rel="stylesheet" href="/assets/css/main.min.css">
+  <link rel="stylesheet" href="/assets/css/style-1751249515.css">
+  <link rel="stylesheet" href="/assets/css/css.css">
+  <link rel="stylesheet" href="/assets/css/css2-Ralewayitalwght0100..9001100..900_swap.css">
+  <link rel="stylesheet" href="/assets/css/css2-Robotoitalwght0100..9001100..900_swap.css">
+  <link rel="stylesheet" href="/assets/css/css2-ArchivoNarrowitalwght0400..7001400..700_swap.css">
+  <link rel="stylesheet" href="/assets/css/flexslider.css">
+  <link rel="stylesheet" href="/assets/css/public.css">
+  <link rel="stylesheet" href="/assets/css/style-1.0.0.css">
+  <link rel="stylesheet" href="/assets/css/team-styles.css">
+  <link id="wp-inline-css-unified" rel="stylesheet" href="/assets/css/wp-inline.css">
+  <link id="header-unified-css" rel="stylesheet" href="/assets/css/header-styles-unified.css">
+  <link id="mobile-header-enhanced-css" rel="stylesheet" href="/assets/css/mobile-header-enhanced.css">
+  <link rel="stylesheet" href="/assets/css/index-custom.css">
+  <style>
+    /* 桌面端与 enter-to-view 保持相同的主容器布局 */
+    @media (min-width: 981px) {
+      main.site-main { padding-left: 0 !important; box-sizing: border-box !important; margin-left: auto !important; margin-right: auto !important; max-width: 1140px; }
+      main.site-main > .grid-container { padding-left: 0px !important; margin-left: 0 !important; box-sizing: border-box !important; }
+      main.site-main .post { padding-left: 0 !important; margin-left: 0 !important; }
+      main.site-main .inside-article { padding-left: 0 !important; }
+      main.site-main .entry-content { padding-left: 0 !important; }
+      body.separate-containers main.site-main { margin-left: auto !important; margin-right: auto !important; max-width: 1140px !important; width: auto !important; }
+    }
+  </style>
+  <!-- 站点统计、SEO、额外头部资源可按需追加 -->
+</head>
+<body class="nav-float-right separate-containers header-aligned-left dropdown-hover">
+  <a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>
+  <header class="site-header has-inline-mobile-toggle" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
+    <div class="inside-header">
+      <div class="site-logo">
+        <a href="/" rel="home">
+          <img class="header-image is-logo-image" alt="Malva Morgan LLP" src="/assets/images/logo.png" width="1046" height="456">
+        </a>
+      </div>
+      <nav class="main-navigation mobile-menu-control-wrapper" id="mobile-menu-control-wrapper" aria-label="Mobile Toggle">
+        <button data-nav="site-navigation" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+          <span class="gp-icon icon-menu-bars"></span>
+          <span class="mobile-menu">Menu</span>
+        </button>
+      </nav>
+      <nav class="main-navigation nav-align-right sub-menu-right" id="site-navigation" aria-label="Primary" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+        <div class="inside-navigation grid-container">
+          <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+            <span class="gp-icon icon-menu-bars"></span>
+            <span class="mobile-menu">Menu</span>
+          </button>
+          <!-- 导航使用 SSCMS 引用静态模板 -->
+          <stl:include file="@/daohanglan.html" />
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main" id="main">
+    <div class="grid-container">
+      <article class="post">
+        <div class="inside-article">
+          <header class="entry-header">
+            <h1 class="entry-title"><stl:content type="title" /></h1>
+          </header>
+          <div class="entry-content" itemprop="text">
+            <!-- 参照首页模板调用方式，使用标准 STL 内容输出 -->
+            <stl:content type="content" isClearTags="false" />
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- 导航使用 SSCMS 引用foot -->
+  <stl:include file="@/footer.html" />
+
+  <!-- 脚本引入与 enter-to-view 一致，路径改为根目录 -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/jquery-migrate.min.js"></script>
+  <script src="/assets/js/jquery.flexslider.min.js"></script>
+  <script src="/assets/js/script.min.js"></script>
+  <script src="/assets/js/jQuery.easing.min.js"></script>
+  <script src="/assets/js/menu.min.js"></script>
+  <script src="/assets/js/wp-emoji-release.min.js"></script>
+  <script src="/assets/js/frontend-gtag.min.js"></script>
+  <script src="/assets/js/classList.min-1278caee.js"></script>
+  <script src="/assets/js/mobile-menu-enhanced.js"></script>
+</body>
+</html>

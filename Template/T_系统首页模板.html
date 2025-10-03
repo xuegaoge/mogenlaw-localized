@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><stl:site field="SiteName" /> - Home</title>
+  <link rel="stylesheet" href="/assets/css/style.min-6.8.1.css">
+  <link rel="stylesheet" href="/assets/css/widget-areas.min.css">
+  <link rel="stylesheet" href="/assets/css/main.min.css">
+  <link rel="stylesheet" href="/assets/css/style-1751249515.css">
+  <link rel="stylesheet" href="/assets/css/css.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="/assets/css/css2-Ralewayitalwght0100..9001100..900_swap.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="/assets/css/css2-Robotoitalwght0100..9001100..900_swap.css" rel="stylesheet">
+  <link href="/assets/css/css2-ArchivoNarrowitalwght0400..7001400..700_swap.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/flexslider.css">
+  <link rel="stylesheet" href="/assets/css/public.css">
+  <link rel="stylesheet" href="/assets/css/style-1.0.0.css">
+  <link id="wp-inline-css-unified" rel="stylesheet" href="/assets/css/wp-inline.css">
+  <link id="header-unified-css" rel="stylesheet" href="/assets/css/header-styles-unified.css">
+  <link id="mobile-header-enhanced-css" rel="stylesheet" href="/assets/css/mobile-header-enhanced.css">
+  <link id="index-custom-css" rel="stylesheet" href="/assets/css/index-custom.css">
+</head>
+<body class="home wp-singular wp-custom-logo wp-embed-responsive wp-theme-generatepress wp-child-theme-generatepress-child no-sidebar nav-float-right separate-containers header-aligned-left dropdown-hover" itemtype="https://schema.org/WebPage" itemscope>
+  <a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>
+  <header class="site-header has-inline-mobile-toggle" id="masthead" aria-label="Site" itemtype="https://schema.org/WPHeader" itemscope>
+    <div class="inside-header">
+      <div class="site-logo">
+        <a href="/" rel="home">
+          <img class="header-image is-logo-image" alt="Malva Morgan LLP" src="/assets/images/logo.png" width="1046" height="456">
+        </a>
+      </div>
+
+      <nav class="main-navigation mobile-menu-control-wrapper" id="mobile-menu-control-wrapper" aria-label="Mobile Toggle">
+        <button data-nav="site-navigation" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+          <span class="gp-icon icon-menu-bars"></span>
+          <span class="mobile-menu">Menu</span>
+        </button>
+      </nav>
+
+      <nav class="main-navigation nav-align-right sub-menu-right" id="site-navigation" aria-label="Primary" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+        <div class="inside-navigation grid-container">
+          <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+            <span class="gp-icon icon-menu-bars"></span>
+            <span class="mobile-menu">Menu</span>
+          </button>
+          <!-- STL: 导航可替换为动态栏目（示例，保留静态导航作为回退）
+               具体属性以后台栏目结构为准，可在后续迭代中启用
+          <stl:channels topLevel="true">
+            <li class="menu-item"><a href="{Channel.Url}">{Channel.Title}</a></li>
+          </stl:channels>
+          -->
+          <stl:include file="@/daohanglan.html" />
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="site grid-container container hfeed" id="page">
+    <div class="site-content" id="content">
+      <main class="site-main" id="main">
+        <div id="home-video-section">
+          <video autoplay muted playsinline loop>
+            <source src="/assets/media/video-logo-no-slogan-g.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div id="home-video-section-mobile">
+          <video autoplay muted playsinline loop>
+            <source src="/assets/media/video-c-mobile-a-no-slogan.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <article id="post-16" class="post-16 page type-page status-publish" itemtype="https://schema.org/CreativeWork" itemscope>
+          <div class="inside-article">
+            <header class="entry-header">
+              <h1 class="entry-title" itemprop="headline">Home</h1>
+            </header>
+            <div class="entry-content" itemprop="text">
+              <stl:contents channelId="1" totalNum="1" where="Id=1">
+                <stl:content type="content" isClearTags="false" />
+              </stl:contents>
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+  <!-- 导航使用 SSCMS 引用foot -->
+  <stl:include file="@/footer.html" />
+  <!-- 移动端菜单增强脚本 -->
+  <script src="/assets/js/mobile-menu-enhanced.js"></script>
+</body>
+</html>

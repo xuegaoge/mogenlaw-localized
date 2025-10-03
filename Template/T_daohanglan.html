@@ -1,0 +1,19 @@
+<!-- 栏目导航（SSCMS 动态）保持样式与结构容器不变，仅动态填充 URL 与标题 -->
+<div id="primary-menu" class="main-nav">
+  <ul id="menu-menu-1" class="menu sf-menu">
+    <stl:channels topLevel="true">
+      <li id="menu-item-{Channel.Id}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+        <a href="/channels/{Channel.Id}.html">{Channel.Title}<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"></span></span></a>
+        <ul class="sub-menu" id="menu-item-{Channel.Id}-sub-menu">
+          <stl:channels parentId="{Channel.Id}">
+            <li id="menu-item-{Channel.Id}" class="menu-item"><a href="/channels/{Channel.Id}.html">{Channel.Title}</a></li>
+          </stl:channels>
+          <!-- 若无子栏目，则列出该栏目的内容作为二级菜单 -->
+          <stl:contents channelId="{Channel.Id}" totalNum="100">
+            <li id="menu-item-{Content.Id}" class="menu-item"><stl:a>{Content.Title}</stl:a></li>
+          </stl:contents>
+        </ul>
+      </li>
+    </stl:channels>
+  </ul>
+</div>
