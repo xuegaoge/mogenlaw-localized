@@ -1,5 +1,5 @@
 {
-  "dependencies": {
-    "playwright": "^1.55.0"
-  }
+  "name": "mogenlaw-localized",
+  "version": "1.0.0",
+  "description": "Mogenlaw localized website project"
 }
